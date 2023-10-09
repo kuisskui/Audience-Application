@@ -4,6 +4,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 def dashboard(request):
-    context = {"page": "dashboard"}
+    context = {"page": "dashboard", "detail": "show total medals for every countries"}
     return render(request, "audience/dashboard.html", context)
+
+
+def sport(request):
+    context = {"page": "sport", "detail": "show all sports without any detail or information."}
+    return render(request, "audience/sport.html", context)
 
