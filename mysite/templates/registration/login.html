@@ -26,10 +26,10 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
-</table>
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
+</table>
+    <input type="submit" value="login">
+    <input name="next" type="hidden" value="{{ next }}">
 </form>
 
 {# Assumes you set up the password_reset view in your URLconf #}
