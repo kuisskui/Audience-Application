@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=50)
     year = models.CharField(max_length=50)
-    country_id = models.CharField(max_length=50)
+    country_id = models.CharField(max_length=50, null=True)
     sport_id = models.ManyToManyField(Sport)
 
 

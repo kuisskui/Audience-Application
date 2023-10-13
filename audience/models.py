@@ -21,6 +21,6 @@ class Country(models.Model):
 class Score(models.Model):
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    bronze = models.IntegerField(max_length=50)
-    silver = models.IntegerField(max_length=50)
-    gold = models.IntegerField(max_length=50)
+    bronze = models.IntegerField(default=0)
+    silver = models.IntegerField(default=0)
+    gold = models.IntegerField(default=0)
