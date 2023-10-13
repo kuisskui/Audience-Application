@@ -12,6 +12,7 @@ def register(request):
             user.refresh_from_db()
             user.userprofile.gender = form.cleaned_data.get("gender")
             user.userprofile.year = form.cleaned_data.get("year")
+            user.userprofile.country_id = form.cleaned_data.get("country_id")
             user.save()
             login(request, user)
             messages.success(request, "Registration successful.")
