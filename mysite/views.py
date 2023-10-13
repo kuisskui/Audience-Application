@@ -9,6 +9,10 @@ def register(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.refresh_from_db()
+            user.userprofile.gender = form.cleaned_data.get("gender")
+            user.userprofile.year = form.cleaned_data.get("year")
+            user.save()
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("audience:dashboard")

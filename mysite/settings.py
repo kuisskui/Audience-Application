@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'audience.apps.AudienceConfig',
+    'user_profile.apps.UserProfileConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
