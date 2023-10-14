@@ -13,16 +13,26 @@
             height: 100vh; /* Set a minimum height to center content vertically */
         }
     </style>
-    <title>Sport</title>
+    <title>Audience</title>
 </head>
 <body>
+    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    {% endif %}
+    <div>
+        <a href="{% url 'audience:dashboard' %}">dashboard</a>
+    </div>
+    <div>
+        <a href="{% url 'audience:sport' %}">sport</a>
+    </div>
     <div class="center-both">
-        <!-- Centered text -->
         <div>
             <h1 class="text-center">Hello, {{page}} page!</h1>
             <p class="text-center">{{detail}}</p>
         </div>
     </div>
-
 </body>
 </html>

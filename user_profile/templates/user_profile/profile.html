@@ -16,14 +16,22 @@
     <title>Dashboard</title>
 </head>
 <body>
-    {{user}}
+    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
     {% if user.is_authenticated %}
     <a href="{% url 'logout' %}">logout</a>
-    {{userprofile.gender}}
-    {{userprofile.year}}
     {% else %}
     <a href="{% url 'login' %}">login</a>
     {% endif %}
+    {{userprofile.gender}}
+    {{userprofile.year}}
+    {{userprofile.country_id}}
+    {{userprofile.sport_id}}
+    <div>
+        <a href="{% url 'audience:dashboard' %}">dashboard</a>
+    </div>
+    <div>
+        <a href="{% url 'audience:sport' %}">sport</a>
+    </div>
     <div class="center-both">
         <!-- Centered text -->
         <div>
