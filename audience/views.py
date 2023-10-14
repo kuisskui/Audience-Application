@@ -12,6 +12,6 @@ def sports(request):
     return render(request, "audience/sports.html", context)
 
 
-def sport(request):
-    context = {"page": "sport", "detail": "show detail on each sport."}
+def sport(request, pk):
+    context = {"page": "sport", "detail": f"show detail on each sport(pk ={pk})."}
     return render(request, "audience/sport.html", context)
