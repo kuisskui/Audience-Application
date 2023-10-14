@@ -7,7 +7,11 @@ def dashboard(request):
     return render(request, "audience/dashboard.html", context)
 
 
-def sport(request):
-    context = {"page": "sport", "detail": "show all sports without any detail or information."}
-    return render(request, "audience/sport.html", context)
+def sports(request):
+    context = {"page": "sports", "detail": "show all sports without any detail or information."}
+    return render(request, "audience/sports.html", context)
 
+
+def sport(request):
+    context = {"page": "sport", "detail": "show detail on each sport."}
+    return render(request, "audience/sport.html", context)
