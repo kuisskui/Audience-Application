@@ -34,5 +34,12 @@
             <p class="text-center">{{detail}}</p>
         </div>
     </div>
+    <div>
+        <table>
+            {% for country, medals in data.items %}
+            <tr><td>{{country}}</td><td>{{medals}}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

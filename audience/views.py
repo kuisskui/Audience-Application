@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+import requests
 
 
 # Create your views here.
 def dashboard(request):
-    context = {"page": "dashboard", "detail": "show total medals for every countries"}
+    response = requests.get('http://127.0.0.1:8000/get_dashboard')
+    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": response.json()}
     return render(request, "audience/dashboard.html", context)
 
 
@@ -15,3 +18,21 @@ def sports(request):
 def sport(request, pk):
     context = {"page": "sport", "detail": f"show detail on each sport(pk ={pk})."}
     return render(request, "audience/sport.html", context)
+
+
+# For testing
+def get_dashboard(request):
+    data = {
+        "FR": {
+            "gold": 100,
+            "silver": 100,
+            "bronze": 100
+        },
+        "US": {
+            "gold": 100,
+            "silver": 100,
+            "bronze": 100
+        }
+    }
+    print("return!!")
+    return JsonResponse(data)

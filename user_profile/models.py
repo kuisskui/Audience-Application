@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=50)
     year = models.CharField(max_length=50)
     country_id = models.CharField(max_length=50, null=True)
-    sport_id = models.ManyToManyField(Sport)
+    sport_ids = models.ManyToManyField(Sport)
 
 
 @receiver(post_save, sender=User)
