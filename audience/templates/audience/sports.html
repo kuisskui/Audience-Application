@@ -34,5 +34,12 @@
             <p class="text-center">{{detail}}</p>
         </div>
     </div>
+    <div>
+        <table>
+            {% for id, sport in data.items %}
+            <tr><td>{{id}}</td><td><a href="{% url 'audience:sport' id %}">{{sport}}</a></td></tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
