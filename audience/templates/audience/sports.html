@@ -37,7 +37,7 @@
     <div>
         <table>
             {% for id, sport in data.items %}
-            <tr><td>{{id}}</td><td><a href="{% url 'audience:sport' id %}">{{sport}}</a></td></tr>
+            <tr><td>{{id}}</td><td><a href="{% url 'audience:sport' id %}">{{sport}}</a></td><td><a href="{% url 'audience:subscribe' id%}">subscribe</a></td></tr>
             {% endfor %}
         </table>
     </div>
