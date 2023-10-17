@@ -22,10 +22,10 @@
     {% else %}
     <a href="{% url 'login' %}">login</a>
     {% endif %}
-    {{userprofile.gender}}
-    {{userprofile.year}}
-    {{userprofile.country_id}}
-    {{userprofile.sport_id}}
+    gender: {{userprofile.gender}}
+    year: {{userprofile.year}}
+    country_id: {{userprofile.country_id}}
+    sport_ids: {{userprofile.sport_ids}}
     <div>
         <a href="{% url 'audience:dashboard' %}">dashboard</a>
     </div>

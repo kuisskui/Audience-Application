@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from user_profile.models import UserProfile
+from django.contrib.auth.decorators import login_required
 import requests
 
 
@@ -19,8 +21,22 @@ def sports(request):
 
 def sport(request, sport_id):
     response = requests.get(f'http://127.0.0.1:8000/get_sport/{sport_id}')
-    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data":response.json()}
+    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": response.json()}
     return render(request, "audience/sport.html", context)
+
+
+@login_required
+def subscribe(request, sport_id):
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    sport_ids = profile.sport_ids
+    if sport_ids:
+        sport_ids = f"{sport_ids},{sport_id}"
+    else:
+        sport_ids = sport_id
+    profile.sport_ids = sport_ids
+    profile.save()
+    return redirect("audience:sports")
 
 
 # For testing
@@ -37,7 +53,6 @@ def get_dashboard(request):
             "bronze": 100
         }
     }
-    print("return!!")
     return JsonResponse(data)
 
 
