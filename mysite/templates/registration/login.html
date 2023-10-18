@@ -1,39 +1,198 @@
-{% extends "base.html" %}
+{% load static %}
 
-{% block content %}
-<!--example below-->
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Paris Olympic">
+        <meta name="author" content="TAGCH">
+        <meta name="keyword" content="html css javascript">
+        <title>SignIn</title>
+        <link rel="stylesheet" href={% static 'mysite\login.css' %}>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    </head>
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+    <body>
+        <div class="Ex1"></div>
+        <div class="Ex">
+            <div class="login">
+                <center>
+                    <h3 class="title">Bonjour!</h3>
+                    <h5 class="subtitle">Sign into Your account</h5>
+                    <br>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="text-input">
+                            <i class="ri-user-fill"></i>
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                        </div>
+                        <br class="brHeight">
+                        <div class="text-input">
+                            <i class="ri-lock-fill"></i>
+                            {{ form.password.label_tag }}
+                            {{ form.password }}
+                        </div>
+                        <br>
+                        <div class="lineB">
+                            <input type="checkbox" id="reading" class="checkbox-field" name="RememberMe" value="Remember">
+                            <label class="remember">&nbsp;Remember me &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <a class="forget" href="{% url 'password_reset' %}">Forget password?</a>
+                        </div>
+                        {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+                
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <p>Your account doesn't have access to this page. To proceed,
+                                please login with an account that has access.</p>
+                            {% else %}
+                                <p>Please login to see this page.</p>
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        <button class="btn" type="submit">SIGN IN</button>
+                        <br><br class="brHeight">
+                    </form>
+                    <div class="line">
+                        <div class="or"></div>
+                        <div class="orText">or</div>
+                        <div class="or"></div>
+                    </div>
+                    <div class="item">
+                        <a href="#" target="_blank" rel="noopener">
+                            <img class="rounded-circle" src="{% static 'mysite\image\Google.png' %}" alt="Google Logo" width="40" height="40">
+                        </a>
+                    </div>
+                    <div class="line">
+                        <div class="lowText">Don’t have an account?&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <a class="SignUp" href="{% url 'register' %}">Sign Up</a>
+                    </div>
+                    
+                </center>
+            </div>
+            <div class="design">
+                <center>
+                    <br><br>
+                    <img class="parisLogo" src="{% static 'mysite\image\Paris2024.png' %}" alt="Paris Logo">
+                    <img class="olympicLogo" src="{% static 'mysite\image\OlmpicLogo.png' %}" alt="olympic Logo">
+                    <h3 class="subtext">Welcome Back!</h3>
+                    <br><br><br><br>
+                    <h4 class="message">-Nong All New-</h4>
+                </center>
+            </div>
+        </div>
+        </div>
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-
-</table>
-    <input type="submit" value="login">
-    <input name="next" type="hidden" value="{{ next }}">
-</form>
-
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'register' %}">register</a></p>
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
-{% endblock %}
+    </body>
+    <div class="container">
+        <div class="bubbles">
+            <span style="--i:11"></span>
+            <span style="--i:12"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:21"></span>
+            <span style="--i:19"></span>
+            <span style="--i:16"></span>
+            <span style="--i:7"></span>
+            <span style="--i:13"></span>
+            <span style="--i:17"></span>
+            <span style="--i:6"></span>
+            <span style="--i:1"></span>
+            <span style="--i:11"></span>
+            <span style="--i:16"></span>
+            <span style="--i:20"></span>
+            <span style="--i:7"></span>
+            <span style="--i:12"></span>
+            <span style="--i:7"></span>
+            <span style="--i:11"></span>
+            <span style="--i:5"></span>
+            <span style="--i:20"></span>
+            <span style="--i:13"></span>
+            <span style="--i:7"></span>
+            <span style="--i:11"></span>
+            <span style="--i:18"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:12"></span>
+            <span style="--i:25"></span>
+            <span style="--i:16"></span>
+            <span style="--i:2"></span>
+            <span style="--i:11"></span>
+            <span style="--i:8"></span>
+            <span style="--i:21"></span>
+            <span style="--i:6"></span>
+            <span style="--i:10"></span>
+            <span style="--i:18"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:8"></span>
+            <span style="--i:14"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:6"></span>
+            <span style="--i:19"></span>
+            <span style="--i:28"></span>
+            <span style="--i:14"></span>
+            <span style="--i:10"></span>
+            <span style="--i:18"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:8"></span>
+            <span style="--i:14"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:21"></span>
+            <span style="--i:19"></span>
+            <span style="--i:16"></span>
+            <span style="--i:14"></span>
+            <span style="--i:10"></span>
+            <span style="--i:18"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:8"></span>
+            <span style="--i:21"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:21"></span>
+            <span style="--i:19"></span>
+            <span style="--i:8"></span>
+            <span style="--i:14"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:21"></span>
+            <span style="--i:8"></span>
+            <span style="--i:15"></span>
+            <span style="--i:6"></span>
+            <span style="--i:10"></span>
+            <span style="--i:18"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:8"></span>
+            <span style="--i:12"></span>
+            <span style="--i:27"></span>
+            <span style="--i:8"></span>
+            <span style="--i:14"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+            <span style="--i:6"></span>
+            <span style="--i:8"></span>
+            <span style="--i:14"></span>
+            <span style="--i:11"></span>
+            <span style="--i:2"></span>
+            <span style="--i:25"></span>
+            <span style="--i:15"></span>
+        </div>
+    </div>
+</html>
