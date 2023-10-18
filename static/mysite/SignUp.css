@@ -21,6 +21,11 @@ body {
     justify-content: center;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    background-color: transparent !important;
+}
+
 .text-input {
     width: 60%;
     height: 40px;

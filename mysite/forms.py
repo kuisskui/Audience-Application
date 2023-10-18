@@ -5,11 +5,16 @@ from datetime import datetime
 
 GENDER_CHOICE = [
     ("male", "Male"),
-    ("female", "Female")
+    ("female", "Female"),
+    ("other", "Other")
 ]
 
 YEAR_CHOICE = [tuple([year, year]) for year in range(datetime.now().year, datetime.now().year - 80, -1)]
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(widget=forms.PasswordInput)
 
 # Create your forms here.
 class NewUserForm(UserCreationForm):

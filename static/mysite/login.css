@@ -21,6 +21,11 @@ body {
     justify-content: center;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    background-color: transparent !important;
+}
+
 .text-input {
     width: 60%;
     height: 40px;
@@ -31,6 +36,10 @@ body {
     padding: 0 15px;
     filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
     background: rgb(255, 255, 255, 0.9);
+}
+
+.error-message {
+    color: #FF0000;
 }
 
 .text-input input {
@@ -50,6 +59,20 @@ body {
 
 ::placeholder {
     color: #9a9a9a;
+}
+
+.toggle-password {
+    cursor: pointer;
+}
+
+.toggle-password i {
+    position: relative;
+    color: #333;
+    font-size: 18px;
+}
+
+.password-input[type="password"] {
+    padding-right: 30px; /* Make room for the eye icon */
 }
 
 .design {
@@ -139,7 +162,7 @@ body {
 }
 
 .parisLogo {
-    width: 80%;
+    width: 280px;
     height: 40%;
     flex-shrink: 0;
     margin-left: auto;
@@ -147,8 +170,8 @@ body {
 }
 
 .olympicLogo {
-    width: 55%;
-    height: 16%;
+    width: 200px;
+    height: 100px;
     flex-shrink: 0;
     margin-left: auto;
     margin-right: auto;
@@ -327,7 +350,7 @@ body {
     
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
     .Ex {
         grid-template-columns: 61.45833333% 38.54166667%;
         grid-template-areas: "login design";
@@ -342,10 +365,35 @@ body {
     }
 }
 
-@media (max-width: 815px) {
+@media (max-width: 1300px) {
     .Ex {
         background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.50) 74.87%), #FFF;
+        grid-template-columns: 100% 0%;
+        grid-template-areas: "login design";
+    }
 
+    .login {
+        display: block;
+    }
+
+    .design {
+        display: block;
+    }
+
+    .parisLogo {
+        opacity: 0;
+    }
+    
+    .olympicLogo {
+        opacity: 0;
+    }
+
+    .subtext {
+        opacity: 0;
+    }
+
+    .message {
+        opacity: 0;
     }
 
     .login .title {
@@ -411,29 +459,35 @@ body {
     }
 
     .or {
-        width: 100px;
+        width: 35%;
         height: 2px;
         flex-shrink: 0;
         border: 0.01px solid rgb(139, 137, 137, 0.0);
         border-radius: 100px;
         white-space: nowrap;
-        background: rgb(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.9);
     }
 
     .orText {
-        color: rgb(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.9);
     }
 }
 
 @media (max-width: 1100px) {
     .or {
-        width: 100px;
+        width: 35%;
         height: 2px;
         flex-shrink: 0;
         border: 0.01px solid rgb(139, 137, 137, 0.0);
         border-radius: 100px;
         white-space: nowrap;
+        background: rgba(255, 255, 255, 0.9);
     }
+
+    .orText {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
     .bubbles span {
         position: relative;
         width: 10px;

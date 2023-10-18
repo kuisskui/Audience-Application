@@ -24,14 +24,15 @@
                         {% csrf_token %}
                         <div class="text-input">
                             <i class="ri-user-fill"></i>
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
+                            <input type="text" name="username" id="id_username" placeholder="Username">
                         </div>
                         <br class="brHeight">
                         <div class="text-input">
                             <i class="ri-lock-fill"></i>
-                            {{ form.password.label_tag }}
-                            {{ form.password }}
+                            <input type="password" name="password" id="id_password" placeholder="Password">
+                            <span class="toggle-password" onclick="togglePasswordVisibility(this)">
+                                <i class="ri-eye-fill" id="eye-icon"></i>
+                            </span>
                         </div>
                         <br>
                         <div class="lineB">
@@ -39,8 +40,11 @@
                             <label class="remember">&nbsp;Remember me &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <a class="forget" href="{% url 'password_reset' %}">Forget password?</a>
                         </div>
+                        <br>
+                        <button class="btn" type="submit">SIGN IN</button>
+                        <br><br>
                         {% if form.errors %}
-                        <p>Your username and password didn't match. Please try again.</p>
+                        <p class="error-message">Your username and password didn't match. Please try again.</p>
                         {% endif %}
                 
                         {% if next %}
@@ -51,9 +55,6 @@
                                 <p>Please login to see this page.</p>
                             {% endif %}
                         {% endif %}
-                        <br>
-                        <button class="btn" type="submit">SIGN IN</button>
-                        <br><br class="brHeight">
                     </form>
                     <div class="line">
                         <div class="or"></div>
@@ -69,7 +70,6 @@
                         <div class="lowText">Don’t have an account?&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <a class="SignUp" href="{% url 'register' %}">Sign Up</a>
                     </div>
-                    
                 </center>
             </div>
             <div class="design">
@@ -195,4 +195,20 @@
             <span style="--i:15"></span>
         </div>
     </div>
+    <script>
+        function togglePasswordVisibility(element) {
+            var passwordInput = element.previousElementSibling;
+            var eyeIcon = document.getElementById("eye-icon");
+        
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("ri-eye-fill");
+                eyeIcon.classList.add("ri-eye-off-fill");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("ri-eye-off-fill");
+                eyeIcon.classList.add("ri-eye-fill");
+            }
+        }
+    </script>
 </html>
