@@ -13,7 +13,7 @@
             height: 100vh; /* Set a minimum height to center content vertically */
         }
     </style>
-    <title>Dashboard</title>
+    <title>Audience</title>
 </head>
 <body>
     <a href="{% url 'user_profile:profile' %}">{{user}}</a>
@@ -22,10 +22,6 @@
     {% else %}
     <a href="{% url 'login' %}">login</a>
     {% endif %}
-    gender: {{userprofile.gender}},
-    age: {{userprofile.age}},
-    country_id: {{userprofile.country}},
-    sport_ids: {{userprofile.sport_ids}}
     <div>
         <a href="{% url 'audience:dashboard' %}">dashboard</a>
     </div>
@@ -33,11 +29,17 @@
         <a href="{% url 'audience:sports' %}">sports</a>
     </div>
     <div class="center-both">
-        <!-- Centered text -->
         <div>
             <h1 class="text-center">Hello, {{page}} page!</h1>
             <p class="text-center">{{detail}}</p>
         </div>
+    </div>
+    <div>
+        <table>
+            {% for id, sport in data.items %}
+            <tr><td>{{id}}</td><td><a href="{% url 'audience:sport' id %}">{{sport}}</a></td><td><a href="{% url 'audience:subscribe' id%}">subscribe</a></td></tr>
+            {% endfor %}
+        </table>
     </div>
 </body>
 </html>

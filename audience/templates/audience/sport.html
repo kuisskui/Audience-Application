@@ -13,16 +13,35 @@
             height: 100vh; /* Set a minimum height to center content vertically */
         }
     </style>
-    <title>Sport</title>
+    <title>Audience</title>
 </head>
 <body>
+    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    {% endif %}
+    <div>
+        <a href="{% url 'audience:dashboard' %}">dashboard</a>
+    </div>
+    <div>
+        <a href="{% url 'audience:sports' %}">sports</a>
+    </div>
     <div class="center-both">
-        <!-- Centered text -->
         <div>
             <h1 class="text-center">Hello, {{page}} page!</h1>
             <p class="text-center">{{detail}}</p>
         </div>
     </div>
-
+    <table>
+        <h2>{{data.sport_name}}</h2>
+        <tr><td></td><td>total medals</td><td></td></tr>
+        <tr><td>gold:{{data.gold}}</td><td>silver:{{data.silver}}</td><td>bronze:{{data.bronze}}</td></tr>
+        <tr><td>country_code</td><td>gold</td><td>silver</td><td>bronze</td></tr>
+        {% for individual_country in data.individual_countries %}
+        <tr><td>{{individual_country.country_code}}</td><td>{{individual_country.gold}}</td><td>{{individual_country.silver}}   </td><td>{{individual_country.bronze}}  </td></tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

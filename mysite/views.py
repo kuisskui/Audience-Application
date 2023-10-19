@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import NewUserForm
 from django.contrib.auth import login
 from django.contrib import messages
+from user_profile.models import UserProfile
 
 
 def register(request):
@@ -9,10 +10,11 @@ def register(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()
-            user.userprofile.gender = form.cleaned_data.get("gender")
-            user.userprofile.year = form.cleaned_data.get("year")
-            user.save()
+            gender = form.cleaned_data.get("gender")
+            age = form.cleaned_data.get("age")
+            country = form.cleaned_data.get("country")
+            profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
+            profile.save()
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("audience:dashboard")
