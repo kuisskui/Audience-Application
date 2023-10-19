@@ -17,32 +17,45 @@
         <div class="Ex">
             <div class="login">
                 <center>
-                    <h3 class="title">Bonjour!</h3>
-					<h5 class="subtitle">Register</h5>
+                    <h3 class="title">Register</h3>
                     <br>
-					<form method="POST">
-						{% csrf_token %}
-						<div class="text-input">
-							<i class="ri-user-fill"></i>
-							{{ register_form.username }}
-						</div>
-						<br class="brHeight">
-						<div class="text-input">
-							<i class="ri-mail-fill"></i>
-							{{ register_form.email }}
-						</div>
-						<br class="brHeight">
-						<div class="text-input">
-							<i class="ri-lock-fill"></i>
-							{{ register_form.password1 }}
-						</div>
-						<br>
-						{% for message in messages %}
-						{{ message }}
-						{% endfor %}
-						<button class="btn btn-primary" type="submit">Register</button>
-					</form>
-                    <br><br>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="text-input">
+                            <i class="ri-user-fill"></i>
+                            <input type="text" name="{{ register_form.username.name }}" id="{{ register_form.username.id }}" placeholder="Username">
+                        </div>
+                        <br class="brHeight">
+                        <div class="text-input">
+                            <i class="ri-mail-fill"></i>
+                            <input type="email" name="{{ register_form.email.name }}" id="{{ register_form.email.id }}" placeholder="Email">
+                        </div>
+                        <br class="brHeight">
+                        <div class="text-input">
+                            <i class="ri-lock-fill"></i>
+                            <input type="password" name="{{ register_form.password1.name }}" id="{{ register_form.password1.id }}" placeholder="Password">
+                        </div>
+                        <br class="brHeight">
+                        <div class="text-input">
+                            <i class="ri-lock-fill"></i>
+                            <input type="password" name="{{ register_form.password2.name }}" id="{{ register_form.password2.id }}" placeholder="Confirm Password">
+                        </div>
+                        <br class="brHeight">
+                            <label class="DropBoxText" for="{{ register_form.age.id }}">Age</label>
+                            {{ register_form.age}}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label class="DropBoxText" for="{{ register_form.gender.id }}">Gender</label>
+                            {{ register_form.gender }}
+                            <br class="brHeight">
+                            <label class="DropBoxText" for="{{ register_form.country.id }}">Country</label>
+                            {{ register_form.country }}
+                        {% for message in messages %}
+                        <br><br class="brHeight">
+                        <p class="error-message">{{ message }}</p>
+                        {% endfor %}
+                        <br class="brHeight">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </form>
                     <div class="line">
                         <div class="or"></div>
                         <div class="orText">or</div>

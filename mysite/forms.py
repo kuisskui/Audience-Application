@@ -16,17 +16,12 @@ COUNTRY_ID_CHOICE = [
     ("TH", "Thailand")
 ]
 
-
-class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput)
-
 # Create your forms here.
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    gender = forms.CharField(required=True, widget=forms.Select(choices=GENDER_CHOICE))
-    age = forms.CharField(required=True, widget=forms.Select(choices=AGE_CHOICE))
-    country = forms.CharField(required=True, widget=forms.Select(choices=COUNTRY_ID_CHOICE))
+    gender = forms.CharField(required=True, widget=forms.Select(choices=GENDER_CHOICE, attrs={'class': 'custom-select-gender'}))
+    age = forms.CharField(required=True, widget=forms.Select(choices=AGE_CHOICE, attrs={'class': 'custom-select-age'}))
+    country = forms.CharField(required=True, widget=forms.Select(choices=COUNTRY_ID_CHOICE, attrs={'class': 'custom-select-country'}))
 
     class Meta:
         model = User

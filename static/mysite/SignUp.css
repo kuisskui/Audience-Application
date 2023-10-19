@@ -21,6 +21,70 @@ body {
     justify-content: center;
 }
 
+.error-message {
+    color: #FF0000;
+}
+
+.DropBoxText {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+}
+
+.custom-select-age {
+    /* Add custom styles for the select box */
+    width: 12%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-age option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-gender {
+    /* Add custom styles for the select box */
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-gender option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-country {
+    /* Add custom styles for the select box */
+    width: 52%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-country option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
     background-color: transparent !important;
@@ -70,7 +134,7 @@ input:-webkit-autofill {
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Paris2024-Variable;
-    font-size: 90px;
+    font-size: 60px;
     font-style: normal;
     font-weight: 350;
     line-height: normal;
