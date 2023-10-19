@@ -9,7 +9,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #FFF;
+
+    background: radial-gradient(rgba(152, 131, 56, 0.52) 1%, #FFF 100%);
     z-index: 1;
 }
 
@@ -77,10 +78,15 @@ input:-webkit-autofill {
 
 .design {
     grid-area: design;
-    display: none;
+    display: block;
+    width:100%;
     position:sticky;
     align-items: center;
     justify-content: center;
+}
+
+#design img {
+display: block;
 }
 
 .title {
@@ -148,7 +154,7 @@ input:-webkit-autofill {
 .Ex {
     border-radius: 50px;
     background: conic-gradient(from 180deg at 61.43% 0%, rgba(255, 255, 255, 0.80) 0deg, rgba(255, 255, 255, 0.59) 60.00000178813934deg, rgba(255, 255, 255, 0.68) 144.0000021457672deg, rgba(220, 220, 220, 0.30) 216.00000858306885deg, rgba(227, 220, 155, 0.28) 225deg, rgba(218, 174, 52, 0.48) 331.3986825942993deg, rgba(215, 162, 24, 0.53) 360deg);
-    box-shadow: 16px 9px 250px 42px rgba(152, 131, 56, 0.52), 0px 0px 29px 580px rgba(227, 204, 120, 0.12) inset;
+    box-shadow: 0px 0px 140px 1px rgba(152, 131, 56, 0.52), 0px 0px 29px 580px rgba(227, 204, 120, 0.12) inset;
     width: 60%;
     height: 600px;
     border-radius: 20px;
@@ -347,7 +353,7 @@ input:-webkit-autofill {
     100% {
         transform: translateY(-10vh) scale(0);
     }
-    
+
 }
 
 @media (min-width: 1000px) {
@@ -411,7 +417,7 @@ input:-webkit-autofill {
         filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
         background: rgb(255, 255, 255, 0.9);
     }
-    
+
     .text-input input {
         border: none;
         outline: none;
@@ -453,7 +459,7 @@ input:-webkit-autofill {
         cursor: pointer;
         transition: all 0.4s;
     }
-    
+
     .btn:hover {
         transform: scale(1.1);
     }
@@ -487,7 +493,7 @@ input:-webkit-autofill {
     .orText {
         color: rgba(255, 255, 255, 0.9);
     }
-    
+
     .bubbles span {
         position: relative;
         width: 10px;
@@ -506,9 +512,9 @@ input:-webkit-autofill {
         0% {
             transform: translateY(130vh) scale(1);
         }
-    
+
         100% {
             transform: translateY(-10vh) scale(0);
-        } 
+        }
     }
 }

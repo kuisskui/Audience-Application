@@ -3,12 +3,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
         <meta name="description" content="Paris Olympic">
         <meta name="author" content="TAGCH">
         <meta name="keyword" content="html css javascript">
         <title>SignIn</title>
-        <link rel="stylesheet" href={% static 'mysite\login.css' %}>
+        <link rel="stylesheet" href="{% static 'mysite\login.css' %}">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     </head>
 
@@ -76,6 +76,7 @@
                 <center>
                     <br><br>
                     <img class="parisLogo" src="{% static 'mysite\image\Paris2024.png' %}" alt="Paris Logo">
+                    <br><br>
                     <img class="olympicLogo" src="{% static 'mysite\image\OlmpicLogo.png' %}" alt="olympic Logo">
                     <h3 class="subtext">Welcome Back!</h3>
                     <br><br><br><br>
@@ -83,118 +84,19 @@
                 </center>
             </div>
         </div>
-        </div>
 
-    </body>
-    <div class="container">
-        <div class="bubbles">
-            <span style="--i:11"></span>
-            <span style="--i:12"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:21"></span>
-            <span style="--i:19"></span>
-            <span style="--i:16"></span>
-            <span style="--i:7"></span>
-            <span style="--i:13"></span>
-            <span style="--i:17"></span>
-            <span style="--i:6"></span>
-            <span style="--i:1"></span>
-            <span style="--i:11"></span>
-            <span style="--i:16"></span>
-            <span style="--i:20"></span>
-            <span style="--i:7"></span>
-            <span style="--i:12"></span>
-            <span style="--i:7"></span>
-            <span style="--i:11"></span>
-            <span style="--i:5"></span>
-            <span style="--i:20"></span>
-            <span style="--i:13"></span>
-            <span style="--i:7"></span>
-            <span style="--i:11"></span>
-            <span style="--i:18"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:12"></span>
-            <span style="--i:25"></span>
-            <span style="--i:16"></span>
-            <span style="--i:2"></span>
-            <span style="--i:11"></span>
-            <span style="--i:8"></span>
-            <span style="--i:21"></span>
-            <span style="--i:6"></span>
-            <span style="--i:10"></span>
-            <span style="--i:18"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:8"></span>
-            <span style="--i:14"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:6"></span>
-            <span style="--i:19"></span>
-            <span style="--i:28"></span>
-            <span style="--i:14"></span>
-            <span style="--i:10"></span>
-            <span style="--i:18"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:8"></span>
-            <span style="--i:14"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:21"></span>
-            <span style="--i:19"></span>
-            <span style="--i:16"></span>
-            <span style="--i:14"></span>
-            <span style="--i:10"></span>
-            <span style="--i:18"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:8"></span>
-            <span style="--i:21"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:21"></span>
-            <span style="--i:19"></span>
-            <span style="--i:8"></span>
-            <span style="--i:14"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:21"></span>
-            <span style="--i:8"></span>
-            <span style="--i:15"></span>
-            <span style="--i:6"></span>
-            <span style="--i:10"></span>
-            <span style="--i:18"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:8"></span>
-            <span style="--i:12"></span>
-            <span style="--i:27"></span>
-            <span style="--i:8"></span>
-            <span style="--i:14"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-            <span style="--i:6"></span>
-            <span style="--i:8"></span>
-            <span style="--i:14"></span>
-            <span style="--i:11"></span>
-            <span style="--i:2"></span>
-            <span style="--i:25"></span>
-            <span style="--i:15"></span>
-        </div>
+<div class="container">
+            <div class="bubbles">
+        <script>
+            for (let i = 1; i <= 150; i++) {
+                const randomValue = Math.floor(Math.random() * 20) + 1;
+                document.write('<span style="--i:' + randomValue + '"></span>');
+            }
+        </script>
     </div>
+    </div>
+    </body>
+
     <script>
         function togglePasswordVisibility(element) {
             var passwordInput = element.previousElementSibling;
