@@ -8,7 +8,7 @@ GENDER_CHOICE = [
     ("F", "Female")
 ]
 
-AGE_CHOICE = [tuple([year, year]) for year in range(datetime.now().year, datetime.now().year - 80, -1)]
+AGE_CHOICE = [tuple([year, year]) for year in range(1, 80)]
 
 COUNTRY_ID_CHOICE = [
     ("US", "United State"),

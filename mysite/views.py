@@ -11,9 +11,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             gender = form.cleaned_data.get("gender")
-            year = form.cleaned_data.get("year")
-            country_id = form.cleaned_data.get("country_id")
-            profile = UserProfile.objects.create(user=user, gender=gender, year=year, country_id=country_id)
+            age = form.cleaned_data.get("age")
+            country = form.cleaned_data.get("country")
+            profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
             login(request, user)
             messages.success(request, "Registration successful.")
