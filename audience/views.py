@@ -19,7 +19,7 @@ def sports(request):
 
 def sport(request, sport_id):
     response = requests.get(f'http://127.0.0.1:8000/get_sport/{sport_id}')
-    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data":response.json()}
+    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": response.json()}
     return render(request, "audience/sport.html", context)
 
 
