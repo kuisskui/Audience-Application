@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 GENDER_CHOICE = [
-    ("male", "Male"),
-    ("female", "Female")
+    ("M", "Male"),
+    ("F", "Female")
 ]
 
-YEAR_CHOICE = [tuple([year, year]) for year in range(datetime.now().year, datetime.now().year - 80, -1)]
+AGE_CHOICE = [tuple([year, year]) for year in range(datetime.now().year, datetime.now().year - 80, -1)]
 
 COUNTRY_ID_CHOICE = [
     ("US", "United State"),
@@ -20,12 +20,12 @@ COUNTRY_ID_CHOICE = [
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
     gender = forms.CharField(required=True, widget=forms.Select(choices=GENDER_CHOICE))
-    year = forms.CharField(required=True, widget=forms.Select(choices=YEAR_CHOICE))
-    country_id = forms.CharField(required=True, widget=forms.Select(choices=COUNTRY_ID_CHOICE))
+    age = forms.CharField(required=True, widget=forms.Select(choices=AGE_CHOICE))
+    country = forms.CharField(required=True, widget=forms.Select(choices=COUNTRY_ID_CHOICE))
 
     class Meta:
         model = User
-        fields = ("username", "year", "gender", "country_id", "email", "password1", "password2")
+        fields = ("username", "age", "gender", "country", "email", "password1", "password2")
 
     def save(self, commit=True):
         user = super(NewUserForm, self).save(commit=False)

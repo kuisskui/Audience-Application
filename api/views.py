@@ -14,25 +14,19 @@ def webhook(request):
     # not done
 
 
-def update_audience_info(request):
+def audiences(request):
     profiles = UserProfile.objects.all()
-    print(profiles[1].year)
+    # print(profiles[1].year)
+    data = []
     for profile in profiles:
-        print(profile.user.username, f"gender: {profile.gender}", f"year: {profile.year}", f"country_id: {profile.country_id}", f"sport_id: {profile.sport_ids.all()}")
-    data = {
-        "audience": [
-            {
-                "country": "FR",
-                "sport_ids": ["01", "02", "03"],
-                "gender": "M",
-                "age": 30
-            },
-            {
-                "country": "TH",
-                "sport_ids": ["11", "12"],
-                "gender": "F",
-                "age": 24
-            },
-        ]
-    }
-    return JsonResponse(data)
+        sport_ids = list(map(int, profile.sport_ids.split(',')))
+        audience = {
+            "country": profile.country,
+            "sport_ids": sport_ids,
+            "gender": profile.gender,
+            "age": int(profile.age)
+        }
+        data.append(audience)
+        # print(profile.user.username, f"gender: {profile.gender}", f"year: {profile.year}",
+        #       f"country_id: {profile.country_id}", f"sport_id: {profile.sport_ids.all()}")
+    return JsonResponse({"audiences": data})

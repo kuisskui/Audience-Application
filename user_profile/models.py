@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userprofile")
     gender = models.CharField(max_length=50)
-    year = models.CharField(max_length=50)
-    country_id = models.CharField(max_length=50, null=True)
+    age = models.CharField(max_length=50)
+    country = models.CharField(max_length=50, null=True)
     sport_ids = models.TextField(blank=True, null=True)
 
 
