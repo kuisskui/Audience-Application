@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from datetime import datetime
 
 GENDER_CHOICE = [
-    ("M", "Male"),
-    ("F", "Female")
+    ("male", "Male"),
+    ("female", "Female"),
+    ("other", "Other")
 ]
 
 AGE_CHOICE = [tuple([year, year]) for year in range(1, 80)]
@@ -15,6 +16,10 @@ COUNTRY_ID_CHOICE = [
     ("TH", "Thailand")
 ]
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(widget=forms.PasswordInput)
 
 # Create your forms here.
 class NewUserForm(UserCreationForm):
