@@ -42,13 +42,24 @@
                         </div>
                         <br class="brHeight">
                             <label class="DropBoxText" for="{{ register_form.age.id }}">Age</label>
-                            {{ register_form.age}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="age" class="custom-select-age">
+                                {% for value, label in register_form.age.field.choices %}
+                                <option value="{{ value }}" >{{ label }}</option>
+                                {% endfor %}
+                            </select>
                             <label class="DropBoxText" for="{{ register_form.gender.id }}">Gender</label>
-                            {{ register_form.gender }}
+                            <select name="gender" class="custom-select-gender">
+                                {% for value, label in register_form.gender.field.choices %}
+                                <option value="{{ value }}" >{{ label }}</option>
+                                {% endfor %}
+                            </select>
                             <br class="brHeight">
                             <label class="DropBoxText" for="{{ register_form.country.id }}">Country</label>
-                            {{ register_form.country }}
+                            <select name="country" class="custom-select-country">
+                                {% for value, label in register_form.country.field.choices %}
+                                <option value="{{ value }}" >{{ label }}</option>
+                                {% endfor %}
+                            </select>
                         {% for message in messages %}
                         <br><br class="brHeight">
                         <p class="error-message">{{ message }}</p>
