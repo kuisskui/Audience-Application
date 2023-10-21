@@ -20,7 +20,6 @@ COUNTRY_ID_CHOICE = [
 # Create your forms here.
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    # gender = forms.CharField(required=True, widget=forms.Select(choices=GENDER_CHOICE, attrs={'class': 'custom-select-gender'}))
     gender = forms.ChoiceField(required=True, choices=GENDER_CHOICE)
     age = forms.ChoiceField(required=True, choices=AGE_CHOICE)
     country = forms.ChoiceField(required=True, choices=COUNTRY_ID_CHOICE)
