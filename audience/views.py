@@ -29,13 +29,14 @@ def sport(request, sport_id):
 def subscribe(request, sport_id):
     user = request.user
     profile = UserProfile.objects.get(user=user)
-    sport_ids = profile.sport_ids
-    if sport_ids:
-        sport_ids = f"{sport_ids},{sport_id}"
-    else:
-        sport_ids = sport_id
-    profile.sport_ids = sport_ids
-    profile.save()
+    try:
+        sport_ids = list(profile.sport_ids.split(','))
+    except Exception:
+        sport_ids = []
+    if sport_id not in sport_ids:
+        sport_ids.append(sport_id)
+        profile.sport_ids = ','.join(sport_ids)
+        profile.save()
     return redirect("audience:sports")
 
 
@@ -58,10 +59,10 @@ def get_dashboard(request):
 
 def get_sports(request):
     data = {
-        "01": "Atheletics",
-        "02": "Archery",
-        "03": "Artistic Gymnastics",
-        "04": "Artistic Swimming",
+        "1": "Atheletics",
+        "2": "Archery",
+        "3": "Artistic Gymnastics",
+        "4": "Artistic Swimming",
     }
     return JsonResponse(data)
 
