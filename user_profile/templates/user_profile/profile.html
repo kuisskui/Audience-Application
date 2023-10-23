@@ -22,6 +22,7 @@
     {% else %}
     <a href="{% url 'login' %}">login</a>
     {% endif %}
+    pk: {{userprofile.pk}}
     gender: {{userprofile.gender}},
     age: {{userprofile.age}},
     country_id: {{userprofile.country}},
