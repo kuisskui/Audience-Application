@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from datetime import datetime
+from .constants import COUNTRY_ID_CHOICE
 
 GENDER_CHOICE = [
     ("male", "Male"),
@@ -10,11 +10,11 @@ GENDER_CHOICE = [
 ]
 
 AGE_CHOICE = [tuple([year, year]) for year in range(1, 80)]
-
-COUNTRY_ID_CHOICE = [
-    ("US", "United State"),
-    ("TH", "Thailand")
-]
+#
+# COUNTRY_ID_CHOICE = [
+#     ("US", "United State"),
+#     ("TH", "Thailand")
+# ]
 
 
 # Create your forms here.

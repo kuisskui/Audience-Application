@@ -68,10 +68,10 @@ def get_dashboard(request):
 
 def get_sports(request):
     data = {
-        "01": "Atheletics",
-        "02": "Archery",
-        "03": "Artistic Gymnastics",
-        "04": "Artistic Swimming",
+        "1": "Atheletics",
+        "2": "Archery",
+        "3": "Artistic Gymnastics",
+        "4": "Artistic Swimming",
     }
     return JsonResponse(data)
 
