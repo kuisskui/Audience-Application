@@ -9,7 +9,8 @@ urlpatterns = [
     path("sport/<int:sport_id>", views.sport, name="sport"),
 
     # Function
-    path("subscribe/<str:sport_id>", views.subscribe, name="subscribe"),
+    path("subscribe/<int:sport_id>", views.subscribe, name="subscribe"),
+    path("unsubscribe/<int:sport_id>", views.unsubscribe, name="unsubscribe"),
 
     # For testing get data
     path('get_dashboard/', views.get_dashboard, name="get_dashboard"),
