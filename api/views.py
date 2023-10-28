@@ -1,4 +1,3 @@
-from audience.models import Sport, Score, Country, Type
 from user_profile.models import UserProfile
 from django.http import JsonResponse
 
