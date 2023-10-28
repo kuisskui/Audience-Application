@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import NewUserForm
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login
 from django.contrib import messages
 from user_profile.models import UserProfile
-from django.contrib.auth.backends import ModelBackend
-from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 
 
