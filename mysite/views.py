@@ -3,6 +3,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login
 from django.contrib import messages
 from user_profile.models import UserProfile
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def register(request):
@@ -15,9 +16,26 @@ def register(request):
             country = form.cleaned_data.get("country")
             profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
-            login(request, user)
+            
+            # Explicitly specify the backend when calling login
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            
             messages.success(request, "Registration successful.")
             return redirect("audience:dashboard")
+        
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
-    return render(request, "registration/register.html", {"register_form": form})
+    return render(request, "account/register.html", {"register_form": form})
+
+def custom_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            # Log the user in
+            login(request, form.get_user())
+            return redirect("audience:dashboard")  # Change this to your desired login success URL
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, "account/login.html", {"form": form})
+

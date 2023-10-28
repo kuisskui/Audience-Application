@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 
 <html>
     <head>
@@ -91,14 +92,14 @@
                     </div>
 
                     <div class="item">
-                        <a href="#" target="_blank" rel="noopener">
+                        <a href="{% provider_login_url 'google' %}" target="_blank" rel="noopener">
                             <img class="rounded-circle" src="{% static 'mysite\image\Google.png' %}" alt="Google Logo" width="40" height="40">
                         </a>
                     </div>
 
                     <div class="line">
                         <div class="lowText">Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <a class="SignUp" href="{% url 'login' %}">Sign In</a>
+                        <a class="SignUp" href="{% url 'account_login' %}">Sign In</a>
                     </div>
                 </center>
             </div>
