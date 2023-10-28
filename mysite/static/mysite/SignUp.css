@@ -393,7 +393,7 @@ input:-webkit-autofill {
     100% {
         transform: translateY(-10vh) scale(0);
     }
-}   
+}
 
 @media (min-width: 800px) {
     .Ex {
@@ -431,7 +431,7 @@ input:-webkit-autofill {
         filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
         background: rgb(255, 255, 255, 0.9);
     }
-    
+
     .text-input input {
         border: none;
         outline: none;
@@ -442,13 +442,13 @@ input:-webkit-autofill {
         font-size: 14px;
         background: rgb(255, 255, 255, 0.0);
     }
-    
+
     .text-input i {
         color: #686868;
         align-items: center;
         justify-content: center;
     }
-    
+
     ::placeholder {
         color: #9a9a9a;
     }
@@ -473,7 +473,7 @@ input:-webkit-autofill {
         cursor: pointer;
         transition: all 0.4s;
     }
-    
+
     .btn:hover {
         transform: scale(1.1);
     }
@@ -521,9 +521,9 @@ input:-webkit-autofill {
         0% {
             transform: translateY(130vh) scale(1);
         }
-    
+
         100% {
             transform: translateY(-10vh) scale(0);
-        } 
+        }
     }
 }
