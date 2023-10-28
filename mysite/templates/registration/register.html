@@ -21,51 +21,81 @@
                     <br>
                     <form method="POST">
                         {% csrf_token %}
+
                         <div class="text-input">
                             <i class="ri-user-fill"></i>
                             <input type="text" name="{{ register_form.username.name }}" id="{{ register_form.username.id }}" placeholder="Username">
                         </div>
+
                         <br class="brHeight">
+
                         <div class="text-input">
                             <i class="ri-mail-fill"></i>
                             <input type="email" name="{{ register_form.email.name }}" id="{{ register_form.email.id }}" placeholder="Email">
                         </div>
+
                         <br class="brHeight">
+
                         <div class="text-input">
                             <i class="ri-lock-fill"></i>
                             <input type="password" name="{{ register_form.password1.name }}" id="{{ register_form.password1.id }}" placeholder="Password">
                         </div>
+
                         <br class="brHeight">
+
                         <div class="text-input">
                             <i class="ri-lock-fill"></i>
                             <input type="password" name="{{ register_form.password2.name }}" id="{{ register_form.password2.id }}" placeholder="Confirm Password">
                         </div>
+
                         <br class="brHeight">
-                            <label class="DropBoxText" for="{{ register_form.age.id }}">Age</label>
-                            {{ register_form.age}}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label class="DropBoxText" for="{{ register_form.gender.id }}">Gender</label>
-                            {{ register_form.gender }}
-                            <br class="brHeight">
-                            <label class="DropBoxText" for="{{ register_form.country.id }}">Country</label>
-                            {{ register_form.country }}
-                        {% for message in messages %}
+
+                        <label class="DropBoxText" for="{{ register_form.age.name }}">Age</label>
+                        <select name="{{ register_form.age.name }}" id="{{ register_form.age.name }}" class="custom-select-age">
+                            {% for value, label in register_form.age.field.choices %}
+                            <option value="{{ value }}" >{{ label }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label class="DropBoxText" for="{{ register_form.gender.name }}">Gender</label>
+                        <select name="{{ register_form.gender.name }}" id="{{ register_form.gender.name }}" class="custom-select-gender">
+                            {% for value, label in register_form.gender.field.choices %}
+                            <option value="{{ value }}" >{{ label }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <br class="brHeight">
+
+                        <label class="DropBoxText" for="{{ register_form.country.name }}">Country</label>
+                        <select name="{{ register_form.country.name }}" id="{{ register_form.country.name }}" class="custom-select-country">
+                            {% for value, label in register_form.country.field.choices %}
+                            <option value="{{ value }}" >{{ label }}</option>
+                            {% endfor %}
+                        </select>
+
                         <br><br class="brHeight">
+
+                        {% for message in messages %}
                         <p class="error-message">{{ message }}</p>
                         {% endfor %}
+
                         <br class="brHeight">
+
                         <button class="btn btn-primary" type="submit">Register</button>
                     </form>
+
                     <div class="line">
                         <div class="or"></div>
                         <div class="orText">or</div>
                         <div class="or"></div>
                     </div>
+
                     <div class="item">
                         <a href="#" target="_blank" rel="noopener">
                             <img class="rounded-circle" src="{% static 'mysite\image\Google.png' %}" alt="Google Logo" width="40" height="40">
                         </a>
                     </div>
+
                     <div class="line">
                         <div class="lowText">Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <a class="SignUp" href="{% url 'login' %}">Sign In</a>
@@ -82,7 +112,6 @@
                     <h4 class="message">-Nong All New-</h4>
                 </center>
             </div>
-        </div>
         </div>
 
     </body>
