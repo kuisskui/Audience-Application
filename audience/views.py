@@ -25,6 +25,10 @@ def sport(request, sport_id):
     return render(request, "audience/sport.html", context)
 
 
+def sport_program(request, sport_id):
+    return render(request, "audience/sport_program.html", {"sport_id": sport_id})
+
+
 @login_required
 def subscribe(request, sport_id):
     profile = UserProfile.objects.get(user=request.user)

@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path("sports/", views.sports, name="sports"),
     path("sport/<int:sport_id>", views.sport, name="sport"),
+    path("sport_program/<int:sport_id>", views.sport_program, name="sport_program"),
 
     # Function
     path("subscribe/<int:sport_id>", views.subscribe, name="subscribe"),
