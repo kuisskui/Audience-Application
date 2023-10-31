@@ -25,8 +25,10 @@ def sport(request, sport_id):
     return render(request, "audience/sport.html", context)
 
 
-def sport_program(request, sport_id):
-    return render(request, "audience/sport_program.html", {"sport_id": sport_id})
+def sport_program(request):
+    response = requests.get('http://127.0.0.1:8000/get_sport_program')
+    context = {"data": response.json()}
+    return render(request, "audience/sport_program.html", context)
 
 
 @login_required
@@ -101,5 +103,74 @@ def get_sport(request, sport_id):
                 "bronze": 10
             }
         ]
+    }
+    return JsonResponse(data)
+
+
+def get_sport_program(request):
+    data = {
+   "schedule_list": [
+     {
+            "datetime": "2021-08-01T00:00:00",
+        "sport": [{
+            "sport_id": 1,
+            "sport_name": "Football",
+            "is_ceremonies": False,
+            "sport_type": [
+                {
+                    "type_id": 1,
+                    "type_name": "11v11",
+                    "status": "RECORDED"
+                },
+                {
+                    "type_id": 2,
+                    "type_name": "7v7",
+                    "status": "TROPHY"
+                }
+            ],
+          "sport_status": (
+                "TROPHY"
+)
+}
+
+],
+
+},
+       {
+           "datetime": "2021-08-02T00:00:00",
+           "sport": [{
+               "sport_id": 3,
+               "sport_name": "League of Legends",
+               "is_ceremonies": False,
+               "sport_type": [
+                   {
+                       "type_id": 3,
+                       "type_name": "5v5",
+                       "status": "RECORDED"
+                   },
+                   {
+                       "type_id": 4,
+                       "type_name": "Free For All",
+                       "status": "TROPHY"
+                   }
+               ],
+               "sport_status": (
+                   "TROPHY"
+               )
+           },
+               {
+                   "sport_id": 4,
+                   "sport_name": "Rocket League",
+                   "is_ceremonies": False,
+                   "sport_type": [
+                   ],
+                   "sport_status": (
+                       "TROPHY"
+                   )
+               }
+           ],
+
+       },
+]
     }
     return JsonResponse(data)

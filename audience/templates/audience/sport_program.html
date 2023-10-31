@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Sport Program</title>
 </head>
 <body>
-   Sport Program {{sport_id}}
+
+
+<strong> Sport Program </strong> <br>
+{% for a in data.schedule_list %}
+<br>
+{{a.datetime}} <br>
+{% for b in a.sport %}
+ {% if not b.sport_type %}
+   {{b.sport_name}} NO_TYPE {{b.sport_status}}<br>
+ {% else %}
+ {% for a in b.sport_type %}
+    {{b.sport_name}} {{a.type_name}} {{a.status}} <br>
+ {% endfor %}
+ {% endif %}
+{% endfor %}
+{% endfor %}
 </body>
 </html>
