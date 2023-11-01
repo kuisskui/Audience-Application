@@ -72,6 +72,7 @@ def get_sports(request):
         "2": "Archery",
         "3": "Artistic Gymnastics",
         "4": "Artistic Swimming",
+        "5": "BasketBall"
     }
     return JsonResponse(data)
 
@@ -99,3 +100,131 @@ def get_sport(request, sport_id):
         ]
     }
     return JsonResponse(data)
+
+def sport_program(request):
+    data = {
+    "schedule_list": [
+        {
+            "datetime": "2021-10-1T00:00:00",
+            "sport": [
+                {
+                    "_id": 1,
+                    "revision_id": 11,
+                    "sport_id": 2,
+                    "sport_name": "Archery",
+                    "sport_type": [
+                        {
+                            "_id": 2,
+                            "revision_id": 22,
+                            "type_id": 1,
+                            "type_name": "Individual",
+                            "status": "RECORDED"
+                        },
+                        {
+                            "_id": 3,
+                            "revision_id": 33,
+                            "type_id": 2,
+                            "type_name": "Team",
+                            "status": "RECORDED"
+                        }
+                    ],
+                    "is_ceremonies": False,
+                    "sport_status": "RECORDED"
+                },
+                {
+                    "_id": 1,
+                    "revision_id": 11,
+                    "sport_id": 2,
+                    "sport_name": "BasketBall",
+                    "sport_type": [
+                        {
+                            "_id": 2,
+                            "revision_id": 22,
+                            "type_id": 1,
+                            "type_name": "Individual",
+                            "status": "RECORDED"
+                        },
+                        {
+                            "_id": 3,
+                            "revision_id": 33,
+                            "type_id": 2,
+                            "type_name": "Team",
+                            "status": "RECORDED"
+                        }
+                    ],
+                    "is_ceremonies": False,
+                    "sport_status": "RECORDED"
+                }
+            ]
+        },
+        {
+            "datetime": "2021-10-2T00:00:00",
+            "sport": [
+                {
+                    "_id": 1,
+                    "revision_id": 11,
+                    "sport_id": 2,
+                    "sport_name": "Batminton",
+                    "sport_type": [
+                        {
+                            "_id": 2,
+                            "revision_id": 22,
+                            "type_id": 1,
+                            "type_name": "Individual",
+                            "status": "RECORDED"
+                        },
+                        {
+                            "_id": 3,
+                            "revision_id": 33,
+                            "type_id": 2,
+                            "type_name": "Team",
+                            "status": "RECORDED"
+                        }
+                    ],
+                    "is_ceremonies": False,
+                    "sport_status": "RECORDED"
+                }
+            ]
+        },
+        {
+            "datetime": "2021-10-3T00:00:00",
+            "sport": [
+                {
+                    "_id": 1,
+                    "revision_id": 11,
+                    "sport_id": 2,
+                    "sport_name": "BasketBall",
+                    "sport_type": [
+                        {
+                            "_id": 2,
+                            "revision_id": 22,
+                            "type_id": 1,
+                            "type_name": "Individual",
+                            "status": "RECORDED"
+                        },
+                        {
+                            "_id": 3,
+                            "revision_id": 33,
+                            "type_id": 2,
+                            "type_name": "Team",
+                            "status": "RECORDED"
+                        }
+                    ],
+                    "is_ceremonies": False,
+                    "sport_status": "RECORDED"
+                }
+            ]
+        },
+        ]
+    }
+    all_sports = {
+        "1": "Atheletics",
+        "2": "Archery",
+        "3": "Artistic Gymnastics",
+        "4": "Artistic Swimming",
+        "5": "BasketBall"
+    }
+    context = {"data": data,
+               "all_sports": all_sports}
+
+    return render(request, "audience/sport_program.html", context)
