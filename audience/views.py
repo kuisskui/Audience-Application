@@ -115,7 +115,6 @@ def get_sport_program(request):
         "sport": [{
             "sport_id": 1,
             "sport_name": "Football",
-            "is_ceremonies": False,
             "sport_type": [
                 {
                     "type_id": 1,
@@ -141,7 +140,6 @@ def get_sport_program(request):
            "sport": [{
                "sport_id": 3,
                "sport_name": "League of Legends",
-               "is_ceremonies": False,
                "sport_type": [
                    {
                        "type_id": 3,
@@ -161,7 +159,6 @@ def get_sport_program(request):
                {
                    "sport_id": 4,
                    "sport_name": "Rocket League",
-                   "is_ceremonies": False,
                    "sport_type": [
                    ],
                    "sport_status": (
@@ -173,4 +170,35 @@ def get_sport_program(request):
        },
 ]
     }
+    # Template
+    # {
+    #     "schedule_list": [
+    #         {
+    #             "datetime": "2021-08-01T00:00:00",
+    #             "sport": [{
+    #                 "sport_id": 1,
+    #                 "sport_name": "Football",
+    #                 "sport_type": [
+    #                     {
+    #                         "type_id": 1,
+    #                         "type_name": "11v11",
+    #                         "status": SportStatus.RECORDED
+    #                     },
+    #                     {
+    #                         "type_id": 2,
+    #                         "type_name": "7v7",
+    #                         "status": SportStatus.TROPHY
+    #                     }
+    #                 ],
+    #                 "sport_status": (
+    #                     CEREMONIES
+    #                 )
+    #             }
+    #
+    #             ],
+    #
+    #         },
+    #         ...
+    #     ]
+    # }
     return JsonResponse(data)

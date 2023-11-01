@@ -7,15 +7,41 @@
 
 
 <strong> Sport Program </strong> <br>
-{% for a in data.schedule_list %}
+{% for menu in data.schedule_list %}
 <br>
-{{a.datetime}} <br>
-{% for b in a.sport %}
- {% if not b.sport_type %}
-   {{b.sport_name}} NO_TYPE {{b.sport_status}}<br>
+{{menu.datetime}} <br>
+{% for sport in menu.sport %}
+ {% if not sport.sport_type %}
+   {{sport.sport_name}} NO_TYPE {{sport.sport_status}}
+   {% if sport.sport_status == "CEREMONIES" %}
+     <b> * </b>
+   {% endif %}
+   {% if sport.sport_status == "COMPETITIVE" %}
+     <b> ◌ </b>
+   {% endif %}
+   {% if sport.sport_status == "TROPHY" %}
+      <b> 🥇</b>
+   {% endif %}
+   {% if sport.sport_status == "RECORDED" %}
+      <b> 🏅</b>
+   {% endif %}
+   <br>
  {% else %}
- {% for a in b.sport_type %}
-    {{b.sport_name}} {{a.type_name}} {{a.status}} <br>
+ {% for sport_type in sport.sport_type %}
+    {{sport.sport_name}} {{sport_type.type_name}} {{sport_type.status}}
+    {% if sport_type.status == "CEREMONIES" %}
+     <b> * </b>
+   {% endif %}
+   {% if sport_type.status == "COMPETITIVE" %}
+     <b> ◌ </b>
+   {% endif %}
+   {% if sport_type.status == "TROPHY" %}
+      <b> 🥇</b>
+   {% endif %}
+   {% if sport_type.status == "RECORDED" %}
+      <b> 🏅</b>
+   {% endif %}
+   <br>
  {% endfor %}
  {% endif %}
 {% endfor %}
