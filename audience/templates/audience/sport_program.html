@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,19 +31,31 @@
         </thead>
         <tbody>
             {% for sport in all_sports.values %}
-                <tr>
-                    <th>{{sport}}</th>
-                    {% for day in data.schedule_list %}
+            <tr>
+                <th>{{sport}}</th>
+                {% for day in data.schedule_list %}
 
-                        {% for i in day.sport %}
-                            {% if i.sport_name == sport %}
-                                <td>{{i.sport_status}}</td>
-                            {% endif %}
-                        {% endfor %}
+                {% for i in day.sport %}
+                {% if i.sport_name == sport %}
+                {% if i.sport_status == "CEREMONIES" %}
+                <td> * </td>
+            </tr>
+            <tr>{% endif %}
+                {% if i.sport_status == "COMPETITIVE" %}
+                <td> ◌ </td>
+                {% endif %}
+                {% if i.sport_status == "TROPHY" %}
+                <td> 🥇</td>
+                {% endif %}
+                {% if i.sport_status == "RECORDED" %}
+                <td> 🏅</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
 
 
-                    {% endfor %}
-                </tr>
+                {% endfor %}
+            </tr>
             {% endfor %}
         </tbody>
     </table>
