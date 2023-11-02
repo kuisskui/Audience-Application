@@ -27,14 +27,22 @@ def sport(request, sport_id):
 
 @login_required
 def subscribe(request, sport_id):
-    profile = UserProfile.objects.get(user=request.user)
-    sport_ids = profile.sport_ids
-    if sport_ids:
-        sport_ids = f"{sport_ids},{sport_id}"
-    else:
-        sport_ids = sport_id
-    profile.sport_ids = sport_ids
-    profile.save()
+    sport_id = str(sport_id)
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    print('line 1: ', profile.sport_ids)
+    try:
+        sport_ids = profile.sport_ids.split(",")
+    except Exception:
+        sport_ids = []
+    if sport_id not in sport_ids:
+        sport_ids.append(sport_id)
+        print(sport_ids, type(sport_ids))
+        result = ','.join(sport_ids)
+        print(result)
+        profile.sport_ids = result
+        profile.save()
+    print(profile.sport_ids)
     return redirect("audience:sports")
 
 
@@ -42,11 +50,14 @@ def subscribe(request, sport_id):
 def unsubscribe(request, sport_id):
     profile = UserProfile.objects.get(user=request.user)
     sport_ids = list(profile.sport_ids.split(','))
-    if str(sport_id) in sport_ids:
-        sport_ids.remove(str(sport_id))
-    profile.sport_ids = ','.join(sport_ids)
+    sport_ids.remove(str(sport_id))
+    if not sport_ids:
+        sport_ids = None
+        profile.sport_ids = sport_ids
+    else:
+        profile.sport_ids = ','.join(sport_ids)
     profile.save()
-    return redirect("audience:sports")
+    return redirect("user_profile:profile")
 
 
 # For testing

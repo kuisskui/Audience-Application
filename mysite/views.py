@@ -16,16 +16,17 @@ def register(request):
             country = form.cleaned_data.get("country")
             profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
-            
+
             # Explicitly specify the backend when calling login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            
+
             messages.success(request, "Registration successful.")
             return redirect("audience:dashboard")
-        
+
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request, "account/register.html", {"register_form": form})
+
 
 def custom_login(request):
     if request.method == "POST":
@@ -36,6 +37,5 @@ def custom_login(request):
             return redirect("audience:dashboard")  # Change this to your desired login success URL
     else:
         form = AuthenticationForm()
-    
-    return render(request, "account/login.html", {"form": form})
 
+    return render(request, "account/login.html", {"form": form})
