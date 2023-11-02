@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib import messages
 from user_profile.models import UserProfile
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -39,3 +40,24 @@ def custom_login(request):
     
     return render(request, "account/login.html", {"form": form})
 
+@login_required
+def complete_registration(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = request.user  # Use the currently authenticated user
+            gender = form.cleaned_data.get("gender")
+            age = form.cleaned_data.get("age")
+            country = form.cleaned_data.get("country")
+            profile, created = UserProfile.objects.get_or_create(user=user)
+            profile.gender = gender
+            profile.age = age
+            profile.country = country
+            profile.save()
+            messages.success(request, "Profile information updated successfully.")
+            return redirect("audience:dashboard")
+        else:
+            messages.error(request, "Unsuccessful profile update. Invalid information.")
+    else:
+        form = NewUserForm(instance=request.user)  # Populate the form with user data
+    return render(request, "account/register.html", {"register_form": form})
