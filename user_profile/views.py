@@ -10,7 +10,7 @@ def profile(request):
         userprofile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         # If the user profile does not exist, redirect to complete-registration
-        return redirect('complete_registration')
+        return redirect('update_profile')
 
     sport_ids = userprofile.sport_ids
     sport_ids = [] if sport_ids is None else sport_ids.split(',')
