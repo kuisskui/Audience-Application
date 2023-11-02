@@ -20,13 +20,13 @@ def update_user_profile(sender, instance, created, **kwargs):
     payload = {
         "id": instance.pk,
         "country": instance.country,
-        "sport_ids": None if instance.sport_ids is None else instance.sport_ids.split(','),
+        "sport_ids": [] if instance.sport_ids is None else list(map(int, instance.sport_ids.split(','))),
         "gender": instance.gender,
-        "age": instance.age
+        "age": int(instance.age)
     }
     headers = {
         "Authorization": "Bearer YOUR_ACCESS_TOKEN",
         "Content-Type": "application/json"
     }
-    print(payload)
+    # print(payload)
     # requests.post(url, json=payload, headers=headers)
