@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS to center text vertically */
+        .center-both {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Set a minimum height to center content vertically */
+        }
+    </style>
+    <title>Sport Program</title>
+
+</head>
+<body>
+    {% load custom_filters %}
+    <div class="header">
+        <h3>Sport Program</h3>
+    </div>
+    <table>
+        <thead>
+            <th>Sport</th>
+            {% for day in data.schedule_list %}
+            <th>{{day.datetime|sport_datetime}}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for sport in all_sports.values %}
+            <tr>
+                <th>{{sport}}</th>
+                {% for day in data.schedule_list %}
+
+                {% for i in day.sport %}
+                {% if i.sport_name == sport %}
+                {% if i.sport_status == "CEREMONIES" %}
+                <td> * </td>
+            </tr>
+            <tr>{% endif %}
+                {% if i.sport_status == "COMPETITIVE" %}
+                <td> ◌ </td>
+                {% endif %}
+                {% if i.sport_status == "TROPHY" %}
+                <td> 🥇</td>
+                {% endif %}
+                {% if i.sport_status == "RECORDED" %}
+                <td> 🏅</td>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
+
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
