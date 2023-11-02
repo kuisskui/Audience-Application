@@ -10,11 +10,6 @@ GENDER_CHOICE = [
 ]
 
 AGE_CHOICE = [tuple([year, year]) for year in range(1, 80)]
-#
-# COUNTRY_ID_CHOICE = [
-#     ("US", "United State"),
-#     ("TH", "Thailand")
-# ]
 
 
 # Create your forms here.

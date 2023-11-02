@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from dotenv import dotenv_values
-import os
 
 config = dotenv_values(".env")
 
@@ -51,18 +51,18 @@ INSTALLED_APPS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
- 'django.contrib.auth.backends.ModelBackend',
- 'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 3
+SITE_ID = int(config["SITE_ID"])
 
 ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 # ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
-#For password Reset
+# For password Reset
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_UNIQUE = True
@@ -77,7 +77,7 @@ EMAIL_HOST_PASSWORD = config["EMAIL_HOST_PASSWORD"]
 
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-    
+
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SOCIALACCOUNT_PROVIDERS = {
