@@ -55,7 +55,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 3
+SITE_ID = config["SITE_ID"]
 
 ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 # ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
