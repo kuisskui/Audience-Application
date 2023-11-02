@@ -1,8 +1,8 @@
+import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from user_profile.models import UserProfile
 from django.contrib.auth.decorators import login_required
-import requests
+from user_profile.models import UserProfile
 
 
 # Create your views here.
@@ -30,19 +30,15 @@ def subscribe(request, sport_id):
     sport_id = str(sport_id)
     user = request.user
     profile = UserProfile.objects.get(user=user)
-    print('line 1: ', profile.sport_ids)
     try:
         sport_ids = profile.sport_ids.split(",")
     except Exception:
         sport_ids = []
     if sport_id not in sport_ids:
         sport_ids.append(sport_id)
-        print(sport_ids, type(sport_ids))
         result = ','.join(sport_ids)
-        print(result)
         profile.sport_ids = result
         profile.save()
-    print(profile.sport_ids)
     return redirect("audience:sports")
 
 
