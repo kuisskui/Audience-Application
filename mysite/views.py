@@ -41,7 +41,7 @@ def custom_login(request):
     return render(request, "account/login.html", {"form": form})
 
 @login_required
-def complete_registration(request):
+def update_profile(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():

@@ -27,7 +27,7 @@ urlpatterns = [
 
     path("accounts/register/", views.register, name="register"),
     path('accounts/login/', views.custom_login, name='custom_login'),
-    path('complete-registration/', views.complete_registration, name='complete_registration'),
+    path('updateprofile/', views.complete_registration, name='update_profile'),
     path('accounts/', include('allauth.urls')),
     path("admin/", admin.site.urls),
 ]

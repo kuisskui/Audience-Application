@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
@@ -6,7 +6,12 @@ from .models import UserProfile
 # Create your views here.
 @login_required
 def profile(request):
-    userprofile = UserProfile.objects.get(user=request.user)
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        # If the user profile does not exist, redirect to complete-registration
+        return redirect('complete_registration')
+
     sport_ids = userprofile.sport_ids
     sport_ids = [] if sport_ids is None else sport_ids.split(',')
     print(sport_ids)
