@@ -43,6 +43,67 @@ input:-webkit-autofill {
     color: #FF0000;
 }
 
+.DropBoxText {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+}
+
+.custom-select-age {
+    /* Add custom styles for the select box */
+    width: 12%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-age option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-gender {
+    /* Add custom styles for the select box */
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-gender option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-country {
+    /* Add custom styles for the select box */
+    width: 52%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-country option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+
 .text-input input {
     border: none;
     outline: none;
@@ -406,34 +467,6 @@ display: block;
         font-size: 80px;
     }
 
-    .text-input {
-        width: 65%;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 20px;
-        padding: 0 15px;
-        filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
-        background: rgb(255, 255, 255, 0.9);
-    }
-
-    .text-input input {
-        border: none;
-        outline: none;
-        padding: 0 15px;
-        width: 100%;
-        height: 100%;
-        margin-left: 10px;
-        font-size: 14px;
-        background: rgb(255, 255, 255, 0.0);
-    }
-    
-    .text-input i {
-        color: #686868;
-        align-items: center;
-        justify-content: center;
-    }
     
     ::placeholder {
         color: #9a9a9a;

@@ -1,0 +1,6 @@
+Hello from Nong-All-New Audience App!
+
+{% block content %}{% endblock content %}
+
+Thank you for using our Audience App!
+Nong-All-New Team

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from datetime import datetime
+from .constants import COUNTRY_ID_CHOICE
 
 GENDER_CHOICE = [
     ("male", "Male"),
@@ -11,17 +11,13 @@ GENDER_CHOICE = [
 
 AGE_CHOICE = [tuple([year, year]) for year in range(1, 80)]
 
-COUNTRY_ID_CHOICE = [
-    ("US", "United State"),
-    ("TH", "Thailand")
-]
 
 # Create your forms here.
 class NewUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    gender = forms.CharField(required=True, widget=forms.Select(choices=GENDER_CHOICE, attrs={'class': 'custom-select-gender'}))
-    age = forms.CharField(required=True, widget=forms.Select(choices=AGE_CHOICE, attrs={'class': 'custom-select-age'}))
-    country = forms.CharField(required=True, widget=forms.Select(choices=COUNTRY_ID_CHOICE, attrs={'class': 'custom-select-country'}))
+    gender = forms.ChoiceField(required=True, choices=GENDER_CHOICE)
+    age = forms.ChoiceField(required=True, choices=AGE_CHOICE)
+    country = forms.ChoiceField(required=True, choices=COUNTRY_ID_CHOICE)
 
     class Meta:
         model = User

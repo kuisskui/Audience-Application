@@ -22,9 +22,9 @@
     <nav class="nav">
         {% if user.is_authenticated %}
             <a href="{% url 'user_profile:profile' %}">{{user}}</a>
-            <a href="{% url 'logout' %}">logout</a>
+            <a href="{% url 'account_logout' %}">logout</a>
         {% else %}
-            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'account_login' %}">login</a>
         {% endif %}
             <div>
                 <a href="{% url 'audience:dashboard' %}">dashboard</a>
@@ -109,15 +109,33 @@
 
     <div class="outer-box2">
         <div class="score-board">
+    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'account_logout' %}">logout</a>
+    {% else %}
+    <a href="{% url 'account_login' %}">login</a>
+    {% endif %}
+    <div>
+        <a href="{% url 'audience:dashboard' %}">dashboard</a>
+    </div>
+    <div>
+        <a href="{% url 'audience:sports' %}">sports</a>
+    </div>
+    <div>
+        <a href="{% url 'audience:sport_program' %}">sport_program</a>
+    </div>
+    <div class="center-both">
+        <div>
+            <h1 class="text-center">Hello, {{page}} page!</h1>
             <p class="text-center">{{detail}}</p>
         </div>
     </div>
-{#    <div class="medals">#}
-{#        <table>#}
-{#            {% for country, medals in data.items %}#}
-{#            <tr><td>{{country}}</td><td>{{medals}}</td></tr>#}
-{#            {% endfor %}#}
-{#        </table>#}
-{#    </div>#}
+    <div class="medals">
+        <table>
+            {% for country, medals in data.items %}
+            <tr><td>{{country}}</td><td>{{medals}}</td></tr>
+           {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

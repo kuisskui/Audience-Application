@@ -7,5 +7,7 @@ from .models import UserProfile
 @login_required
 def profile(request):
     userprofile = UserProfile.objects.get(user=request.user)
-    context = {"page": "profile", "detail": "show user profile", "userprofile": userprofile}
+    sport_ids = userprofile.sport_ids
+    sport_ids = [] if sport_ids is None else sport_ids.split(',')
+    context = {"page": "profile", "detail": "show user profile", "userprofile": userprofile, "sport_ids": sport_ids}
     return render(request, "user_profile/profile.html", context)

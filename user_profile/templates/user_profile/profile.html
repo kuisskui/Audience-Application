@@ -18,14 +18,21 @@
 <body>
     <a href="{% url 'user_profile:profile' %}">{{user}}</a>
     {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">logout</a>
+    <a href="{% url 'account_logout' %}">logout</a>
     {% else %}
     <a href="{% url 'login' %}">login</a>
     {% endif %}
+    pk: {{userprofile.pk}}
     gender: {{userprofile.gender}},
     age: {{userprofile.age}},
-    country_id: {{userprofile.country}},
-    sport_ids: {{userprofile.sport_ids}}
+    country_id: {{userprofile.country}}
+    <div>
+        {% for sport_id in sport_ids %}
+        <div>
+            sport_ids: {{sport_id}} <a href="{% url 'audience:unsubscribe' sport_id %}">unsubscribe</a>
+        </div>
+        {% endfor %}
+    </div>
     <div>
         <a href="{% url 'audience:dashboard' %}">dashboard</a>
     </div>

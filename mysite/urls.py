@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+
 urlpatterns = [
     path("", include("audience.urls")),
     path("profile/", include("user_profile.urls")),
-    path("api/", include("api.urls")),
 
     path("accounts/register/", views.register, name="register"),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path('accounts/login/', views.custom_login, name='custom_login'),
+    path('accounts/', include('allauth.urls')),
     path("admin/", admin.site.urls),
 ]
