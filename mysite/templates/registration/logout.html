@@ -23,8 +23,9 @@
                     <br>
                     <h5 class="subtitle">Are you sure you want to sign out?</h5>
                     <br>
-                    <form method="post" action="{% url 'custom_logout' %}">
-                        <input type="hidden" name="csrfmiddlewaretoken" value='{{ csrf_token }}'>
+                    <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="csrfmiddlewaretoken" value="PaSXyy62s61uHHGhkH9eExrtwoUvcqMed7fzeF5lssSeG1fQsnJ6tQTY8dBVFRuD">
                         <br><br><br>
                         <button class="btn" type="submit">SIGN OUT <i class="fa fa-sign-out"></i></button>
                         <br><br class="brHeight">

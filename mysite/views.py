@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from user_profile.models import UserProfile
 from .forms import NewUserForm
@@ -39,3 +39,12 @@ def custom_login(request):
         form = AuthenticationForm()
 
     return render(request, "account/login.html", {"form": form})
+
+def custom_logout(request):
+    # Log the user out
+    # logout(request)
+    if request.method == "POST":
+        logout(request)
+        return redirect("audience:dashboard")
+
+    return render(request, "account/logout.html")
