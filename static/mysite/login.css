@@ -163,7 +163,7 @@ display: block;
     justify-content: center;
     align-items: center;
     grid-template-columns: 100%;
-    grid-template-areas: "login";
+    /* grid-template-areas: "login"; */
     z-index: 1;
 }
 
