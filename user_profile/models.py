@@ -1,8 +1,11 @@
 import requests
+from dotenv import dotenv_values
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+
+config = dotenv_values(".env")
 
 
 class UserProfile(models.Model):
@@ -16,7 +19,7 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=UserProfile)
 def update_user_profile(sender, instance, created, **kwargs):
     """Perform when a profile instance is updated or created"""
-    url = f"http://example_domain/audient/update_audient_info"
+    post_url = config["POST_URL"]
     payload = {
         "id": instance.pk,
         "country": instance.country,
@@ -25,8 +28,7 @@ def update_user_profile(sender, instance, created, **kwargs):
         "age": int(instance.age)
     }
     headers = {
-        "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+        "Authorization": config["AUTHORIZATION"],
         "Content-Type": "application/json"
     }
-    # print(payload)
     # requests.post(url, json=payload, headers=headers)

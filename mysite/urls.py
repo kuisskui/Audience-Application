@@ -22,7 +22,6 @@ from . import views
 urlpatterns = [
     path("", include("audience.urls")),
     path("profile/", include("user_profile.urls")),
-    path("api/", include("api.urls")),
 
     path("accounts/register/", views.register, name="register"),
     path('accounts/login/', views.custom_login, name='custom_login'),
