@@ -7,21 +7,58 @@ from user_profile.models import UserProfile
 
 # Create your views here.
 def dashboard(request):
-    response = requests.get('http://127.0.0.1:8000/get_dashboard')
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": response.json()}
+    data = {
+        "FR": {
+            "gold": 100,
+            "silver": 100,
+            "bronze": 100
+        },
+        "US": {
+            "gold": 100,
+            "silver": 100,
+            "bronze": 100
+        }
+    }
+    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": data}
     return render(request, "audience/dashboard.html", context)
 
 
 def sports(request):
-    response = requests.get('http://127.0.0.1:8000/get_sports')
+    data = {
+        "1": "Athletics",
+        "2": "Archery",
+        "3": "Artistic Gymnastics",
+        "4": "Artistic Swimming",
+        "5": "BasketBall"
+    }
     context = {"page": "sports", "detail": "show all sports without any detail or information.",
-               "data": response.json()}
+               "data": data}
     return render(request, "audience/sports.html", context)
 
 
 def sport(request, sport_id):
-    response = requests.get(f'http://127.0.0.1:8000/get_sport/{sport_id}')
-    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": response.json()}
+    data = {
+        "sport": sport_id,
+        "sport_name": "Atheletics",
+        "gold": 100,
+        "silver": 100,
+        "bronze": 100,
+        "individual_countries": [
+            {
+                "country_code": "FR",
+                "gold": 10,
+                "silver": 10,
+                "bronze": 10
+            },
+            {
+                "country_code": "US",
+                "gold": 10,
+                "silver": 10,
+                "bronze": 10
+            }
+        ]
+    }
+    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": data}
     return render(request, "audience/sport.html", context)
 
 
@@ -54,59 +91,6 @@ def unsubscribe(request, sport_id):
         profile.sport_ids = ','.join(sport_ids)
     profile.save()
     return redirect("user_profile:profile")
-
-
-# For testing
-def get_dashboard(request):
-    data = {
-        "FR": {
-            "gold": 100,
-            "silver": 100,
-            "bronze": 100
-        },
-        "US": {
-            "gold": 100,
-            "silver": 100,
-            "bronze": 100
-        }
-    }
-    return JsonResponse(data)
-
-
-def get_sports(request):
-    data = {
-        "1": "Atheletics",
-        "2": "Archery",
-        "3": "Artistic Gymnastics",
-        "4": "Artistic Swimming",
-        "5": "BasketBall"
-    }
-    return JsonResponse(data)
-
-
-def get_sport(request, sport_id):
-    data = {
-        "sport": sport_id,
-        "sport_name": "Atheletics",
-        "gold": 100,
-        "silver": 100,
-        "bronze": 100,
-        "individual_countries": [
-            {
-                "country_code": "FR",
-                "gold": 10,
-                "silver": 10,
-                "bronze": 10
-            },
-            {
-                "country_code": "US",
-                "gold": 10,
-                "silver": 10,
-                "bronze": 10
-            }
-        ]
-    }
-    return JsonResponse(data)
 
 
 def sport_program(request):
@@ -235,71 +219,4 @@ def sport_program(request):
     context = {"data": data,
                "all_sports": all_sports}
 
-    return render(request, "audience/sport_program.html", context)
-
-
-def get_sport_program(request):
-    data = {
-        "schedule_list": [
-            {
-                "datetime": "2021-08-01T00:00:00",
-                "sport": [{
-                    "sport_id": 1,
-                    "sport_name": "Football",
-                    "sport_type": [
-                        {
-                            "type_id": 1,
-                            "type_name": "11v11",
-                            "status": "RECORDED"
-                        },
-                        {
-                            "type_id": 2,
-                            "type_name": "7v7",
-                            "status": "TROPHY"
-                        }
-                    ],
-                    "sport_status": (
-                        "TROPHY"
-                    )
-                }
-
-                ],
-
-            },
-            {
-                "datetime": "2021-08-02T00:00:00",
-                "sport": [{
-                    "sport_id": 3,
-                    "sport_name": "League of Legends",
-                    "sport_type": [
-                        {
-                            "type_id": 3,
-                            "type_name": "5v5",
-                            "status": "RECORDED"
-                        },
-                        {
-                            "type_id": 4,
-                            "type_name": "Free For All",
-                            "status": "TROPHY"
-                        }
-                    ],
-                    "sport_status": (
-                        "TROPHY"
-                    )
-                },
-                    {
-                        "sport_id": 4,
-                        "sport_name": "Rocket League",
-                        "sport_type": [
-                        ],
-                        "sport_status": (
-                            "TROPHY"
-                        )
-                    }
-                ],
-
-            },
-        ]
-    }
-    context = {"data": data}
     return render(request, "audience/sport_program.html", context)
