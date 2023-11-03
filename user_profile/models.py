@@ -32,4 +32,4 @@ def update_user_profile(sender, instance, created, **kwargs):
         "Authorization": os.getenv("AUTHORIZATION"),
         "Content-Type": "application/json"
     }
-    requests.post(post_url, json=payload, headers=headers)
+    # requests.post(post_url, json=payload, headers=headers)
