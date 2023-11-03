@@ -1,0 +1,67 @@
+{% load static %}
+{% load socialaccount %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+        <meta name="description" content="Paris Olympic">
+        <meta name="author" content="TAGCH">
+        <meta name="keyword" content="html css javascript">
+        <title>SignOut</title>
+        <link rel="stylesheet" href="{% static 'mysite\SignOut.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <div class="Ex1"></div>
+        <div class="Ex">
+            <div class="login">
+                <center>
+                    <h3 class="title">Sign Out!</h3>
+                    <br>
+                    <h5 class="subtitle">Are you sure you want to sign out?</h5>
+                    <br>
+                    <form method="post" action="{% url 'account_logout' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="csrfmiddlewaretoken" value="PaSXyy62s61uHHGhkH9eExrtwoUvcqMed7fzeF5lssSeG1fQsnJ6tQTY8dBVFRuD">
+                        <br><br><br>
+                        <button class="btn" type="submit">SIGN OUT <i class="fa fa-sign-out"></i></button>
+                        <br><br class="brHeight">
+                    </form>
+                    <button class="btn-back" onclick="history.back()">&#11164; BACK</button>
+                </center>
+            </div>
+        </div>
+
+    </body>
+
+    <div class="container">
+    <div class="bubbles">
+    <script>
+        for (let i = 1; i <= 150; i++) {
+            const randomValue = Math.floor(Math.random() * 25) + 5;
+            document.write('<span style="--i:' + randomValue + '"></span>');
+        }
+    </script>
+    </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(element) {
+            var passwordInput = element.previousElementSibling;
+            var eyeIcon = document.getElementById("eye-icon");
+        
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("ri-eye-fill");
+                eyeIcon.classList.add("ri-eye-off-fill");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("ri-eye-off-fill");
+                eyeIcon.classList.add("ri-eye-fill");
+            }
+        }
+    </script>
+</html>
