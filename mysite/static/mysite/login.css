@@ -204,9 +204,9 @@ display: block;
     font-family: Paris2024-Variable;
     font-size: 18px;
     font-style: normal;
-    font-weight: 250;
+    font-weight: 400;
     line-height: normal;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .caution-message {
@@ -214,9 +214,9 @@ display: block;
     font-family: Paris2024-Variable;
     font-size: 18px;
     font-style: normal;
-    font-weight: 250;
+    font-weight: 400;
     line-height: normal;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .message {
