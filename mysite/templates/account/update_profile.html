@@ -22,22 +22,18 @@
                     <br>
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="text-input">
-                            <i class="ri-user-fill"></i>
-                            <input type="text" name="{{ register_form.user.name }}" id="{{ register_form.user.id }}" value="{{ user }}" placeholder="Username">
-                        </div>
-
                         <br class="brHeight">
 
-                        <label class="DropBoxText" for="{{ register_form.age.name }}">Age</label>
-                        <select name="{{ register_form.age.name }}" id="{{ register_form.age.name }}" class="custom-select-age">
+                        <label class="DropBoxText" for="{{ register_form.age.id }}">Age</label>
+                        <select name="{{ register_form.age.name }}" id="{{ register_form.age.id }}" class="custom-select-age">
                             {% for value, label in register_form.age.field.choices %}
                             <option value="{{ value }}" >{{ label }}</option>
                             {% endfor %}
                         </select>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <label class="DropBoxText" for="{{ register_form.gender.name }}">Gender</label>
-                        <select name="{{ register_form.gender.name }}" id="{{ register_form.gender.name }}" class="custom-select-gender">
+                        <label class="DropBoxText" for="{{ register_form.gender.id }}">Gender</label>
+                        <select name="{{ register_form.gender.name }}" id="{{ register_form.gender.id }}" class="custom-select-gender">
                             {% for value, label in register_form.gender.field.choices %}
                             <option value="{{ value }}" >{{ label }}</option>
                             {% endfor %}
@@ -45,8 +41,8 @@
 
                         <br class="brHeight">
 
-                        <label class="DropBoxText" for="{{ register_form.country.name }}">Country</label>
-                        <select name="{{ register_form.country.name }}" id="{{ register_form.country.name }}" class="custom-select-country">
+                        <label class="DropBoxText" for="{{ register_form.country.id }}">Country</label>
+                        <select name="{{ register_form.country.name }}" id="{{ register_form.country.id }}" class="custom-select-country">
                             {% for value, label in register_form.country.field.choices %}
                             <option value="{{ value }}" >{{ label }}</option>
                             {% endfor %}

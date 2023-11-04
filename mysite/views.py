@@ -62,6 +62,7 @@ def update_profile(request):
             gender = form.cleaned_data.get("gender")
             age = form.cleaned_data.get("age")
             country = form.cleaned_data.get("country")
+
             profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
             messages.success(request, "Profile information updated successfully.")
@@ -70,7 +71,7 @@ def update_profile(request):
             messages.error(request, "Unsuccessful profile update. Invalid information.")
             messages.error(request, form.errors)
     else:
-        form = NewUserForm(instance=request.user)  # Populate the form with user data
+        form = UserProfileForm()  # Populate the form with user data
     return render(request, "account/update_profile.html", {"register_form": form})
   
 
