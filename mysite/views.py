@@ -60,4 +60,4 @@ def update_profile(request):
             messages.error(request, "Unsuccessful profile update. Invalid information.")
     else:
         form = NewUserForm(instance=request.user)  # Populate the form with user data
-    return render(request, "account/register.html", {"register_form": form})
+    return render(request, "account/update_profile.html", {"register_form": form})
