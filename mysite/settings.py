@@ -68,7 +68,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_USE_TLS = True
