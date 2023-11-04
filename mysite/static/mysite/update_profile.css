@@ -1,0 +1,646 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: radial-gradient(rgba(152, 131, 56, 0.52) 1%, #FFF 100%);
+    z-index: 1;
+}
+
+.login {
+    grid-area: login;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    background-color: transparent !important;
+}
+
+.text-input {
+    width: 60%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0 15px;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+    background: rgb(255, 255, 255, 0.9);
+}
+
+.error-message {
+    color: #FF0000;
+}
+
+.DropBoxText {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+}
+
+.custom-select-age {
+    /* Add custom styles for the select box */
+    width: 12%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-age option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-gender {
+    /* Add custom styles for the select box */
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-gender option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.custom-select-country {
+    /* Add custom styles for the select box */
+    width: 52%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.25));
+}
+
+.custom-select-country option {
+    /* Add custom styles for the select options */
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+
+.text-input input {
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    font-size: 14px;
+    background: rgb(255, 255, 255, 0.0);
+}
+
+.text-input i {
+    color: #686868;
+}
+
+::placeholder {
+    color: #9a9a9a;
+}
+
+.toggle-password {
+    cursor: pointer;
+}
+
+.toggle-password i {
+    position: relative;
+    color: #333;
+    font-size: 18px;
+}
+
+.password-input[type="password"] {
+    padding-right: 30px; /* Make room for the eye icon */
+}
+
+.design {
+    grid-area: design;
+    display: block;
+    width:100%;
+    position:sticky;
+    align-items: center;
+    justify-content: center;
+}
+
+#design img {
+display: block;
+}
+
+.title {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Paris2024-Variable;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: -0.56px;
+}
+
+.title-medium {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Paris2024-Variable;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: -0.56px;
+}
+
+.title-low {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Paris2024-Variable;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: -0.56px;
+}
+
+.subtitle {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Paris2024-Variable;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    opacity: 0.6;
+}
+
+.subtext {
+    color: #000;
+    text-align: center;
+    font-family: Paris2024-Variable;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 550;
+    line-height: normal;
+    letter-spacing: -0.32px;
+    opacity: 0.7;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.head-message {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.8;
+}
+
+.caution-message {
+    color: #fb0000;
+    font-family: Paris2024-Variable;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.8;
+}
+
+.message {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 70;
+    line-height: normal;
+    opacity: 0.8;
+}
+
+.Ex1{
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 1);
+    width: 60%;
+    height: 600px;
+    border-radius: 20px;
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    z-index: 1;
+}
+
+.Ex {
+    border-radius: 50px;
+    background: conic-gradient(from 180deg at 61.43% 0%, rgba(255, 255, 255, 0.80) 0deg, rgba(255, 255, 255, 0.59) 60.00000178813934deg, rgba(255, 255, 255, 0.68) 144.0000021457672deg, rgba(220, 220, 220, 0.30) 216.00000858306885deg, rgba(227, 220, 155, 0.28) 225deg, rgba(218, 174, 52, 0.48) 331.3986825942993deg, rgba(215, 162, 24, 0.53) 360deg);
+    box-shadow: 0px 0px 140px 1px rgba(152, 131, 56, 0.52), 0px 0px 29px 580px rgba(227, 204, 120, 0.12) inset;
+    width: 60%;
+    height: 600px;
+    border-radius: 20px;
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 100%;
+    grid-template-areas: "login";
+    z-index: 1;
+}
+
+.parisLogo {
+    width: 280px;
+    height: 40%;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.olympicLogo {
+    width: 200px;
+    height: 100px;
+    flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    border-style: none;
+}
+
+.brHeight {
+    display: block;
+    margin: 10px 0;
+    content: ""; /* clears default height */
+    margin-top: 0;
+}
+
+.btn {
+    width: 30%;
+    height: 40px;
+    flex-shrink: 0;
+    border: 0.01px solid rgb(139, 137, 137, 0.0);
+    border-radius: 80px;
+    opacity: 0.5;
+    background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+    box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    font-family: Baloo Thambi 2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 650;
+    line-height: normal;
+    stroke: none;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-back {
+    width: 30%;
+    height: 40px;
+    flex-shrink: 0;
+    border: 0.01px solid rgb(139, 137, 137, 0.0);
+    border-radius: 80px;
+    opacity: 0.5;
+    box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.25);
+    color: rgba(214, 168, 34, 1.00);
+    text-shadow: 4px 4px 10px rgbargba(214, 168, 34, 1.00);
+    font-family: Baloo Thambi 2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 650;
+    line-height: normal;
+    stroke: none;
+    cursor: pointer;
+    transition: all 0.4s;
+    padding-right: 5px;
+}
+
+.btn-back:hover {
+    transform: scale(1.1);
+}
+
+.or {
+    width: 150px;
+    height: 2px;
+    flex-shrink: 0;
+    border: 0.01px solid rgb(139, 137, 137, 0.0);
+    border-radius: 100px;
+    opacity: 0.5;
+    background: #D9D9D9;
+    white-space: nowrap;
+}
+
+.orText {
+    color: rgba(119, 118, 118, 0.3);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    font-family: Paris2024-Variable;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: 10px solid rgb(139, 137, 137, 0.0);
+}
+
+.line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lineB {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lowText {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+}
+
+.SignUp{
+    color: #48997C;
+    font-family: Paris2024-Variable;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 690;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+    border-radius: 10px;
+    stroke: none;
+    background: rgb(255, 255, 255, 0.0);
+}
+
+.remember {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.7;
+}
+
+.forget {
+    color: #000;
+    font-family: Paris2024-Variable;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.item {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+.item:hover {
+    transform: scale(1.07);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+}
+
+.bubbles span {
+    position: relative;
+    width: 9px;
+    height: 8px;
+    background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+    margin: 0 3px;
+    border-radius: 100%;
+    opacity: 0.6;
+    box-shadow: 0 0 0 10px conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+    animation: animate 15s linear infinite;
+    animation-duration: calc(190s / var(--i));
+    filter: blur(1px);
+}
+
+.bubbles span:nth-child(even) {
+    filter: blur(1px);
+    opacity: 0.6;
+    background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+    box-shadow: 0 0 0 10px conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(130vh) scale(1);
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(0);
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .Ex {
+        grid-template-columns: 61.45833333% 38.54166667%;
+        grid-template-areas: "login design";
+    }
+
+    .login {
+        display: block;
+    }
+
+    .design {
+        display: block;
+    }
+}
+
+@media (max-width: 1300px) {
+    
+    .Ex {
+        background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.50) 74.87%), #FFF;
+        grid-template-columns: 100% 0%;
+        grid-template-areas: "login design";
+    }
+
+    .login {
+        display: block;
+    }
+
+    .design {
+        display: block;
+    }
+
+    .parisLogo {
+        opacity: 0;
+    }
+    
+    .olympicLogo {
+        opacity: 0;
+    }
+
+    .subtext {
+        opacity: 0;
+    }
+
+    .message {
+        opacity: 0;
+    }
+
+    .login .title {
+        font-size: 80px;
+    }
+
+    
+    ::placeholder {
+        color: #9a9a9a;
+    }
+
+    .btn-back {
+        width: 30%;
+        height: 35px;
+        flex-shrink: 0;
+        border: 0.01px solid rgb(139, 137, 137, 0.0);
+        border-radius: 80px;
+        opacity: 0.5;
+        box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.25);
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+        font-family: Baloo Thambi 2;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        stroke: none;
+        cursor: pointer;
+        transition: all 0.4s;
+    }
+
+    .btn-back:hover {
+        transform: scale(1.1);
+    }
+
+    .btn {
+        width: 30%;
+        height: 35px;
+        flex-shrink: 0;
+        border: 0.01px solid rgb(139, 137, 137, 0.0);
+        border-radius: 80px;
+        opacity: 0.5;
+        background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+        box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.25);
+        color: #FFF;
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+        font-family: Baloo Thambi 2;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        stroke: none;
+        cursor: pointer;
+        transition: all 0.4s;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+    }
+
+    .or {
+        width: 35%;
+        height: 2px;
+        flex-shrink: 0;
+        border: 0.01px solid rgb(139, 137, 137, 0.0);
+        border-radius: 100px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .orText {
+        color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+@media (max-width: 1100px) {
+    .or {
+        width: 35%;
+        height: 2px;
+        flex-shrink: 0;
+        border: 0.01px solid rgb(139, 137, 137, 0.0);
+        border-radius: 100px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .orText {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .bubbles span {
+        position: relative;
+        width: 10px;
+        height: 5px;
+        background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+        margin: 0 3px;
+        border-radius: 100%;
+        opacity: 0.6;
+        box-shadow: 0 0 0 10px conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
+        animation: animate 15s linear infinite;
+        animation-duration: calc(190s / var(--i));
+        filter: blur(1px);
+    }
+
+    @keyframes animate {
+        0% {
+            transform: translateY(130vh) scale(1);
+        }
+
+        100% {
+            transform: translateY(-10vh) scale(0);
+        }
+    }
+}
