@@ -44,14 +44,14 @@ To enable social login features, follow these steps to set up social application
 
 2. In Site section, add the site **http://127.0.0.1:8000**.
 
-2. Under the "Social applications" section, add social applications for the authentication providers you want to use (Google).
+3. Under the "Social applications" section, add social applications for the authentication providers you want to use (Google).
 
-3. For each social application, you'll typically need to provide the following information:
+4. For each social application, you'll typically need to provide the following information:
    - Name
    - Client ID or Key
    - Secret Key
    - Sites (You can choose the default site or the site corresponding to your application's domain)
 
-4. Save the social applications.
+5. Save the social applications.
 
 Now, your Audience Application is set up to allow social logins through the configured social applications. Users can log in and register using their social media accounts.
