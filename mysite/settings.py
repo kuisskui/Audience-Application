@@ -10,11 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
-from dotenv import dotenv_values
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-config = dotenv_values(".env")
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kc*wdfn1^l_$w$o88l_ns#*&fswx&o*^!8k3@y2esig4sd-*d%'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.getenv("DEBUG") == "True" else False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -35,7 +36,6 @@ ALLOWED_HOSTS = ["*"]
 INSTALLED_APPS = [
     'audience.apps.AudienceConfig',
     'user_profile.apps.UserProfileConfig',
-    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,33 +51,33 @@ INSTALLED_APPS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
- 'django.contrib.auth.backends.ModelBackend',
- 'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 4
+SITE_ID = int(os.getenv("SITE_ID"))
 
 ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
-# ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
+ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
-#For password Reset
+# For password Reset
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config["EMAIL_HOST"]
-EMAIL_PORT = int(config["EMAIL_PORT"])
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD = config["EMAIL_HOST_PASSWORD"]
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-    
+
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -164,7 +164,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     "mysite/static",

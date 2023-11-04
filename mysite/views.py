@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
-from django.contrib.auth import login
 from django.contrib import messages
-from user_profile.models import UserProfile
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from user_profile.models import UserProfile
+from .forms import NewUserForm
 
 
 def register(request):
@@ -17,16 +17,17 @@ def register(request):
             country = form.cleaned_data.get("country")
             profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
-            
+
             # Explicitly specify the backend when calling login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            
+
             messages.success(request, "Registration successful.")
             return redirect("audience:dashboard")
-        
+
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     return render(request, "account/register.html", {"register_form": form})
+
 
 def custom_login(request):
     if request.method == "POST":
@@ -37,8 +38,19 @@ def custom_login(request):
             return redirect("audience:dashboard")  # Change this to your desired login success URL
     else:
         form = AuthenticationForm()
-    
+
     return render(request, "account/login.html", {"form": form})
+
+
+def custom_logout(request):
+    # Log the user out
+    # logout(request)
+    if request.method == "POST":
+        logout(request)
+        return redirect("audience:dashboard")
+
+    return render(request, "account/logout.html")
+
 
 @login_required
 def update_profile(request):
@@ -61,3 +73,5 @@ def update_profile(request):
     else:
         form = NewUserForm(instance=request.user)  # Populate the form with user data
     return render(request, "account/update_profile.html", {"register_form": form})
+  
+

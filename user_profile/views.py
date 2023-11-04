@@ -14,6 +14,5 @@ def profile(request):
 
     sport_ids = userprofile.sport_ids
     sport_ids = [] if sport_ids is None else sport_ids.split(',')
-    print(sport_ids)
     context = {"page": "profile", "detail": "show user profile", "userprofile": userprofile, "sport_ids": sport_ids}
     return render(request, "user_profile/profile.html", context)

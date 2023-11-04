@@ -1,56 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from user_profile.models import UserProfile
 from django.contrib.auth.decorators import login_required
-import requests
+from user_profile.models import UserProfile
 
 
 # Create your views here.
 def dashboard(request):
-    response = requests.get('http://127.0.0.1:8000/get_dashboard')
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": response.json()}
-    return render(request, "audience/dashboard.html", context)
-
-
-def sports(request):
-    response = requests.get('http://127.0.0.1:8000/get_sports')
-    context = {"page": "sports", "detail": "show all sports without any detail or information.",
-               "data": response.json()}
-    return render(request, "audience/sports.html", context)
-
-
-def sport(request, sport_id):
-    response = requests.get(f'http://127.0.0.1:8000/get_sport/{sport_id}')
-    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": response.json()}
-    return render(request, "audience/sport.html", context)
-
-
-@login_required
-def subscribe(request, sport_id):
-    profile = UserProfile.objects.get(user=request.user)
-    sport_ids = profile.sport_ids
-    if sport_ids:
-        sport_ids = f"{sport_ids},{sport_id}"
-    else:
-        sport_ids = sport_id
-    profile.sport_ids = sport_ids
-    profile.save()
-    return redirect("audience:sports")
-
-
-@login_required
-def unsubscribe(request, sport_id):
-    profile = UserProfile.objects.get(user=request.user)
-    sport_ids = list(profile.sport_ids.split(','))
-    if str(sport_id) in sport_ids:
-        sport_ids.remove(str(sport_id))
-    profile.sport_ids = ','.join(sport_ids)
-    profile.save()
-    return redirect("audience:sports")
-
-
-# For testing
-def get_dashboard(request):
     data = {
         "FR": {
             "gold": 100,
@@ -63,20 +17,24 @@ def get_dashboard(request):
             "bronze": 100
         }
     }
-    return JsonResponse(data)
+    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": data}
+    return render(request, "audience/dashboard.html", context)
 
 
-def get_sports(request):
+def sports(request):
     data = {
-        "1": "Atheletics",
+        "1": "Athletics",
         "2": "Archery",
         "3": "Artistic Gymnastics",
         "4": "Artistic Swimming",
+        "5": "BasketBall"
     }
-    return JsonResponse(data)
+    context = {"page": "sports", "detail": "show all sports without any detail or information.",
+               "data": data}
+    return render(request, "audience/sports.html", context)
 
 
-def get_sport(request, sport_id):
+def sport(request, sport_id):
     data = {
         "sport": sport_id,
         "sport_name": "Atheletics",
@@ -98,4 +56,165 @@ def get_sport(request, sport_id):
             }
         ]
     }
-    return JsonResponse(data)
+    context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": data}
+    return render(request, "audience/sport.html", context)
+
+
+@login_required
+def subscribe(request, sport_id):
+    sport_id = str(sport_id)
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    try:
+        sport_ids = profile.sport_ids.split(",")
+    except Exception:
+        sport_ids = []
+    if sport_id not in sport_ids:
+        sport_ids.append(sport_id)
+        result = ','.join(sport_ids)
+        profile.sport_ids = result
+        profile.save()
+    return redirect("audience:sports")
+
+
+@login_required
+def unsubscribe(request, sport_id):
+    profile = UserProfile.objects.get(user=request.user)
+    sport_ids = list(profile.sport_ids.split(','))
+    sport_ids.remove(str(sport_id))
+    if not sport_ids:
+        sport_ids = None
+        profile.sport_ids = sport_ids
+    else:
+        profile.sport_ids = ','.join(sport_ids)
+    profile.save()
+    return redirect("user_profile:profile")
+
+
+def sport_program(request):
+    data = {
+        "schedule_list": [
+            {
+                "datetime": "2021-10-1T00:00:00",
+                "sport": [
+                    {
+                        "_id": 1,
+                        "revision_id": 11,
+                        "sport_id": 2,
+                        "sport_name": "Archery",
+                        "sport_type": [
+                            {
+                                "_id": 2,
+                                "revision_id": 22,
+                                "type_id": 1,
+                                "type_name": "Individual",
+                                "status": "RECORDED"
+                            },
+                            {
+                                "_id": 3,
+                                "revision_id": 33,
+                                "type_id": 2,
+                                "type_name": "Team",
+                                "status": "RECORDED"
+                            }
+                        ],
+                        "is_ceremonies": False,
+                        "sport_status": "RECORDED"
+                    },
+                    {
+                        "_id": 1,
+                        "revision_id": 11,
+                        "sport_id": 2,
+                        "sport_name": "BasketBall",
+                        "sport_type": [
+                            {
+                                "_id": 2,
+                                "revision_id": 22,
+                                "type_id": 1,
+                                "type_name": "Individual",
+                                "status": "RECORDED"
+                            },
+                            {
+                                "_id": 3,
+                                "revision_id": 33,
+                                "type_id": 2,
+                                "type_name": "Team",
+                                "status": "RECORDED"
+                            }
+                        ],
+                        "is_ceremonies": False,
+                        "sport_status": "RECORDED"
+                    }
+                ]
+            },
+            {
+                "datetime": "2021-10-2T00:00:00",
+                "sport": [
+                    {
+                        "_id": 1,
+                        "revision_id": 11,
+                        "sport_id": 2,
+                        "sport_name": "Batminton",
+                        "sport_type": [
+                            {
+                                "_id": 2,
+                                "revision_id": 22,
+                                "type_id": 1,
+                                "type_name": "Individual",
+                                "status": "RECORDED"
+                            },
+                            {
+                                "_id": 3,
+                                "revision_id": 33,
+                                "type_id": 2,
+                                "type_name": "Team",
+                                "status": "RECORDED"
+                            }
+                        ],
+                        "is_ceremonies": False,
+                        "sport_status": "RECORDED"
+                    }
+                ]
+            },
+            {
+                "datetime": "2021-10-3T00:00:00",
+                "sport": [
+                    {
+                        "_id": 1,
+                        "revision_id": 11,
+                        "sport_id": 2,
+                        "sport_name": "BasketBall",
+                        "sport_type": [
+                            {
+                                "_id": 2,
+                                "revision_id": 22,
+                                "type_id": 1,
+                                "type_name": "Individual",
+                                "status": "RECORDED"
+                            },
+                            {
+                                "_id": 3,
+                                "revision_id": 33,
+                                "type_id": 2,
+                                "type_name": "Team",
+                                "status": "RECORDED"
+                            }
+                        ],
+                        "is_ceremonies": False,
+                        "sport_status": "RECORDED"
+                    }
+                ]
+            },
+        ]
+    }
+    all_sports = {
+        "1": "Atheletics",
+        "2": "Archery",
+        "3": "Artistic Gymnastics",
+        "4": "Artistic Swimming",
+        "5": "BasketBall"
+    }
+    context = {"data": data,
+               "all_sports": all_sports}
+
+    return render(request, "audience/sport_program.html", context)
