@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
+from user_profile.forms import UserProfileForm
 from .forms import NewUserForm
 
 
@@ -55,21 +56,19 @@ def custom_logout(request):
 @login_required
 def update_profile(request):
     if request.method == "POST":
-        form = NewUserForm(request.POST)
+        form = UserProfileForm(request.POST)
         if form.is_valid():
             user = request.user  # Use the currently authenticated user
             gender = form.cleaned_data.get("gender")
             age = form.cleaned_data.get("age")
             country = form.cleaned_data.get("country")
-            profile, created = UserProfile.objects.get_or_create(user=user)
-            profile.gender = gender
-            profile.age = age
-            profile.country = country
+            profile = UserProfile.objects.create(user=user, gender=gender, age=age, country=country)
             profile.save()
             messages.success(request, "Profile information updated successfully.")
             return redirect("audience:dashboard")
         else:
             messages.error(request, "Unsuccessful profile update. Invalid information.")
+            messages.error(request, form.errors)
     else:
         form = NewUserForm(instance=request.user)  # Populate the form with user data
     return render(request, "account/update_profile.html", {"register_form": form})

@@ -22,6 +22,10 @@
                     <br>
                     <form method="POST">
                         {% csrf_token %}
+                        <div class="text-input">
+                            <i class="ri-user-fill"></i>
+                            <input type="text" name="{{ register_form.user.name }}" id="{{ register_form.user.id }}" value="{{ user }}" placeholder="Username">
+                        </div>
 
                         <br class="brHeight">
 
