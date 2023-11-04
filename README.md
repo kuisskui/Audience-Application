@@ -26,6 +26,7 @@ Make sure you have Python 3.8, 3.9, 3.10, or 3.11 installed on your system.
 4. Create and apply the database migrations.
 
     ```shell
+    python manage.py makemigrations
     python manage.py migrate
     ```
 
