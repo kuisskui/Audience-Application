@@ -73,5 +73,4 @@ def update_profile(request):
     else:
         form = UserProfileForm()  # Populate the form with user data
     return render(request, "account/update_profile.html", {"register_form": form})
-  
 
