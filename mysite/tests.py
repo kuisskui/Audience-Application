@@ -3,6 +3,8 @@ from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.tests import OAuth2TestsMixin
 from django.contrib.auth.models import User
+from user_profile.models import UserProfile
+from .forms import NewUserForm
 from django.urls import reverse
 
 callback_url = 'https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?client_id=1020628582950-uqlvo1ok0sfv8bbe92p6hm06ha687g8a.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=profile%20email&response_type=code&state=wo2YqVWsepVX&access_type=online&service=lso&o2v=1&theme=glif&flowName=GeneralOAuthFlow'
@@ -30,9 +32,6 @@ class AllAuthTests(TestCase, OAuth2TestsMixin):
         # Implement this test if needed
         pass
 
-from django.test import TestCase
-from django.contrib.auth.models import User
-from django.urls import reverse
 
 class AccountViewTests(TestCase):
     def setUp(self):
@@ -41,24 +40,37 @@ class AccountViewTests(TestCase):
             'password': 'testpassword',
             'email': 'test@example.com',
         }
-        self.user_data2 = {
-            'username': 'testuser',
-            'password': 'testpassword',
-            'email': 'test@example.com',
-            'gender': 'male',
-            'age': '20',
-            'country': 'Japan'
+        self.data2 = {
+            'username': 'newuser',
+            'password1': 'newpassword',
+            'password2': 'newpassword',
+            'gender': 'Male',
+            'age': 25,
+            'country': 'US',
         }
-        self.user = User.objects.create_user(**self.user_data1)
+        self.user1 = User.objects.create_user(**self.user_data1)
         self.register_url = reverse('register')  # Updated URL
         self.login_url = reverse('custom_login')  # Updated URL
         self.update_profile_url = reverse('update_profile')  # Updated URL
         self.logout_url = reverse('custom_logout')  # Updated URL
 
-    # def test_register_view(self):
-    #     response = self.client.post(self.register_url, data=self.user_data2, follow=True)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertContains(response, "Registration successful.")
+    # def test_register_post_valid_data(self):
+    #     response = self.client.post(self.register_url, self.data2)
+
+    #     # Check if a UserProfile object was created
+    #     user_profile = UserProfile.objects.get(user='newuser')
+    #     self.assertEqual(user_profile.gender, 'Male')
+    #     self.assertEqual(user_profile.age, 25)
+    #     self.assertEqual(user_profile.country, 'US')
+        
+    def test_register_post_invalid_data(self):
+        data = {
+            'username': 'newuser',
+            'password1': 'newpassword',
+            'password2': 'differentpassword',  # Passwords don't match
+        }
+        response = self.client.post(self.register_url, data)
+        self.assertContains(response, "Unsuccessful registration. Invalid information.")
 
     def test_register_view_invalid_data(self):
         invalid_data = {
@@ -70,6 +82,12 @@ class AccountViewTests(TestCase):
         response = self.client.post(self.register_url, data=invalid_data, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Unsuccessful registration. Invalid information.")
+        
+    def test_register_get(self):
+        # Test a GET request to the registration page
+        response = self.client.get(self.register_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'account/register.html')
 
     # def test_custom_login_view(self):
     #     response = self.client.post(self.login_url, data=self.user_data, follow=True)
