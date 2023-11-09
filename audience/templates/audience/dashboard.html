@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{% static 'audience\dashboard.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
+
     <title>Audience</title>
 </head>
 <body>
@@ -31,7 +33,8 @@
             <div class="icon-box">
                 <a class ="icon-text" href="{% url 'audience:sports' %}">
                     <div class="sep-icon"> 
-                        <i class="ri-apps-2-fill icon"></i>
+                        <!-- <i class="ri-apps-2-fill icon"></i> -->
+                        <i class="ri-apps-2-line icon"></i>
                         <p>Sports</p>
                     </div>
                 </a>
@@ -40,7 +43,7 @@
             <div class="icon-box">
                 <a class ="icon-text" href="{% url 'audience:sport_program' %}">
                     <div class="sep-icon">
-                        <i class="ri-calendar-fill icon"></i>
+                        <i class="ri-calendar-todo-line icon"></i>
                         <p>SportProgram</p>
                     </div>
                 </a>
@@ -100,7 +103,7 @@
                 <div class="numbertext">2 / 3</div>
                     <a href="https://youtu.be/dQw4w9WgXcQ?si=JNRPT4BHYhx7QqVI">
                         <div class="pictures-box">
-                            <img class="b" src="{% static 'audience\image\Baguette.png' %}">
+                            <img src="{% static 'audience\image\Baguette.png' %}">
                         </div>
                     </a>  
                 <div class="text">Caption Two</div>
@@ -167,10 +170,31 @@
                 <br>
                 <div class="medals">
                     <table>
+                        <tr>
+                            <th>Nation</th>
+                            <th>Rank</th>
+                            <th><i class="ri-medal-line gc"></i></th>
+                            <th><i class="ri-medal-line sc"></i></th>
+                            <th><i class="ri-medal-line bc"></i></th>
+                            <th>Total</th>
+                        </tr>
+                        
                         {% for country, medals in data.items %}
-                            <tr><td>{{country}}</td><td>{{medals}}</td></tr>
+                            {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
+                            
+                            <tr>
+                                <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{medals.gold}}</td>
+                                <td>{{ medals.silver }}</td>
+                                <td>{{ medals.bronze }}</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            {% endwith %}
+                            
                         {% endfor %}
                     </table>
+                    
                 </div>
         </div>
     </div>

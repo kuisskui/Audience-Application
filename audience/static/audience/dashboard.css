@@ -11,7 +11,7 @@ body {
 
 .nav {
   float:left;
-  width: 18%;
+  width: 288px;
   height: 100%;
     /* background: linear-gradient(#CEBA7394, #D4BF77E5, #D6C178, #C7B36FC7); */
   border-radius: 19px;
@@ -23,7 +23,7 @@ body {
 
 .nav.close {
   float: left;
-  width: 5.5%;
+  width: 60px;
   height: 100%;
 }
 
@@ -47,23 +47,22 @@ body {
   margin-bottom: 50px;
 }
 
-.icon-box:hover {
-  background-color: rgb(111, 101, 68);
+/* .icon-box:hover {
+  background-color: rgb(153, 142, 105);
   border-radius: 20px;
-  opacity: 80%;
-  
-}
+} */
 
-.icon-box .icon-text .sep-icon:hover {
-  color: #f2f2f2;
+.sep-icon:hover {
+  color: #a43939;
 }
 
 .icon-box {
-  padding-bottom: 20px;
-  padding-top: 20px;
-  padding-left: 15px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  /* padding-left: 5px; */
+  margin-top: 40px;
+  margin-bottom: 40px;
+  justify-content: center;
 }
 
 .sep-icon {
@@ -109,62 +108,15 @@ body {
 }
 
 .outer-box1 {
-    padding-bottom: 10px;
-    padding-top: 50px;
-    display: grid;
-    justify-content: center;
-}
-
-.outer-box2 {
-    padding-bottom: 50px;
-    padding-top: 10px;
-    display: grid;
-    justify-content: center;
-}
-
-.score-board {
-    /* color: #000; */
-    justify-content: center;
-    text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #6E5F44;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 350;
-    line-height: normal;
-    letter-spacing: -0.56px;
-    background-color: rgba(247, 239, 208, 0.999);
-    padding-top: 20px;
-    padding-bottom: 50px;
-    width: 1000px;
-    height: 1350px;
-    border-radius: 100px;
-    box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
-    margin:auto;
-}
-
-.score-board-title {
-    text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #6E5F44;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 350;
-    line-height: normal;
-    letter-spacing: -0.56px;
-    font-size: 48px;
-    padding-bottom: 50px;
-}
-
-.medals {
-  display: flex;
-  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 50px;
+  display: grid;
   justify-content: center;
 }
 
-.pictures-box {
-    width: 1000px;
-    height: 300px;
+/* .pictures-box {
+    width: 65vw;
+    height: 40vh;
     border-radius: 100px;
     box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -176,14 +128,18 @@ body {
     width: 100%;
     max-height: 100%;
     border-radius: 100px;
+} */
+
+.pictures-box img {
+  width: 62vw;
+  height: 42vh;
+  border-radius: 100px;
+  box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.b {
-
-  width: 80% !important;
-  max-height: 80% !important;
-  border-radius: 0% !important;
-}
 * {box-sizing:border-box}
 
 /* Slideshow container */
@@ -271,4 +227,63 @@ body {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.outer-box2 {
+    padding-bottom: 50px;
+    padding-top: 10px;
+    display: grid;
+    justify-content: center;
+}
+
+.score-board {
+    /* color: #000; */
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #6E5F44;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: -0.56px;
+    background-color: rgba(247, 239, 208, 0.999);
+    padding-top: 20px;
+    padding-bottom: 50px;
+    width: 62vw;
+    height: 120vh;
+    border-radius: 100px;
+    box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
+    margin:auto;
+}
+
+.score-board-title {
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #6E5F44;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: normal;
+    letter-spacing: -0.56px;
+    font-size: 48px;
+    padding-bottom: 50px;
+}
+
+.medals {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.gc {
+  color: #F0BB40;
+}
+
+.sc {
+  color: #ADB8C2;
+}
+
+.bc {
+  color: #E27022;;
 }
