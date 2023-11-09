@@ -5,7 +5,7 @@
 
 body {
     font-family:Paris2024-Variable;
-    height: 300vh;
+    height: 100%;
     background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
 }
 
@@ -84,27 +84,30 @@ body {
 .nav .arrow {
   align-items: center; 
   position: absolute;
-  top:20%;
-  right: -23px;
+  top:50%;
+  right: -12px;
   transform: translateY(-50%);
-  height: 40px;
+  height: 25px;
+  width: 25px;
   background-color: rgba(128, 102, 24, 0.9);
-  font-size: 24px;
+  font-size: 22px;
   color: #f0ebe3;
-  border-top-right-radius: 20px 40px;
-  border-bottom-right-radius: 20px 40px;
+  /* border-top-right-radius: 20px 40px;
+  border-bottom-right-radius: 20px 40px; */
+  border-radius: 50%;
 }
 
 .log {
-  /* align-items:end; */
-  padding-top: 300px;
-  top: 50%;
+  align-items:end;
+  padding-top: 48vh;
+  padding-bottom: 10px ;
+  /* top: 50%; */
   /* background-color: #717171; */
 }
 
 .nav .arrow:hover {
   background-color: #f0ebe3;
-  color: rgba(128, 102, 24, 0.9);
+  color: #a43939;;
 }
 
 .outer-box1 {
@@ -114,25 +117,9 @@ body {
   justify-content: center;
 }
 
-/* .pictures-box {
-    width: 65vw;
-    height: 40vh;
-    border-radius: 100px;
-    box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .pictures-box img {
-    width: 100%;
-    max-height: 100%;
-    border-radius: 100px;
-} */
-
-.pictures-box img {
-  width: 62vw;
-  height: 42vh;
+  width: 60vw;
+  height: 46vh;
   border-radius: 100px;
   box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -250,8 +237,8 @@ body {
     background-color: rgba(247, 239, 208, 0.999);
     padding-top: 20px;
     padding-bottom: 50px;
-    width: 62vw;
-    height: 120vh;
+    width: 60vw;
+    /* height: 120vh; */
     border-radius: 100px;
     box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
     margin:auto;
@@ -285,5 +272,15 @@ body {
 }
 
 .bc {
-  color: #E27022;;
+  color: #E27022;
+}
+
+/* table , th , td { */
+  /* border: 1px solid black; */
+/* } */
+
+.table , th , td {
+  width: 8vw;
+  padding-bottom: 20px;
+  border-bottom: 0.5px solid #958d6d;
 }

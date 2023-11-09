@@ -7,17 +7,18 @@ from user_profile.models import UserProfile
 def dashboard(request):
     data = {
         "FR": {
-            "gold": 100,
-            "silver": 100,
+            "gold": 90,
+            "silver": 90,
             "bronze": 100
         },
         "US": {
             "gold": 100,
             "silver": 100,
             "bronze": 100
-        }
+        },
     }
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": data}
+    sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
+    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
     return render(request, "audience/dashboard.html", context)
 
 
