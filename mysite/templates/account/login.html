@@ -64,10 +64,18 @@
                         <div class="or"></div>
                     </div>
                     <div class="item">
-                        <a href="{% provider_login_url 'google' %}" target="_blank" rel="noopener">
+                        <a href="{% provider_login_url 'google' %}" onclick="closeTabAfterLogin()" target="_blank" rel="noopener">
                             <img class="rounded-circle" src="{% static 'mysite/image/Google.png' %}" alt="Google Logo" width="40" height="40">
                         </a>
                     </div>
+
+                    <script>
+                        function closeTabAfterLogin() {
+                            // Attempt to close the current tab
+                            window.close();
+                        }
+                    </script>
+
                     <div class="line">
                         <div class="lowText">Don’t have an account?&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <a class="SignUp" href="{% url 'register' %}">Sign Up</a>
