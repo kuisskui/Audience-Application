@@ -38,22 +38,19 @@ class AllAuthTests(TestCase, OAuth2TestsMixin):
 
 class AccountViewTests(TestCase):
     def setUp(self):
-        self.user_data1 = {
-            'username': 'testuser',
-            'password': 'testpassword',
-            'email': 'test@example.com',
-        }
-        self.data2 = {
-            'user': 'newuser',
-            'password1': 'newpassword',
-            'password2': 'newpassword',
-            'email': 'newuser@example.com',
-            'gender': 'Male',
-            'age': 25,
-            'country': 'US',
-        }
-        self.user1 = User.objects.create_user(**self.user_data1)
-        self.register_url = reverse('register')  # Updated URL
-        self.login_url = reverse('custom_login')  # Updated URL
-        self.update_profile_url = reverse('update_profile')  # Updated URL
-        self.logout_url = reverse('custom_logout')  # Updated URL
+        self.user = User.objects.create(username='testuser', password='testpassword')
+        self.user_profile = UserProfile.objects.create(
+            user=self.user,
+            gender='Male',
+            age='25',
+            country='USA',
+            sport_ids='1,2,3'
+        )
+        self.register_url = reverse('register')
+        self.login_url = reverse('custom_login')
+        self.update_profile_url = reverse('update_profile')
+        self.logout_url = reverse('custom_logout')
+
+    def test_user_profile_creation(self):
+        self.assertIsInstance(self.user_profile, UserProfile)
+        self.assertEqual(str(self.user_profile), f'{self.user.username} Profile')
