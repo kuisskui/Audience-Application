@@ -13,6 +13,9 @@
     <title>Audience</title>
 </head>
 <body>
+    <div class="invisible-box">
+        <!-- <p>.</p> -->
+    </div>
     <nav class="nav">
         <div class="paths">
             <div>
@@ -73,20 +76,23 @@
             <i class="ri-arrow-left-s-line toggle"></i>
             <!-- <i class="ri-arrow-right-s-line"></i> -->
         </div>  
-        <script>
-            const body = document.querySelector("body"),
-            nav = body.querySelector(".nav"),
-            toggle = body.querySelector(".toggle");
-
-            toggle.addEventListener("click" , () =>{
-                nav.classList.toggle("close");
-            });
-        </script>
     </nav>
-    
 
-    <div class="outer-box1">
-        <div class="slideshow-container">
+    <script>
+        const body = document.querySelector("body"),
+        nav = body.querySelector(".nav"),
+        invisible = body.querySelector(".invisible-box"),
+        toggle = body.querySelector(".toggle");
+
+        toggle.addEventListener("click" , () =>{
+            nav.classList.toggle("close");
+            invisible.classList.toggle("close");
+        });
+    </script>
+    
+    <div class="right">
+        <div class="outer-box1">
+            <div class="slideshow-container">
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
@@ -122,8 +128,8 @@
             <!-- Next and previous buttons -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <br>
+            </div>
+            <br>
           
         <!-- The dots/circles -->
         <div style="text-align:center">
@@ -159,11 +165,11 @@
                 dots[slideIndex-1].className += " active";
                 }
             </script>
-    </div>
+        </div>
 
-    <p class="score-board-title">Scoreboard<p></p>
+        <p class="score-board-title">Scoreboard<p></p>
 
-    <div class="outer-box2">
+        <div class="outer-box2">
         <div class="score-board">
             
                 
@@ -181,7 +187,6 @@
 
                         {% for country, medals in data.items %}
                             {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
-                            {%if {{forloop.counter < 10}}%}
                             <tr>
                                 <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
                                 <td>{{ forloop.counter }}</td>
@@ -196,6 +201,9 @@
                     
                 </div>
         </div>
+        </div>
     </div>
+    
+
 </body>
 </html>

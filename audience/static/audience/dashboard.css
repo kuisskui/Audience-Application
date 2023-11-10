@@ -5,9 +5,9 @@
 
 body {
     font-family:Paris2024-Variable;
-    height: 100%;
     background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
-}
+  }
+
 
 .nav {
   float:left;
@@ -18,7 +18,21 @@ body {
   background: linear-gradient(180deg, rgba(206, 186, 115, 0.58) 6.56%, rgba(212, 191, 119, 0.90) 21.15%, #D6C178 69.06%, rgba(199, 179, 111, 0.78) 81.04%);
   box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
   display: flex;
-  position: relative;
+  position: fixed;
+}
+
+.invisible-box {
+  float:left;
+  width: 288px;
+  height: 100vh;
+  display: flex;
+}
+
+.invisible-box.close {
+  float:left;
+  width: 60px;
+  height: 100vh;
+  display: flex;
 }
 
 .nav.close {
