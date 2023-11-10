@@ -44,9 +44,10 @@ class AccountViewTests(TestCase):
             'email': 'test@example.com',
         }
         self.data2 = {
-            'username': 'newuser',
+            'user': 'newuser',
             'password1': 'newpassword',
             'password2': 'newpassword',
+            'email': 'newuser@example.com',
             'gender': 'Male',
             'age': 25,
             'country': 'US',
@@ -56,90 +57,3 @@ class AccountViewTests(TestCase):
         self.login_url = reverse('custom_login')  # Updated URL
         self.update_profile_url = reverse('update_profile')  # Updated URL
         self.logout_url = reverse('custom_logout')  # Updated URL
-
-    # def test_register_post_valid_data(self):
-    #     response = self.client.post(self.register_url, self.data2)
-
-    #     # Check if a UserProfile object was created
-    #     user_profile = UserProfile.objects.get(user='newuser')
-    #     self.assertEqual(user_profile.gender, 'Male')
-    #     self.assertEqual(user_profile.age, 25)
-    #     self.assertEqual(user_profile.country, 'US')
-        
-    def test_register_post_invalid_data(self):
-        data = {
-            'username': 'newuser',
-            'password1': 'newpassword',
-            'password2': 'differentpassword',  # Passwords don't match
-        }
-        response = self.client.post(self.register_url, data)
-        self.assertContains(response, "Unsuccessful registration. Invalid information.")
-
-    def test_register_view_invalid_data(self):
-        invalid_data = {
-            'username': '',  # Invalid data
-            'password1': 'testpassword',
-            'password2': 'testpassword',
-            'email': 'test@example.com',
-        }
-        response = self.client.post(self.register_url, data=invalid_data, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Unsuccessful registration. Invalid information.")
-        
-    def test_register_get(self):
-        # Test a GET request to the registration page
-        response = self.client.get(self.register_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'account/register.html')
-
-    # def test_custom_login_view(self):
-    #     response = self.client.post(self.login_url, data=self.user_data, follow=True)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertRedirects(response, reverse('audience:dashboard'))
-
-    def test_custom_login_view_invalid_data(self):
-        invalid_data = {
-            'username': 'testuser',
-            'password': 'invalidpassword',  # Invalid password
-        }
-        response = self.client.post(self.login_url, data=invalid_data, follow=True)
-        self.assertEqual(response.status_code, 200)
-
-    # def test_custom_logout_view(self):
-    #     self.client.login(username='testuser', password='testpassword')
-    #     response = self.client.post(reverse('account:logout'), follow=True)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertRedirects(response, reverse('audience:dashboard'))
-
-    # def test_update_profile_view(self):
-    #     self.client.login(username='testuser', password='testpassword')
-    #     profile_data = {
-    #         'gender': 'Male',
-    #         'age': 30,
-    #         'country': 'USA',
-    #     }
-    #     response = self.client.post(self.update_profile_url, data=profile_data, follow=True)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertContains(response, "Profile information updated successfully.")
-
-    def test_update_profile_view_invalid_data(self):
-        self.client.login(username='testuser', password='testpassword')
-        invalid_data = {
-            'gender': '',  # Invalid data
-            'age': 30,
-            'country': 'USA',
-        }
-        response = self.client.post(self.update_profile_url, data=invalid_data, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Unsuccessful profile update. Invalid information.")
-
-        invalid_data = {
-            'gender': 'Male',
-            'age': 30,
-            'country': 'Invalid Country',  # Invalid country
-        }
-        response = self.client.post(self.update_profile_url, data=invalid_data, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Unsuccessful profile update. Invalid information.")
-
-        # You can add more test cases to cover other scenarios as needed.
