@@ -54,3 +54,12 @@ class AccountViewTests(TestCase):
     def test_user_profile_creation(self):
         self.assertIsInstance(self.user_profile, UserProfile)
         self.assertEqual(str(self.user_profile), f'{self.user.username} Profile')
+        
+    def test_user_profile_fields(self):
+        # Test the individual fields of the UserProfile model
+        self.assertEqual(self.user_profile.user, self.user)
+        self.assertEqual(self.user_profile.gender, 'Male')
+        self.assertEqual(self.user_profile.age, '25')
+        self.assertEqual(self.user_profile.country, 'USA')
+        self.assertEqual(self.user_profile.sport_ids, '1,2,3')
+        
