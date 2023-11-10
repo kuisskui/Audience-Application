@@ -100,6 +100,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # to block path that not used
+    'mysite.middleware.BlockPathsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
