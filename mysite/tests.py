@@ -1,13 +1,10 @@
 import os
-from pathlib import Path
-from dotenv import load_dotenv
 from django.test import TestCase
 from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.tests import OAuth2TestsMixin
 from django.contrib.auth.models import User
 from user_profile.models import UserProfile
-from .forms import NewUserForm
 from django.urls import reverse
 
 callback_url = os.getenv("GOOGLE_CALLBACK_URL")
