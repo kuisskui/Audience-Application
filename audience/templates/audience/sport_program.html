@@ -24,36 +24,33 @@
     </div>
     <table>
         <thead>
-            <th>Sport</th>
+            <th style="width: 300px">Sport</th>
             {% for day in data.schedule_list %}
             <th>{{day.datetime|sport_datetime}}</th>
             {% endfor %}
         </thead>
         <tbody>
-            {% for sport in all_sports.values %}
+            {% for sport in all_sports.sport_list %}
             <tr>
-                <th>{{sport}}</th>
+                <th>{{sport.sport_name}}</th>
                 {% for day in data.schedule_list %}
 
                 {% for i in day.sport %}
-                {% if i.sport_name == sport %}
-                {% if i.sport_status == "CEREMONIES" %}
-                <td> * </td>
-            </tr>
-            <tr>{% endif %}
-                {% if i.sport_status == "COMPETITIVE" %}
-                <td> ◌ </td>
-                {% endif %}
-                {% if i.sport_status == "TROPHY" %}
-                <td> 🥇</td>
-                {% endif %}
-                {% if i.sport_status == "RECORDED" %}
-                <td> 🏅</td>
+                {% if i.sport_id == sport.sport_id %}
+                {% if i.sport_status == null %}
+                <td></td>
+
+                {% elif i.sport_status == 'CEREMONIES' %}
+                <td>5</td>
+
+                {% elif i.sport_status == 'COMPETITIVE' %}
+                <td>1</td>
+
+                {% elif i.sport_status == 'TROPHY' %}
+                <td>2</td>
                 {% endif %}
                 {% endif %}
                 {% endfor %}
-
-
                 {% endfor %}
             </tr>
             {% endfor %}
