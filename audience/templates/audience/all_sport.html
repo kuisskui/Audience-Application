@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Sport</title>
+    <style>
+        body {
+            background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(40px);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #6E5F44;
+            text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
+            font-family: Paris2024-Variable;
+            font-size: 96px;
+            font-style: normal;
+            font-weight: 350;
+            line-height: normal;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #searchBar {
+            width: 1039px;
+            height: 58px;
+            flex-shrink: 0;
+            border-radius: 100px;
+            background: #FFF;
+            box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.25);
+            margin: 20px auto;
+            display: block;
+        }
+
+        #sportList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 1065px;
+        }
+
+        #sportList li {
+            width: 318px;
+            height: 366px;
+            flex-shrink: 0;
+            border-radius: 80px;
+            opacity: 0.8;
+            background: #FFFEFE;
+            box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.30), 0px 4px 6px 0px rgba(0, 0, 0, 0.25) inset;
+            margin-bottom: 20px;
+        }
+
+        #messageIcon {
+            width: 65px;
+            height: 62.169px;
+            flex-shrink: 0;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Add your icon styling or content here */
+        }
+    </style>
+</head>
+<body>
+    <h1>All Sport</h1>
+
+    <input type="text" id="searchBar" placeholder="Search...">
+
+    <ul id="sportList">
+            <li><a href="sport_page.html">Artistic-Swimming</a></li>
+            <li><a href="sport_page.html">Archery</a></li>
+            <li><a href="sport_page.html">Athletics</a></li>
+            <li><a href="sport_page.html">Artistic-Gymnastics</a></li>
+            <li><a href="sport_page.html">Badminton</a></li>
+            <li><a href="sport_page.html">Boxing</a></li>
+            <li><a href="sport_page.html">Breaking</a></li>
+            <li><a href="sport_page.html">Canoeing</a></li>
+            <li><a href="sport_page.html">Cycling</a></li>
+            <li><a href="sport_page.html">Equestrian</a></li>
+            <li><a href="sport_page.html">Fencing</a></li>
+        <!-- Add more list items as needed -->
+    </ul>
+
+    <div id="messageIcon">
+        <!-- Icon or link for messaging -->
+    </div>
+
+    <script>
+        // Real-time search functionality
+        document.getElementById('searchBar').addEventListener('input', function() {
+            let searchText = this.value.toLowerCase();
+            let sportItems = document.getElementById('sportList').getElementsByTagName('a');
+
+            for (let item of sportItems) {
+                if (item.textContent.toLowerCase().includes(searchText)) {
+                    item.parentNode.style.display = 'block';
+                } else {
+                    item.parentNode.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

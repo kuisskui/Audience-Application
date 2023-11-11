@@ -9,8 +9,9 @@
         <meta name="author" content="TAGCH">
         <meta name="keyword" content="html css javascript">
         <title>SignIn</title>
-        <link rel="stylesheet" href="{% static 'mysite\login.css' %}">
+        <link rel="stylesheet" href="{% static 'mysite/login.css' %}">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{% static 'mysite/image/Web-logo.png' %}">
     </head>
 
     <body>
@@ -63,10 +64,18 @@
                         <div class="or"></div>
                     </div>
                     <div class="item">
-                        <a href="{% provider_login_url 'google' %}" target="_blank" rel="noopener">
-                            <img class="rounded-circle" src="{% static 'mysite\image\Google.png' %}" alt="Google Logo" width="40" height="40">
+                        <a href="{% provider_login_url 'google' %}" onclick="closeTabAfterLogin()" target="_blank" rel="noopener">
+                            <img class="rounded-circle" src="{% static 'mysite/image/Google.png' %}" alt="Google Logo" width="40" height="40">
                         </a>
                     </div>
+
+                    <script>
+                        function closeTabAfterLogin() {
+                            // Attempt to close the current tab
+                            window.close();
+                        }
+                    </script>
+
                     <div class="line">
                         <div class="lowText">Don’t have an account?&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <a class="SignUp" href="{% url 'register' %}">Sign Up</a>
@@ -76,9 +85,9 @@
             <div class="design">
                 <center>
                     <br><br>
-                    <img class="parisLogo" src="{% static 'mysite\image\Paris2024.png' %}" alt="Paris Logo">
+                    <img class="parisLogo" src="{% static 'mysite/image/Paris2024.png' %}" alt="Paris Logo">
                     <br><br>
-                    <img class="olympicLogo" src="{% static 'mysite\image\OlmpicLogo.png' %}" alt="olympic Logo">
+                    <img class="olympicLogo" src="{% static 'mysite/image/OlmpicLogo.png' %}" alt="olympic Logo">
                     <h3 class="subtext">Welcome Back!</h3>
                     <br><br><br><br>
                     <h4 class="message">-Nong All New-</h4>

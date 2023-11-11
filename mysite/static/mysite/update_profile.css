@@ -268,7 +268,7 @@ display: block;
     justify-content: center;
     align-items: center;
     grid-template-columns: 100%;
-    /* grid-template-areas: "login"; */
+    grid-template-areas: "login";
     z-index: 1;
 }
 
@@ -459,7 +459,7 @@ display: block;
     width: 9px;
     height: 8px;
     background: conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
-    margin: 0 1px;
+    margin: 0 3px;
     border-radius: 100%;
     opacity: 0.6;
     box-shadow: 0 0 0 10px conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);

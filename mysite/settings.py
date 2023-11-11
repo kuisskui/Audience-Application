@@ -55,10 +55,10 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = int(os.getenv("SITE_ID"))
+SITE_ID = 1
 
 ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
-# ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
+ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
 
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
@@ -68,7 +68,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_USE_TLS = True
@@ -82,13 +82,13 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
+        'APP': {
+            'client_id': os.getenv("GOOGLE_CLIENT_ID"),
+            'secret': os.getenv("GOOGLE_SECRET_KEY"),
+            'key': '',
+        },
+        'SCOPE': ['profile','email', ],
+        'AUTH_PARAMS': {'access_type': 'online', }
     }
 }
 
@@ -100,6 +100,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # to block path that not used
+    'mysite.middleware.BlockPathsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
