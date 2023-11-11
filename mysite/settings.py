@@ -173,6 +173,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     "mysite/static",
+    "audience/static"
 ]
 
 # Default primary key field type
