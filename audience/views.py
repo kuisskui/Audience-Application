@@ -93,10 +93,8 @@ def unsubscribe(request, sport_id):
 
 
 def sport_program(request):
-    response = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all').json()
-    response_all_sport = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport').json()
-    data = response
-    all_sports = response_all_sport
+    data = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all').json()
+    all_sports = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport').json()
     context = {"data": data,
                "all_sports": all_sports}
 
