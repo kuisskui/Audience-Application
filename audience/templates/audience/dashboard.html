@@ -16,12 +16,6 @@
     <div class="invisible-box"></div>
     <nav class="nav">
         <div class="paths">
-            <!-- <div>
-                {% if user.is_authenticated %}
-                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
-                {% endif %}
-            </div> -->
-            
             <div class="icon-box">
                 <a class ="icon-text" href="{% url 'audience:dashboard' %}">
                     <div class="sep-icon">
@@ -52,12 +46,23 @@
                 
             <div class="log">
                 {% if user.is_authenticated %}
+                <div class = "logout">
                     <a class="icon-text" href = "{% url 'account_logout' %}">
                         <div class="sep-icon"> 
                             <i class="ri-logout-box-line icon"></i>
                             <p>Logout</p>
                         </div>
                     </a>
+                    
+                    <!-- <div class="user_profile">
+                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
+                            <div class="sep-icon">
+                               {{user}}
+                            </div>
+                        </a>
+                    </div> -->
+                </div> 
+                    
                 {% else %}
                     <a class="icon-text" href="{% url 'account_login' %}">
                         <div class="sep-icon"> 
@@ -68,6 +73,7 @@
                     </a>
                 {% endif %}
             </div>
+            
             
         </div>
         <div class="arrow">
