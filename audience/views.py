@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
+from requests.auth import HTTPBasicAuth
 import requests
 
 
@@ -97,10 +98,19 @@ def unsubscribe(request, sport_id):
 
 
 def sport_program(request):
-    response = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all').json()
-    response_all_sport = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport').json()
-    data = response
-    all_sports = response_all_sport
+    api_key = '02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3'
+    all_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all'
+    sport_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport'
+    headers = {'Accept': 'application/json'}
+
+    auth = HTTPBasicAuth('apikey', api_key)
+
+    data = requests.get(all_url, headers=headers, auth=auth).json()
+    all_sports = requests.get(sport_url, headers=headers, auth=auth).json()
+
+    # data = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all', headers=headers).json()
+    # all_sports = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport', headers=headers).json()
+
     context = {"data": data,
                "all_sports": all_sports}
 
