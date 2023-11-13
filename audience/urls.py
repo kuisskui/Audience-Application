@@ -3,7 +3,7 @@ from . import views
 
 app_name = "audience"
 urlpatterns = [
-    path('', views.dashboard, name="dashboard"),
+    path('', views.hompage, name="hompage"),
     path('sport_program/', views.sport_program, name="sport_program"),
     path("sports/", views.sports, name="sports"),
     path("sport/<int:sport_id>", views.sport, name="sport"),
