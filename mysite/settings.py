@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import django_heroku
+import dj_database_url
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -167,7 +169,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = '/static/'
 
@@ -184,3 +186,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Auth redirected URL
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+django_heroku.settings(locals())
