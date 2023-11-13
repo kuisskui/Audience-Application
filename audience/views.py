@@ -18,7 +18,7 @@ def dashboard(request):
             "bronze": 100
         },
     }
-    # data = request.get("https://sota-backend.fly.dev/medals/")
+    # data = requests.get("https://sota-backend.fly.dev/medals/")
     sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
     context = {"page": "dashboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
     return render(request, "audience/dashboard.html", context)
@@ -32,7 +32,7 @@ def sports(request):
         "4": "Artistic Swimming",
         "5": "BasketBall"
     }
-    # data = request.get("https://sota-backend.fly.dev/sports/")
+    # data = requests.get("https://sota-backend.fly.dev/sports/")
     context = {"page": "sports", "detail": "show all sports without any detail or information.",
                "data": data}
     return render(request, "audience/sports.html", context)
@@ -60,7 +60,7 @@ def sport(request, sport_id):
             }
         ]
     }
-    # data = request.get("https://sota-backend.fly.dev/medal/s/:sport_id")
+    # data = requests.get("https://sota-backend.fly.dev/medal/s/:sport_id")
     context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": data}
     return render(request, "audience/sport.html", context)
 
