@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
 from requests.auth import HTTPBasicAuth
 import requests
+import logging
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -103,15 +105,19 @@ def sport_program(request):
     sport_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport'
     headers = {'Accept': 'application/json'}
 
-    auth = HTTPBasicAuth('apikey', api_key)
+    auth = HTTPBasicAuth('authorization', api_key)
 
-    data = requests.get(all_url, headers=headers, auth=auth).json()
-    all_sports = requests.get(sport_url, headers=headers, auth=auth).json()
 
-    # data = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all', headers=headers).json()
-    # all_sports = requests.get('https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport', headers=headers).json()
+    try:
+        data = requests.get(all_url, headers=headers, auth=auth).json()
+        all_sports = requests.get(sport_url, headers=headers, auth=auth).json()
 
-    context = {"data": data,
-               "all_sports": all_sports}
+        context = {"data": data, "all_sports": all_sports}
+        return render(request, "audience/sport_program.html", context)
 
-    return render(request, "audience/sport_program.html", context)
+    except requests.RequestException as e:
+        # Log the exception for debugging
+        logging.error(f"Error fetching data from API: {e}")
+
+        # Return an error response or handle the exception as needed
+        return HttpResponse("Error fetching data from API", status=500)
