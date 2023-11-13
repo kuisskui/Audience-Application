@@ -5,7 +5,7 @@ import requests
 
 
 # Create your views here.
-def dashboard(request):
+def scoreboard(request):
     data = {
         "FR": {
             "gold": 90,
@@ -20,8 +20,8 @@ def dashboard(request):
     }
     # data = request.get("https://sota-backend.fly.dev/medals/")
     sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
-    return render(request, "audience/dashboard.html", context)
+    context = {"page": "scoreboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
+    return render(request, "audience/scoreboard.html", context)
 
 
 def sports(request):
