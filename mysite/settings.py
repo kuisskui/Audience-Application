@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
-import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
 from decouple import config
@@ -120,6 +119,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 ON_HEROKU = config('LIVE', cast=bool, default=False)
 
 if ON_HEROKU:
+    import django_heroku
+    django_heroku.settings(locals())
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -172,5 +173,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-
-django_heroku.settings(locals())
