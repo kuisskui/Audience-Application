@@ -6,21 +6,22 @@ import requests
 
 # Create your views here.
 def dashboard(request):
-    data = {
-        "FR": {
-            "gold": 90,
-            "silver": 90,
-            "bronze": 100
-        },
-        "US": {
-            "gold": 100,
-            "silver": 100,
-            "bronze": 100
-        },
-    }
-    # data = requests.get("https://sota-backend.fly.dev/medals/")
-    sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
+    if request.user:
+        user_profile = UserProfile.objects.get(user=request.user)
+        try:
+            sport_ids = user_profile.sport_ids.split(",")
+        except Exception:
+            sport_ids = []
+
+        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
+        header = {
+            "Authentication": "02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3"
+        }
+
+        sport_program = requests.get(url, header=header).json()
+
+        # sport = requests.get().json()
+        context = {"sport_ids": sport_ids, "sport_program": sport_program}
     return render(request, "audience/dashboard.html", context)
 
 
