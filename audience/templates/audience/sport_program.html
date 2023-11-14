@@ -1,10 +1,19 @@
+{% extends 'audience/base.html' %}
+{% load static %}
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paris Olympic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'audience\sport_program.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <style>
         /* Custom CSS to center text vertically */
         .center-both {
@@ -18,10 +27,15 @@
 
 </head>
 <body>
+
     {% load custom_filters %}
-    <div class="header">
-        <h3>Sport Program</h3>
-    </div>
+
+    <div class="content">
+                {% block content %}
+
+<!--            <div class="header">-->
+<!--        <h3>Sport Program</h3>-->
+<!--    </div>-->
     <table>
         <thead>
             <th style="width: 300px">Sport</th>
@@ -41,13 +55,13 @@
                 <td></td>
 
                 {% elif i.sport_status == 'CEREMONIES' %}
-                <td>*</td>
+                <td><i class="ri-award-line"></i></td>
 
                 {% elif i.sport_status == 'COMPETITIVE' %}
-                <td>*</td>
+                <td><i class="ri-medal-line"></i></td>
 
                 {% elif i.sport_status == 'TROPHY' %}
-                <td>*</td>
+                <td><i class="ri-medal-2-line"></i></td>
                 {% endif %}
                 {% endif %}
                 {% endfor %}
@@ -56,5 +70,8 @@
             {% endfor %}
         </tbody>
     </table>
+        {% endblock %}
+    </div>
+
 </body>
 </html>

@@ -55,7 +55,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = int(os.getenv("SITE_ID"))
+SITE_ID = 1
 
 ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 ACCOUNT_LOGOUT_TEMPLATE = 'account/logout.html'
@@ -173,6 +173,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     "mysite/static",
+    "audience/static"
 ]
 
 # Default primary key field type
