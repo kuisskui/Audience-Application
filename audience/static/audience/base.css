@@ -6,6 +6,9 @@
 body {
     font-family:Paris2024-Variable;
     background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
   }
 
 
@@ -126,11 +129,12 @@ body {
 
 
 
-
-
-
-.table , th , td {
-  width: 8vw;
-  padding-bottom: 20px;
-  border-bottom: 0.5px solid #958d6d;
+table {
+padding-left: 100px;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
 }

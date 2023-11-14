@@ -7,6 +7,9 @@ body {
     font-family:Paris2024-Variable;
     background: red;
   }
+.content, table {
+background: red;
+}
 
 .table , th , td {
   width: 8vw;
