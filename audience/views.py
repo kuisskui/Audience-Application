@@ -9,7 +9,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def homepage(request):
-    if request.user:
+    if not request.user.is_anonymous:
         user_profile = UserProfile.objects.get(user=request.user)
         try:
             sport_ids = list(map(int, user_profile.sport_ids.split(",")))
