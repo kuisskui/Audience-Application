@@ -29,17 +29,16 @@
 
     {% load custom_filters %}
 
-    <div class="content1">
-                {% block content %}
+    {% block content %}
 
 <!--            <div class="header">-->
 <!--        <h3>Sport Program</h3>-->
 <!--    </div>-->
     <table>
         <thead>
-            <th style="width: 300px">Sport</th>
+            <th style="width: 600px;height: 50px;">Sports</th>
             {% for day in data.schedule_list %}
-            <th>{{day.datetime|sport_datetime}}</th>
+            <th>{{day.datetime|sport_datetime}} {{"D1"}}</th>
             {% endfor %}
         </thead>
         <tbody>
@@ -61,6 +60,9 @@
 
                 {% elif i.sport_status == 'TROPHY' %}
                 <td><i class="ri-medal-2-line"></i></td>
+
+                {% else %}
+                <td></td>
                 {% endif %}
                 {% endif %}
                 {% endfor %}
@@ -70,7 +72,6 @@
         </tbody>
     </table>
         {% endblock %}
-    </div>
 
 </body>
 </html>

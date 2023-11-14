@@ -12,7 +12,7 @@
     <title>Audience</title>
 </head>
 <body>
-
+<div class="invisible-box"></div>
     <nav class="nav">
         <div class="paths">
             <!-- <div>
@@ -22,7 +22,7 @@
             </div> -->
 
             <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:dashboard' %}">
+                <a class ="icon-text" href="{% url 'audience:homepage' %}">
                     <div class="sep-icon">
                         <i class="ri-home-line icon"></i>
                         <p>Home</p>
@@ -87,8 +87,10 @@
         });
     </script>
 
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
 
-    {% block content %}{% endblock %}
 
 
 

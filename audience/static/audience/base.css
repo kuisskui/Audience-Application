@@ -9,6 +9,7 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
+    display:flex;
   }
 
 
@@ -127,14 +128,21 @@ body {
   color: #a43939;;
 }
 
+.content {
+width: 100%;
+padding-left: 75px;
+}
 
+.table , th , td {
+  width: 8vw;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-bottom: 0.5px solid #958d6d;
+  border-collapse: collapse;
+  text-align:center;
+  background-color: #fff;
+}
 
-table {
-padding-left: 100px;
-    display: table;
-    border-collapse: separate;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-spacing: 2px;
-    border-color: gray;
+th:nth-child(even),td:nth-child(even) {
+  background-color: #f0ebe3;
 }
