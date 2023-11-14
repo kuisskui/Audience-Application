@@ -9,5 +9,5 @@ def sport_datetime(value):
     date = value.split("T")[0].split("-")
     month = date[1]
     day = date[2]
-    value = f"{day}-{all_month[int(month) - 1]}"
+    value = f"{day} {all_month[int(month) - 1]}"
     return value
