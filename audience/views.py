@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def dashboard(request):
+def homepage(request):
     if request.user:
         user_profile = UserProfile.objects.get(user=request.user)
         try:
@@ -25,8 +25,16 @@ def dashboard(request):
         all_sports = requests.get(url, headers=header).json()
         context = {"sport_ids": sport_ids, "all_sports": all_sports, "data": data}
 
-        return render(request, "audience/dashboard.html", context)
-    return render(request, "audience/dashboard.html")
+        return render(request, "audience/homepage.html", context)
+    return render(request, "audience/homepage.html")
+
+
+def scoreboard(request):
+    str_data = requests.get("https://sota-backend.fly.dev/medals/")
+    data = str_data.json()
+    sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
+    context = {"page": "scoreboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
+    return render(request, "audience/scoreboard.html", context)
 
 
 def sports(request):
@@ -102,7 +110,6 @@ def unsubscribe(request, sport_id):
 
 
 def sport_program(request):
-
     api_key = '02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3'
     all_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all'
     sport_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport'

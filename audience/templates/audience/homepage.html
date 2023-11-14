@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Paris Olympic">
-    <link rel="stylesheet" href="{% static 'audience\dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'audience\homepage.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
@@ -16,14 +16,8 @@
     <div class="invisible-box"></div>
     <nav class="nav">
         <div class="paths">
-            <!-- <div>
-                {% if user.is_authenticated %}
-                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
-                {% endif %}
-            </div> -->
-            
             <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:dashboard' %}">
+                <a class ="icon-text" href="{% url 'audience:homepage' %}">
                     <div class="sep-icon">
                         <i class="ri-home-line icon"></i>
                         <p>Home</p>
@@ -50,14 +44,34 @@
                 </a>
             </div>
                 
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:scoreboard' %}">
+                    <div class="sep-icon">
+                        <i class="ri-table-2 icon"></i>
+                        <p>Scoreboard</p>
+                    </div>
+                </a>
+            </div>
+
             <div class="log">
                 {% if user.is_authenticated %}
+                <div class = "logout">
                     <a class="icon-text" href = "{% url 'account_logout' %}">
                         <div class="sep-icon"> 
                             <i class="ri-logout-box-line icon"></i>
                             <p>Logout</p>
                         </div>
                     </a>
+                    
+                    <!-- <div class="user_profile">
+                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
+                            <div class="sep-icon">
+                               {{user}}
+                            </div>
+                        </a>
+                    </div> -->
+                </div> 
+                    
                 {% else %}
                     <a class="icon-text" href="{% url 'account_login' %}">
                         <div class="sep-icon"> 
@@ -68,6 +82,7 @@
                     </a>
                 {% endif %}
             </div>
+            
             
         </div>
         <div class="arrow">
@@ -164,54 +179,51 @@
                 }
             </script>
         </div>
-
-        <p class="score-board-title">Dashboard<p></p>
+        <p class="score-board-title">Homepage</p>
         {% load custom_filters %}
-                {% if user %}
+            {% if user %}
         <table>
-                <tr>
-                    <td>
-                        Sport
-                    </td>
-                    {% for day in data.schedule_list %}
-                    <td>
-                        {{ day.datetime | sport_datetime }}
-                    </td>
-                    {% endfor %}
-                {% for sport in all_sports.sport_list %}
-                {% if sport.sport_id in sport_ids %}
-                <tr>
-                    <th>{{sport.sport_name}}</th>
-
-                    {% for day in data.schedule_list %}
-                    {% for i in day.sport %}
-
-                    {% if i.sport_id == sport.sport_id %}
-                    {% if i.sport_status == null %}
-                    <td></td>
-
-                    {% elif i.sport_status == 'CEREMONIES' %}
-                    <td><i class="ri-award-line"></i></td>
-
-                    {% elif i.sport_status == 'COMPETITIVE' %}
-                    <td><i class="ri-medal-line"></i></td>
-
-                    {% elif i.sport_status == 'TROPHY' %}
-                    <td><i class="ri-medal-2-line"></i></td>
-                    {% endif %}
-                    {% endif %}
-
-                    {% endfor %}
-                    {% endfor %}
-                </tr>
-                {% endif %}
+            <tr>
+                <td>
+                    Sport
+                </td>
+                {% for day in data.schedule_list %}
+                <td>
+                    {{ day.datetime | sport_datetime }}
+                </td>
                 {% endfor %}
-                {% else %}
-                Log in to access Function
-                {% endif %}
-            </table>
-    </div>
-    
+            {% for sport in all_sports.sport_list %}
+            {% if sport.sport_id in sport_ids %}
+            <tr>
+                <th>{{sport.sport_name}}</th>
 
+                {% for day in data.schedule_list %}
+                {% for i in day.sport %}
+
+                {% if i.sport_id == sport.sport_id %}
+                {% if i.sport_status == null %}
+                <td></td>
+
+                {% elif i.sport_status == 'CEREMONIES' %}
+                <td><i class="ri-award-line"></i></td>
+
+                {% elif i.sport_status == 'COMPETITIVE' %}
+                <td><i class="ri-medal-line"></i></td>
+
+                {% elif i.sport_status == 'TROPHY' %}
+                <td><i class="ri-medal-2-line"></i></td>
+                {% endif %}
+                {% endif %}
+
+                {% endfor %}
+                {% endfor %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        {% else %}
+        Log in to access Function
+        {% endif %}
+    </div>
 </body>
 </html>

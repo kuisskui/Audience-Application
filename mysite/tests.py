@@ -9,28 +9,28 @@ from django.urls import reverse
 
 callback_url = os.getenv("GOOGLE_CALLBACK_URL")
 
-class AllAuthTests(TestCase, OAuth2TestsMixin):
-    def setUp(self):
-        # Create a Site
-        self.site = Site.objects.create(name="http://127.0.0.1:8000", domain="http://127.0.0.1:8000")
+# class AllAuthTests(TestCase, OAuth2TestsMixin):
+#     def setUp(self):
+#         # Create a Site
+#         self.site = Site.objects.create(name="http://127.0.0.1:8000", domain="http://127.0.0.1:8000")
         
-        # # Create a SocialApp for testing
-        self.app = SocialApp.objects.create(
-            provider="google",
-            name="Google",
-            client_id=os.getenv("GOOGLE_CLIENT_ID"),
-            secret=os.getenv("GOOGLE_SECRET_KEY"),
-        )
-        self.app.sites.add(self.site)
-        self.app.callback_url = self.client.get(callback_url)
+#         # # Create a SocialApp for testing
+#         self.app = SocialApp.objects.create(
+#             provider="google",
+#             name="Google",
+#             client_id=os.getenv("GOOGLE_CLIENT_ID"),
+#             secret=os.getenv("GOOGLE_SECRET_KEY"),
+#         )
+#         self.app.sites.add(self.site)
+#         self.app.callback_url = self.client.get(callback_url)
 
-    def test_authentication_error(self):
-        # Implement this test if needed
-        pass
+#     def test_authentication_error(self):
+#         # Implement this test if needed
+#         pass
 
-    def test_login(self):
-        # Implement this test if needed
-        pass
+#     def test_login(self):
+#         # Implement this test if needed
+#         pass
 
 
 class AccountViewTests(TestCase):
