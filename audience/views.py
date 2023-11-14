@@ -8,23 +8,33 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def dashboard(request):
-    data = {
-        "FR": {
-            "gold": 90,
-            "silver": 90,
-            "bronze": 100
-        },
-        "US": {
-            "gold": 100,
-            "silver": 100,
-            "bronze": 100
-        },
-    }
-    # data = request.get("https://sota-backend.fly.dev/medals/")
+def homepage(request):
+    if not request.user.is_anonymous:
+        user_profile = UserProfile.objects.get(user=request.user)
+        try:
+            sport_ids = list(map(int, user_profile.sport_ids.split(",")))
+        except Exception:
+            sport_ids = []
+        header = {
+            "Accept": "application/json",
+            "Authorization": "02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3"
+        }
+        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
+        data = requests.get(url, headers=header).json()
+        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport"
+        all_sports = requests.get(url, headers=header).json()
+        context = {"sport_ids": sport_ids, "all_sports": all_sports, "data": data}
+
+        return render(request, "audience/homepage.html", context)
+    return render(request, "audience/homepage.html")
+
+
+def scoreboard(request):
+    str_data = requests.get("https://sota-backend.fly.dev/medals/")
+    data = str_data.json()
     sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
-    context = {"page": "dashboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
-    return render(request, "audience/dashboard.html", context)
+    context = {"page": "scoreboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
+    return render(request, "audience/scoreboard.html", context)
 
 
 def sports(request):
@@ -35,7 +45,7 @@ def sports(request):
         "4": "Artistic Swimming",
         "5": "BasketBall"
     }
-    # data = request.get("https://sota-backend.fly.dev/sports/")
+    # data = requests.get("https://sota-backend.fly.dev/sports/")
     context = {"page": "sports", "detail": "show all sports without any detail or information.",
                "data": data}
     return render(request, "audience/sports.html", context)
@@ -63,7 +73,7 @@ def sport(request, sport_id):
             }
         ]
     }
-    # data = request.get("https://sota-backend.fly.dev/medal/s/:sport_id")
+    # data = requests.get("https://sota-backend.fly.dev/medal/s/:sport_id")
     context = {"page": "sport", "detail": f"show detail on each sport(sport_id ={sport_id}).", "data": data}
     return render(request, "audience/sport.html", context)
 
@@ -100,7 +110,6 @@ def unsubscribe(request, sport_id):
 
 
 def sport_program(request):
-
     api_key = '02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3'
     all_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all'
     sport_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport'
