@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paris Olympic">
+    <link rel="stylesheet" href="{% static 'audience\base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
+
+    <title>Audience</title>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="paths">
+            <!-- <div>
+                {% if user.is_authenticated %}
+                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
+                {% endif %}
+            </div> -->
+
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:dashboard' %}">
+                    <div class="sep-icon">
+                        <i class="ri-home-line icon"></i>
+                        <p>Home</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:sports' %}">
+                    <div class="sep-icon">
+                        <!-- <i class="ri-apps-2-fill icon"></i> -->
+                        <i class="ri-apps-2-line icon"></i>
+                        <p>Sports</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:sport_program' %}">
+                    <div class="sep-icon">
+                        <i class="ri-calendar-todo-line icon"></i>
+                        <p>SportProgram</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="log">
+                {% if user.is_authenticated %}
+                    <a class="icon-text" href = "{% url 'account_logout' %}">
+                        <div class="sep-icon">
+                            <i class="ri-logout-box-line icon"></i>
+                            <p>Logout</p>
+                        </div>
+                    </a>
+                {% else %}
+                    <a class="icon-text" href="{% url 'account_login' %}">
+                        <div class="sep-icon">
+                            <i class="ri-logout-box-r-line icon"></i>
+                            <p>Login</p>
+                        </div>
+
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="arrow">
+            <i class="ri-arrow-left-s-line toggle"></i>
+            <!-- <i class="ri-arrow-right-s-line"></i> -->
+        </div>
+    </nav>
+
+    <script>
+        const body = document.querySelector("body"),
+        nav = body.querySelector(".nav"),
+        invisible = body.querySelector(".invisible-box"),
+        toggle = body.querySelector(".toggle");
+
+        toggle.addEventListener("click" , () =>{
+            nav.classList.toggle("close");
+            invisible.classList.toggle("close");
+        });
+    </script>
+
+
+    {% block content %}{% endblock %}
+
+
+
+
+</body>
+</html>
