@@ -36,15 +36,26 @@
 <!--    </div>-->
     <table>
         <thead>
-            <th style="width: 600px;height: 50px;">Sports</th>
+            <th style="width: 500px;height: 50px;">Sports</th>
             {% for day in data.schedule_list %}
-            <th>{{day.datetime|sport_datetime}} {{"D1"}}</th>
+        {% with day.datetime|sport_datetime as my_datetime %}
+        {% with my_datetime|split_string as my_list %}
+        {% with var1=my_list.0 var2=my_list.1 %}
+        <th><ul style="list-style: none;"><li style="font-size: 20px;font-weight: bold;">{{var1}}</li>
+        <li style="font-size: 14px;">{{var2}}</li>
+        <li style="font-size: 14px;">D{{ forloop.counter|add:"-3"}}</li>
+        </ul>
+        </th>
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+<!--            <th>{{day.datetime|sport_datetime}} {{"D1"}}</th>-->
             {% endfor %}
         </thead>
         <tbody>
             {% for sport in all_sports.sport_list %}
             <tr>
-                <th>{{sport.sport_name}}</th>
+                <th style="text-align:left;padding-left:25px;">{{sport.sport_name}}</th>
                 {% for day in data.schedule_list %}
 
                 {% for i in day.sport %}

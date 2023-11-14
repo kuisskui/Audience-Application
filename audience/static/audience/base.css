@@ -130,17 +130,29 @@ body {
 
 .content {
 width: 100%;
-padding-left: 75px;
+padding-left: 60px;
+z-index:-2;
 }
-
+table {
+border-collapse: collapse;
+}
 .table , th , td {
   width: 8vw;
-  padding-bottom: 7px;
-  padding-top: 7px;
+  padding-bottom: 2px;
+  padding-top: 2px;
   border-bottom: 0.5px solid #958d6d;
   border-collapse: collapse;
   text-align:center;
   background-color: #fff;
+}
+table thead {
+border-bottom: 2px solid #958d6d;
+position: sticky;
+top: 0;
+}
+
+table tbody td {
+font-size: 24px
 }
 
 th:nth-child(even),td:nth-child(even) {

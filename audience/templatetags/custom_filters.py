@@ -11,3 +11,7 @@ def sport_datetime(value):
     day = date[2]
     value = f"{day} {all_month[int(month) - 1]}"
     return value
+
+@register.filter
+def split_string(value):
+    return value.split(" ")
