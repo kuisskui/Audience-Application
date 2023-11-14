@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
 import requests
+import ast
 
 
 # Create your views here.
@@ -10,19 +11,8 @@ def homepage(request):
     return render(request, "audience/homepage.html", context)
 
 def scoreboard(request):
-    data = {
-        "FR": {
-            "gold": 90,
-            "silver": 90,
-            "bronze": 100
-        },
-        "US": {
-            "gold": 100,
-            "silver": 100,
-            "bronze": 100
-        },
-    }
-    # data = requests.get("https://sota-backend.fly.dev/medals/")
+    str_data = requests.get("https://sota-backend.fly.dev/medals/")
+    data = str_data.json()
     sorted_data = sorted(data.items(), key=lambda x: x[1]['gold'] + x[1]['silver'] + x[1]['bronze'], reverse=True)
     context = {"page": "scoreboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
     return render(request, "audience/scoreboard.html", context)

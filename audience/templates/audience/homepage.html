@@ -44,6 +44,15 @@
                 </a>
             </div>
                 
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:scoreboard' %}">
+                    <div class="sep-icon">
+                        <i class="ri-table-2 icon"></i>
+                        <p>Scoreboard</p>
+                    </div>
+                </a>
+            </div>
+
             <div class="log">
                 {% if user.is_authenticated %}
                 <div class = "logout">
