@@ -1,3 +1,5 @@
+[![Django CI](https://github.com/kuisskui/Audience-Application/actions/workflows/django.yml/badge.svg)](https://github.com/kuisskui/Audience-Application/actions/workflows/django.yml)
+
 # Audience-Application
 Explore the web application designed to enhance the experience for audiences attending the 2024 Paris Olympic Games.
 
