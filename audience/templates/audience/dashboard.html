@@ -165,27 +165,51 @@
             </script>
         </div>
 
-        <p class="score-board-title">Scoreboard<p></p>
+        <p class="score-board-title">Dashboard<p></p>
+        {% load custom_filters %}
+                {% if user %}
+        <table>
+                <tr>
+                    <td>
+                        Sport
+                    </td>
+                    {% for day in data.schedule_list %}
+                    <td>
+                        {{ day.datetime | sport_datetime }}
+                    </td>
+                    {% endfor %}
+                {% for sport in all_sports.sport_list %}
+                {% if sport.sport_id in sport_ids %}
+                <tr>
+                    <th>{{sport.sport_name}}</th>
 
-        <div class="outer-box2">
-        <div class="score-board">
-            
-            {% if user %}
-            <tr>
-                <td>
-                Sport
-                </td>
-                {% for day in sport_program.schedule_list %}
-                <td>
+                    {% for day in data.schedule_list %}
+                    {% for i in day.sport %}
 
-                </td>
+                    {% if i.sport_id == sport.sport_id %}
+                    {% if i.sport_status == null %}
+                    <td></td>
+
+                    {% elif i.sport_status == 'CEREMONIES' %}
+                    <td><i class="ri-award-line"></i></td>
+
+                    {% elif i.sport_status == 'COMPETITIVE' %}
+                    <td><i class="ri-medal-line"></i></td>
+
+                    {% elif i.sport_status == 'TROPHY' %}
+                    <td><i class="ri-medal-2-line"></i></td>
+                    {% endif %}
+                    {% endif %}
+
+                    {% endfor %}
+                    {% endfor %}
+                </tr>
+                {% endif %}
                 {% endfor %}
-            </tr>
-            {% else %}
-            Log in to access Function
-            {% endif %}
-        </div>
-        </div>
+                {% else %}
+                Log in to access Function
+                {% endif %}
+            </table>
     </div>
     
 

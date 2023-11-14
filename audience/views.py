@@ -9,20 +9,22 @@ def dashboard(request):
     if request.user:
         user_profile = UserProfile.objects.get(user=request.user)
         try:
-            sport_ids = user_profile.sport_ids.split(",")
+            sport_ids = list(map(int, user_profile.sport_ids.split(",")))
         except Exception:
             sport_ids = []
-
-        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
+        print(sport_ids)
         header = {
-            "Authentication": "02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3"
+            "Accept": "application/json",
+            "Authorization": "02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3"
         }
+        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
+        data = requests.get(url, headers=header).json()
+        url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport"
+        all_sports = requests.get(url, headers=header).json()
+        context = {"sport_ids": sport_ids, "all_sports": all_sports, "data": data}
 
-        sport_program = requests.get(url, header=header).json()
-
-        # sport = requests.get().json()
-        context = {"sport_ids": sport_ids, "sport_program": sport_program}
-    return render(request, "audience/dashboard.html", context)
+        return render(request, "audience/dashboard.html", context)
+    return render(request, "audience/dashboard.html")
 
 
 def sports(request):
