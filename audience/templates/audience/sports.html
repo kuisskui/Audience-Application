@@ -1,45 +1,73 @@
+{% extends 'audience/base.html' %}
+{% load static %}
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paris Olympic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'audience\sports.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        /* Custom CSS to center text vertically */
-        .center-both {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Set a minimum height to center content vertically */
-        }
     </style>
-    <title>Audience</title>
+    <title>Sport Program</title>
 </head>
+
 <body>
-    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
-    {% if user.is_authenticated %}
-    <a href="{% url 'account_logout' %}">logout</a>
-    {% else %}
-    <a href="{% url 'account_login' %}">login</a>
-    {% endif %}
-    <div>
-        <a href="{% url 'audience:dashboard' %}">dashboard</a>
-    </div>
-    <div>
-        <a href="{% url 'audience:sports' %}">sports</a>
-    </div>
-    <div class="center-both">
-        <div>
-            <h1 class="text-center">Hello, {{page}} page!</h1>
-            <p class="text-center">{{detail}}</p>
-        </div>
-    </div>
-    <div>
-        <table>
-            {% for id, sport in data.items %}
-            <tr><td>{{id}}</td><td><a href="{% url 'audience:sport' id %}">{{sport}}</a></td><td><a href="{% url 'audience:subscribe' id%}">subscribe</a></td></tr>
+    {% load custom_filters %}
+    <div class="content">
+        {% block content %}
+        <h1 class="sportHeader">All Sports</h1> <!-- Centered heading -->
+
+        <input type="text" class="searchBar" id="searchBar" placeholder="Search...">
+
+        <ul class="sportList" id="sportList">
+            {% for sport in data.sport_list %}
+            <li>
+                <a href="{% url 'audience:sport' sport.sport_id %}">
+                    {{ sport.sport_name }}
+                    <span class="icon-container">
+                        {% for path in sport.sport_icon %}
+                        <i class="ri-2x" style="margin-left: 5px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+                                <path d="{{ path }}" fill="currentColor" />
+                            </svg>
+                        </i>
+                        {% endfor %}
+                    </span>
+                </a>
+            </li>
             {% endfor %}
-        </table>
+        </ul>
+
+        <div id="messageIcon">
+            <!-- Icon or link for messaging -->
+        </div>
+
+        <script>
+            // Real-time search functionality
+            document.getElementById('searchBar').addEventListener('input', function () {
+                let searchText = this.value.toLowerCase();
+                let sportItems = document.getElementById('sportList').getElementsByTagName('a');
+
+                for (let item of sportItems) {
+                    if (item.textContent.toLowerCase().includes(searchText)) {
+                        item.parentNode.style.display = 'block';
+                    } else {
+                        item.parentNode.style.display = 'none';
+                    }
+                }
+            });
+        </script>
+        {% endblock %}
     </div>
 </body>
+
 </html>
