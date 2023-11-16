@@ -15,6 +15,13 @@
 <div class="invisible-box"></div>
     <nav class="nav">
         <div class="paths">
+
+            <div>
+                {% if user.is_authenticated %}
+                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
+                {% endif %}
+            </div>
+
             <div class="icon-box">
                 <a class ="icon-text" href="{% url 'audience:homepage' %}">
                     <div class="sep-icon">

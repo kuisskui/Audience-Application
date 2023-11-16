@@ -1,47 +1,62 @@
+{% extends 'audience/base.html' %}
+{% load static %}
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paris Olympic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        /* Custom CSS to center text vertically */
-        .center-both {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Set a minimum height to center content vertically */
-        }
-    </style>
-    <title>Audience</title>
+    <link rel="stylesheet" href="{% static 'audience\sport_program.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>{{ data.sport_name }} Detail</title>
 </head>
+
 <body>
-    <a href="{% url 'user_profile:profile' %}">{{user}}</a>
-    {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}">logout</a>
-    {% else %}
-    <a href="{% url 'login' %}">login</a>
-    {% endif %}
-    <div>
-        <a href="{% url 'audience:dashboard' %}">dashboard</a>
-    </div>
-    <div>
-        <a href="{% url 'audience:sports' %}">sports</a>
-    </div>
-    <div class="center-both">
-        <div>
-            <h1 class="text-center">Hello, {{page}} page!</h1>
-            <p class="text-center">{{detail}}</p>
+    {% block content %}
+         <h1 class="sportHeader">{{ data.sport_name }} Detail</h1>
+        <br><br><br><br><br><br><br><br>
+        <div class="sportContainer mt-5">
+            {% for sport_type in data.sport_types %}
+                <div class="sportCard mt-4">
+                    <div class="card-body">
+                        <h2>{{ sport_type.type_name }}</h2>
+                        <p>Status: {{ sport_type.status }}</p>
+                        <p>Participating Country Count: {{ sport_type.participating_country_count }}</p>
+                        <p>Competition Date: {{ sport_type.competition_date }}</p>
+
+                        <h3>Participants:</h3>
+                        <table class="sportTable table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="sportTableth">Country</th>
+                                    <th class="sportTableth">Gold</th>
+                                    <th class="sportTableth">Silver</th>
+                                    <th class="sportTableth">Bronze</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for participant in sport_type.participants %}
+                                    <tr>
+                                        <td class="sportTabletd">{{ participant.country }}</td>
+                                        <td class="sportTabletd">{{ participant.medal.gold }}</td>
+                                        <td class="sportTabletd">{{ participant.medal.silver }}</td>
+                                        <td class="sportTabletd">{{ participant.medal.bronze }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </div>
-    <table>
-        <h2>{{data.sport_name}}</h2>
-        <tr><td></td><td>total medals</td><td></td></tr>
-        <tr><td>gold:{{data.gold}}</td><td>silver:{{data.silver}}</td><td>bronze:{{data.bronze}}</td></tr>
-        <tr><td>country_code</td><td>gold</td><td>silver</td><td>bronze</td></tr>
-        {% for individual_country in data.individual_countries %}
-        <tr><td>{{individual_country.country_code}}</td><td>{{individual_country.gold}}</td><td>{{individual_country.silver}}   </td><td>{{individual_country.bronze}}  </td></tr>
-        {% endfor %}
-    </table>
+    {% endblock %}
 </body>
+
 </html>
