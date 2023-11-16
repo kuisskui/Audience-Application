@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Paris Olympic">
-    <link rel="stylesheet" href="{% static 'audience\dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'audience\scoreboard.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
@@ -16,14 +16,8 @@
     <div class="invisible-box"></div>
     <nav class="nav">
         <div class="paths">
-            <!-- <div>
-                {% if user.is_authenticated %}
-                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
-                {% endif %}
-            </div> -->
-            
             <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:dashboard' %}">
+                <a class ="icon-text" href="{% url 'audience:homepage' %}">
                     <div class="sep-icon">
                         <i class="ri-home-line icon"></i>
                         <p>Home</p>
@@ -49,15 +43,35 @@
                     </div>
                 </a>
             </div>
+
+            <div class="icon-box">
+                <a class ="icon-text" href="{% url 'audience:scoreboard' %}">
+                    <div class="sep-icon">
+                        <i class="ri-table-2 icon"></i>
+                        <p>Scoreboard</p>
+                    </div>
+                </a>
+            </div>
                 
             <div class="log">
                 {% if user.is_authenticated %}
+                <div class = "logout">
                     <a class="icon-text" href = "{% url 'account_logout' %}">
                         <div class="sep-icon"> 
                             <i class="ri-logout-box-line icon"></i>
                             <p>Logout</p>
                         </div>
                     </a>
+                    
+                    <!-- <div class="user_profile">
+                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
+                            <div class="sep-icon">
+                               {{user}}
+                            </div>
+                        </a>
+                    </div> -->
+                </div> 
+                    
                 {% else %}
                     <a class="icon-text" href="{% url 'account_login' %}">
                         <div class="sep-icon"> 
@@ -68,6 +82,7 @@
                     </a>
                 {% endif %}
             </div>
+            
             
         </div>
         <div class="arrow">
@@ -87,84 +102,9 @@
             invisible.classList.toggle("close");
         });
     </script>
-
+    
     <div class="right">
-        <div class="outer-box1">
-            <div class="slideshow-container">
-
-            <!-- Full-width images with number and caption text -->
-            <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                    <a href="https://www.paris2024.org/en/">
-                        <div class="pictures-box">
-                            <img src="{% static 'audience\image\boring_ass_view.jpg' %}">
-                        </div>
-                    </a>  
-                <div class="text">Caption Text</div>
-            </div>
-          
-            <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                    <a href="https://olympics.com/en/olympic-games/paris-2024">
-                        <div class="pictures-box">
-                            <img src="{% static 'audience\image\view_2.jpg' %}">
-                        </div>
-                    </a>  
-                <div class="text">Caption Two</div>
-            </div>
-          
-            <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                    <a href="https://www.paris2024.org/en/the-olympic-games-paris-2024/">
-                       <div class="pictures-box">
-                            <img src="{% static 'audience\image\view_3.jpg' %}">
-                        </div> 
-                    </a>    
-                <div class="text">Caption Three</div>
-            </div>
-          
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <br>
-          
-        <!-- The dots/circles -->
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-            <script>
-                let slideIndex = 1;
-                showSlides(slideIndex);
-                
-                function plusSlides(n) {
-                showSlides(slideIndex += n);
-                }
-                
-                function currentSlide(n) {
-                showSlides(slideIndex = n);
-                }
-                
-                function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}    
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";  
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex-1].style.display = "block";  
-                dots[slideIndex-1].className += " active";
-                }
-            </script>
-        </div>
-
+        
         <p class="score-board-title">Scoreboard<p></p>
 
         <div class="outer-box2">

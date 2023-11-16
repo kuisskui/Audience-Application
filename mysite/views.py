@@ -36,7 +36,7 @@ def custom_login(request):
         if form.is_valid():
             # Log the user in
             login(request, form.get_user())
-            return redirect("audience:dashboard")  # Change this to your desired login success URL
+            return redirect("audience:homepage")  # Change this to your desired login success URL
     else:
         form = AuthenticationForm()
 
@@ -48,7 +48,7 @@ def custom_logout(request):
     # logout(request)
     if request.method == "POST":
         logout(request)
-        return redirect("audience:dashboard")
+        return redirect("audience:homepage")
 
     return render(request, "account/logout.html")
 
