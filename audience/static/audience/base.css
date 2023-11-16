@@ -128,15 +128,16 @@ body {
   color: #a43939;;
 }
 
-.content {
+.content{
 width: 100%;
 padding-left: 60px;
 z-index:-2;
 }
-table {
+
+.content-1 , table {
 border-collapse: collapse;
 }
-.table , th , td {
+.content-1 table , th , td {
   width: 8vw;
   padding-bottom: 2px;
   padding-top: 2px;
@@ -144,17 +145,18 @@ border-collapse: collapse;
   border-collapse: collapse;
   text-align:center;
   background-color: #fff;
+  color: rgba(128, 102, 24, 0.9);
 }
-table thead {
+.content-1 table , thead {
 border-bottom: 2px solid #958d6d;
 position: sticky;
 top: 0;
 }
 
-table tbody td {
+.content-1 table tbody ,td {
 font-size: 24px
 }
 
-th:nth-child(even),td:nth-child(even) {
+.content-1 th:nth-child(even),td:nth-child(even) {
   background-color: #f0ebe3;
 }
