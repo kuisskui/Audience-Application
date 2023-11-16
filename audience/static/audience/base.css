@@ -9,7 +9,6 @@ body {
     background-repeat: no-repeat;
     width: 100%;
     min-height: 100vh;
-    display:flex;
   }
 
 
@@ -128,14 +127,14 @@ body {
   color: #a43939;;
 }
 
-.content{
+.content-1 {
 width: 100%;
 padding-left: 60px;
-z-index:-2;
 }
 
 .content-1 , table {
 border-collapse: collapse;
+z-index:-3;
 }
 .content-1 table , th , td {
   width: 8vw;
