@@ -8,7 +8,11 @@ body {
     background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
     background-repeat: no-repeat;
     width: 100%;
+<<<<<<< HEAD
+    min-height: 100vh;
+=======
     min-height: 200vh;
+>>>>>>> origin/main
   }
 
 
@@ -127,15 +131,38 @@ body {
   color: #a43939;;
 }
 
+.content-1 {
+width: 100%;
+padding-left: 60px;
+}
 
 
-
-
-
-.table , th , td {
+.content-1 , table {
+border-collapse: collapse;
+z-index:-3;
+}
+.content-1 table , th , td {
   width: 8vw;
-  padding-bottom: 20px;
+  padding-bottom: 2px;
+  padding-top: 2px;
   border-bottom: 0.5px solid #958d6d;
+  border-collapse: collapse;
+  text-align:center;
+  background-color: #fff;
+  color: rgba(128, 102, 24, 0.9);
+}
+.content-1 table , thead {
+border-bottom: 2px solid #958d6d;
+position: sticky;
+top: 0;
+}
+
+.content-1 table tbody ,td {
+font-size: 24px
+}
+
+.content-1 th:nth-child(even),td:nth-child(even) {
+  background-color: #f0ebe3;
 }
 
 
