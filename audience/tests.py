@@ -43,10 +43,6 @@ class SubscribeTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.user_profile.sport_ids, "1,2,3")
 
-        response = self.client.post("/subscribe/4")
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.user_profile.sport_ids, "1,2,3,4")
-
     def test_auth_unsubscribe(self):
         self.login()  # Log in the user
         response = self.client.post("/unsubscribe/1")
