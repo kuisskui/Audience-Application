@@ -34,13 +34,19 @@ Make sure you have Python 3.8, 3.9, 3.10, or 3.11 installed on your system.
     python manage.py migrate
     ```
 
-5. Run the development server.
+5. Collect static files.
+
+    ```shell
+    python manage.py collectstatic
+    ```
+
+6. Run the development server.
 
     ```shell
     python manage.py runserver
     ```
 
-6. Explore the web application in your browser at **http://127.0.0.1:8000**.
+7. Explore the web application in your browser at **http://127.0.0.1:8000**.
 
 ## Setting Up Social Applications (Optional)
 To enable social login features, follow these steps to set up social applications in the Django admin site:
