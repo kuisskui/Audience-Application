@@ -24,6 +24,10 @@ body {
   box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
   display: flex;
   position: fixed;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 0px;
 }
 
 .invisible-box {
