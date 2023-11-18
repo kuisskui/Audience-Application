@@ -48,6 +48,12 @@ body {
 
 .nav.close .sep-icon p {
   opacity: 0;
+  pointer-events: none;
+}
+
+.nav.close .arrow {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 /* .sp {
@@ -122,7 +128,7 @@ body {
 
 .nav .log {
   
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-top: auto;
 
 }
