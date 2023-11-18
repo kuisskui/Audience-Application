@@ -109,33 +109,27 @@
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                    <a href="https://www.paris2024.org/en/">
+                    <a href="https://www.paris2024.org/en/" target="_blank">
                         <div class="pictures-box">
                             <img src="{% static 'audience/image/boring_ass_view.jpg' %}">
                         </div>
                     </a>  
-                <div class="text">Caption Text</div>
             </div>
           
             <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                    <a href="https://olympics.com/en/olympic-games/paris-2024">
+                    <a href="https://olympics.com/en/olympic-games/paris-2024" target="_blank">
                         <div class="pictures-box">
                             <img src="{% static 'audience/image/view_2.jpg' %}">
                         </div>
                     </a>  
-                <div class="text">Caption Two</div>
             </div>
           
             <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                    <a href="https://www.paris2024.org/en/the-olympic-games-paris-2024/">
+                    <a href="https://www.paris2024.org/en/the-olympic-games-paris-2024/" target="_blank">
                        <div class="pictures-box">
                             <img src="{% static 'audience/image/view_3.jpg' %}">
                         </div> 
                     </a>    
-                <div class="text">Caption Three</div>
             </div>
           
             <!-- Next and previous buttons -->
@@ -179,6 +173,7 @@
                 }
             </script>
         </div>
+
         <p class="score-board-title">Homepage</p>
         {% load custom_filters %}
             {% if user %}
@@ -223,7 +218,7 @@
         </table>
         {% else %}
         Log in to access Function
-        {% endif %}
+        {% endif %} 
     </div>
 </body>
 </html>
