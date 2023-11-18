@@ -67,4 +67,6 @@ To enable social login features, follow these steps to set up social application
 
 **Note**: Setting up social applications is optional. If you don't have local settings available or don't want to enable social logins, you can skip this step. Users can still log in and register using the traditional authentication method.
 
+**For the best experience, we recommend using Google Chrome.**
+
 Now, your Audience Application is ready to use, and users can access it without social login features if you choose not to configure them.
