@@ -11,7 +11,7 @@ from django.http import HttpResponse
 def homepage(request):
     if not request.user.is_anonymous:
         try:
-            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile = UserProfile.objects.get(user=request.user) 
             sport_ids = list(map(int, user_profile.sport_ids.split(",")))
         except Exception:
             sport_ids = []
