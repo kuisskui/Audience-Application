@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Paris2024-Variable;
+  src: url('/static/fonts/Paris2024-Variable.ttf') format('truetype');
+}
+
 *, html, body {
     margin: 0;
     padding: 0;
@@ -8,11 +13,7 @@ body {
     background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
     background-repeat: no-repeat;
     width: 100%;
-<<<<<<< HEAD
     min-height: 100vh;
-=======
-    min-height: 200vh;
->>>>>>> origin/main
   }
 
 
