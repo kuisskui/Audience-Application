@@ -23,7 +23,7 @@ def register(request):
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
             messages.success(request, "Registration successful.")
-            return redirect("audience:dashboard")
+            return redirect("audience:homepage")
 
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
