@@ -10,8 +10,8 @@ from django.http import HttpResponse
 # Create your views here.
 def homepage(request):
     if not request.user.is_anonymous:
-        user_profile = UserProfile.objects.get(user=request.user)
         try:
+            user_profile = UserProfile.objects.get(user=request.user)
             sport_ids = list(map(int, user_profile.sport_ids.split(",")))
         except Exception:
             sport_ids = []
