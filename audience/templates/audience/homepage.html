@@ -182,6 +182,7 @@
         <p class="score-board-title">Homepage</p>
         {% load custom_filters %}
             {% if user %}
+            {% if sport_ids %}
         <table>
         <thead>
             <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
@@ -231,6 +232,10 @@
             {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <p>Go sub here!!!</p>
+        {% endif %}
+
         {% else %}
         Log in to access Function
         {% endif %}
