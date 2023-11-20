@@ -174,6 +174,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
+# # Delete old log file
+# log_file_path = os.path.join(BASE_DIR, 'logfile.log')
+# if os.path.exists(log_file_path):
+#     os.remove(log_file_path)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

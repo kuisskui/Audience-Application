@@ -11,3 +11,4 @@ django-allauth==0.55.2
 python-dotenv==1.0.0
 django_heroku==0.3.1
 python-decouple==3.8
+whitenoise==6.6.0

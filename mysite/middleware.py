@@ -1,4 +1,4 @@
-from django.http import HttpResponseForbidden
+from django.shortcuts import render
 
 class BlockPathsMiddleware:
     def __init__(self, get_response):
@@ -12,6 +12,6 @@ class BlockPathsMiddleware:
                          '/accounts/confirm-email/']
 
         if request.path in blocked_paths:
-            return HttpResponseForbidden("Access forbidden to this path.")
+            return render(request, '404.html', status=404)
 
         return self.get_response(request)
