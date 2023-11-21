@@ -1,9 +1,10 @@
 import os
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialApp
 from allauth.socialaccount.tests import OAuth2TestsMixin
 from django.contrib.auth.models import User
+from django.contrib.auth import login
 from user_profile.models import UserProfile
 from django.urls import reverse
 
@@ -60,3 +61,52 @@ class AccountViewTests(TestCase):
         self.assertEqual(self.user_profile.country, 'USA')
         self.assertEqual(self.user_profile.sport_ids, '1,2,3')
         
+    def test_user_login_successful(self):
+        client = Client()
+        response = client.post(self.login_url, {'username': 'testuser', 'password': 'testpassword'})
+        self.assertEqual(response.status_code, 200)
+
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_user_login_fail_user(self):
+        client = Client()
+        response = client.post(self.login_url, {'username': 'wronguser', 'password': 'testpassword'})
+        self.assertEqual(response.status_code, 200)
+        
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/updateprofile/')
+        
+    def test_user_login_fail_pass(self):
+        client = Client()
+        response = client.post(self.login_url, {'username': 'testuser', 'password': 'wrongpassword'})
+        self.assertEqual(response.status_code, 200)
+        
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/updateprofile/')
+        
+    def test_user_login_fail_user_and_pass(self):
+        client = Client()
+        response = client.post(self.login_url, {'username': 'wronguser', 'password': 'wrongpassword'})
+        self.assertEqual(response.status_code, 200)
+        
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/updateprofile/')
+        
+    def test_user_logout(self):
+        client = Client()
+        response = client.post(self.login_url, {'username': 'testuser', 'password': 'testpassword'})
+        self.assertEqual(response.status_code, 200)
+
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+
+        response = client.get(self.logout_url)
+        self.assertEqual(response.status_code, 200)
+
+        response = client.get(reverse('update_profile'))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/accounts/login/?next=/updateprofile/')
