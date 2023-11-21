@@ -6,7 +6,6 @@ padding-left: 60px;
 
 .content-1 , table {
 border-collapse: collapse;
-z-index:-5;
 }
 .content-1 table , th , td {
   width: 8vw;
