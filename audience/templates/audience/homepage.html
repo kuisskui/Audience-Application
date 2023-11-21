@@ -1,3 +1,4 @@
+{% extends 'audience/base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,137 +6,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Paris Olympic">
-    <link rel="stylesheet" href="{% static 'audience/homepage.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
-
     <title>Audience</title>
+    {% block script %}<link rel="stylesheet" href="{% static 'audience/homepage.css' %}">{% endblock %}
 </head>
+
 <body>
-    <div class="invisible-box"></div>
-    <nav class="nav">
-        <div class="paths">
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:homepage' %}">
-                    <div class="sep-icon">
-                        <i class="ri-home-line icon"></i>
-                        <p>Home</p>
-                    </div>
-                </a>
-            </div>
-                
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:sports' %}">
-                    <div class="sep-icon"> 
-                        <!-- <i class="ri-apps-2-fill icon"></i> -->
-                        <i class="ri-apps-2-line icon"></i>
-                        <p>Sports</p>
-                    </div>
-                </a>
-            </div>
-                
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:sport_program' %}">
-                    <div class="sep-icon">
-                        <i class="ri-calendar-todo-line icon"></i>
-                        <p>SportProgram</p>
-                    </div>
-                </a>
-            </div>
-                
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:scoreboard' %}">
-                    <div class="sep-icon">
-                        <i class="ri-table-2 icon"></i>
-                        <p>Scoreboard</p>
-                    </div>
-                </a>
-            </div>
 
-            <div class="log">
-                {% if user.is_authenticated %}
-                <div class = "logout">
-                    <a class="icon-text" href = "{% url 'account_logout' %}">
-                        <div class="sep-icon"> 
-                            <i class="ri-logout-box-line icon"></i>
-                            <p>Logout</p>
-                        </div>
-                    </a>
-                    
-                    <!-- <div class="user_profile">
-                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
-                            <div class="sep-icon">
-                               {{user}}
-                            </div>
-                        </a>
-                    </div> -->
-                </div> 
-                    
-                {% else %}
-                    <a class="icon-text" href="{% url 'account_login' %}">
-                        <div class="sep-icon"> 
-                            <i class="ri-logout-box-r-line icon"></i>
-                            <p>Login</p>
-                        </div>
-      
-                    </a>
-                {% endif %}
-            </div>
-            
-            
-        </div>
-        <div class="arrow">
-            <i class="ri-arrow-left-s-line toggle"></i>
-            <!-- <i class="ri-arrow-right-s-line"></i> -->
-        </div>  
-    </nav>
-
-    <script>
-        const body = document.querySelector("body"),
-        nav = body.querySelector(".nav"),
-        invisible = body.querySelector(".invisible-box"),
-        toggle = body.querySelector(".toggle");
-
-        toggle.addEventListener("click" , () =>{
-            nav.classList.toggle("close");
-            invisible.classList.toggle("close");
-        });
-    </script>
-
+    {% block content %}
     <div class="right">
         <div class="outer-box1">
             <div class="slideshow-container">
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                    <a href="https://www.paris2024.org/en/">
+                    <a href="https://www.paris2024.org/en/" target="_blank">
                         <div class="pictures-box">
                             <img src="{% static 'audience/image/boring_ass_view.jpg' %}">
                         </div>
                     </a>  
-                <div class="text">Caption Text</div>
             </div>
           
             <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                    <a href="https://olympics.com/en/olympic-games/paris-2024">
+                    <a href="https://olympics.com/en/olympic-games/paris-2024" target="_blank">
                         <div class="pictures-box">
                             <img src="{% static 'audience/image/view_2.jpg' %}">
                         </div>
                     </a>  
-                <div class="text">Caption Two</div>
             </div>
           
             <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                    <a href="https://www.paris2024.org/en/the-olympic-games-paris-2024/">
+                    <a href="https://www.paris2024.org/en/the-olympic-games-paris-2024/" target="_blank">
                        <div class="pictures-box">
                             <img src="{% static 'audience/image/view_3.jpg' %}">
                         </div> 
                     </a>    
-                <div class="text">Caption Three</div>
             </div>
           
             <!-- Next and previous buttons -->
@@ -179,7 +86,7 @@
                 }
             </script>
         </div>
-        <p class="score-board-title">Homepage</p>
+
         {% load custom_filters %}
             {% if user %}
         <table>
@@ -223,7 +130,9 @@
         </table>
         {% else %}
         Log in to access Function
-        {% endif %}
+        {% endif %} 
     </div>
+    {% endblock %}
+
 </body>
 </html>
