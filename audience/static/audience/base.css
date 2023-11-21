@@ -140,7 +140,7 @@ body {
   background-color: #f0ebe3;
   color: #a43939;;
 }
-  
+
   .searchBar {
       width: 1039px;
       height: 58px;
@@ -151,7 +151,7 @@ body {
       margin: 20px auto;
       display: block;
   }
-  
+
   .sportList {
       display: flex;
       flex-wrap: wrap;
@@ -161,9 +161,9 @@ body {
       margin: 0 auto;
       max-width: 1065px;
   }
-  
-  
-  
+
+
+
   .sportList li {
       width: 318px;
       height: 366px;
@@ -176,33 +176,33 @@ body {
       text-align: center; /* Add this line to center-align text */
       padding-top: 30px;
   }
-  
+
   .sportList li a {
       text-decoration: none; /* Remove underline from links */
       color: inherit; /* Preserve the color from the parent */
   }
-  
+
   .sportHeader {
       text-align: center;
   }
-  
+
   /* sport_detail.css */
-  
+
   .sportCards {
       width: 80%;
       margin: auto;
       text-align: center;
   }
-  
+
   .sportTable {
       margin-top: 20px;
       width: 100%; /* Make the table take full width */
   }
-  
+
   sportTableth, sportTabletd {
       text-align: center;
   }
-  
+
   /* Center the entire content on the page */
   .sportContainer {
       display: flex;
