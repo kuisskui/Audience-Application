@@ -30,7 +30,7 @@
     {% load custom_filters %}
     {% block content %}
     <table>
-        <thead>
+        <thead style="z-index:-5;">
             <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
             {% for day in data.schedule_list %}
         {% with day.datetime|sport_datetime as my_datetime %}
