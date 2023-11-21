@@ -15,6 +15,7 @@
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    {% block script %}<link rel="stylesheet" href="{% static 'audience/sports.css' %}">{% endblock %}
     <style>
     </style>
     <title>Sport Program</title>
@@ -25,47 +26,80 @@
     <div class="content">
         {% block content %}
         <h1 class="sportHeader">All Sports</h1> <!-- Centered heading -->
-
         <input type="text" class="searchBar" id="searchBar" placeholder="Search...">
 
-        <ul class="sportList" id="sportList">
-            {% for sport in data.sport_list %}
+ <ul class="sportList" id="sportList">
+    {% for sport in data.sport_list %}
+        {% if not forloop.first %}
             <li>
                 <a href="{% url 'audience:sport' sport.sport_id %}">
-                    {{ sport.sport_name }}
+                    <span>
+                        {{ sport.sport_name }}
+                        {% if user.is_authenticated %}
+                            {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}
+                                <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 1)">
+                                    <!-- Star icon for subscribed -->
+                                    <i class="ri-star-fill"></i>
+                                </button>
+                            {% else %}
+                                <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 0)">
+                                    <!-- Star icon for not subscribed -->
+                                    <i class="ri-star-line"></i>
+                                </button>
+                            {% endif %}
+                        {% endif %}
+                    </span>
                     <span class="icon-container">
-                        {% for path in sport.sport_icon %}
+                        <!-- Use only the first icon from the list -->
                         <i class="ri-2x" style="margin-left: 5px;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-                                <path d="{{ path }}" fill="currentColor" />
+                                <path d="{{ sport.sport_icon.0 }}" fill="currentColor" />
                             </svg>
                         </i>
-                        {% endfor %}
                     </span>
                 </a>
             </li>
-            {% endfor %}
-        </ul>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
+
 
         <div id="messageIcon">
             <!-- Icon or link for messaging -->
         </div>
+<script>
+    function toggleSubscription(event, sportId, isSubscribed) {
+        event.preventDefault(); // Prevent the anchor from redirecting
 
-        <script>
-            // Real-time search functionality
-            document.getElementById('searchBar').addEventListener('input', function () {
-                let searchText = this.value.toLowerCase();
-                let sportItems = document.getElementById('sportList').getElementsByTagName('a');
+        // You can use AJAX to send a request to your subscribe/unsubscribe view
+        // For simplicity, let's assume you're using fetch
+        const url = isSubscribed ? "{% url 'audience:unsubscribe' sport_id=0 %}".replace('0', sportId) : "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);
 
-                for (let item of sportItems) {
-                    if (item.textContent.toLowerCase().includes(searchText)) {
-                        item.parentNode.style.display = 'block';
-                    } else {
-                        item.parentNode.style.display = 'none';
-                    }
-                }
-            });
-        </script>
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle success (maybe update the button text or style)
+                console.log(isSubscribed ? 'Unsubscribed successfully' : 'Subscribed successfully');
+                // Reload the page or update the UI as needed
+                location.reload();
+            } else {
+                // Handle error (maybe show an alert to the user)
+                console.error('Error toggling subscription');
+            }
+        })
+        .catch(error => {
+            console.error('Error toggling subscription:', error);
+        });
+    }
+</script>
         {% endblock %}
     </div>
 </body>
