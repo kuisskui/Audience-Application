@@ -10,41 +10,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Paris Olympic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'audience/base.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    {% block script %}<link rel="stylesheet" href="{% static 'audience/profile.css' %}">{% endblock %}
     <title>Profile</title>
 </head>
 <body>
 <div class="content">
    {% block content %}
-    <h1 class="sportHeader">User Profile</h1>
+    <div class="container">
+        <h1 class="header">User Profile</h1>
 
-    <div class="userProfile">
-        <h2>{{ userprofile.user.username }}</h2>
-        <p>Gender: {{ userprofile.gender }}</p>
-        <p>Age: {{ userprofile.age }}</p>
-        <p>Country: {{ userprofile.country }}</p>
+        <div class="userProfile">
+            <h2>{{ userprofile.user.username }}</h2>
+            <p>Gender: {{ userprofile.gender }}</p>
+            <p>Age: {{ userprofile.age }}</p>
+            <p>Country: {{ userprofile.country }}</p>
 
-        <h3>Sport Subscriptions:</h3>
-        <ul>
-            {% for sport_id in sport_ids %}
-                {% for sport_list in sports.sport_list %}
-                    {% if sport_id == sport_list.sport_id|stringformat:"s" %}
-                        <li>
-                            {{sport_list.sport_name }}
-                            <button onclick="unsubscribeSport({{ sport_id }})">Unsubscribe</button>
-                        </li>
-                    {% endif %}
+            <h3>Sport Subscriptions:</h3>
+            <ul>
+                {% for sport_id in sport_ids %}
+                    {% for sport_list in sports.sport_list %}
+                        {% if sport_id == sport_list.sport_id|stringformat:"s" %}
+                            <li>
+                                {{sport_list.sport_name }}
+                                <button onclick="unsubscribeSport({{ sport_id }})">Unsubscribe</button>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
+            </ul>
+        </div>
 
-    <div id="messageIcon">
-        <!-- Icon or link for messaging -->
+        <div id="messageIcon">
+            <!-- Icon or link for messaging -->
+        </div>
     </div>
 
     <script>
