@@ -480,6 +480,22 @@ display: block;
     box-shadow: 0 0 0 10px conic-gradient(from 183deg at 37.27% 271.67%, #D7A218 0deg, rgba(214, 168, 34, 1.00) 161.2499964237213deg, rgba(165, 167, 66, 0.98) 238.12499284744263deg, rgba(179, 157, 37, 0.96) 360deg);
 }
 
+.back-iconbar {
+    padding-left: 7%;
+}
+
+.back-icon {
+    cursor: pointer;
+    transition: all 0.4s;
+    stroke: none;
+    border: none;
+    background: none;
+}
+
+.back-icon:hover {
+    transform: scale(1.1);
+}
+
 @keyframes animate {
     0% {
         transform: translateY(130vh) scale(1);
@@ -607,6 +623,10 @@ display: block;
 
     .orText {
         color: rgba(255, 255, 255, 0.9);
+    }
+
+    .back-iconbar {
+        opacity: 0;
     }
 }
 
