@@ -225,9 +225,6 @@ font-size: 24px
     width: 100%; /* Make the table take full width */
 }
 
-sportTableth, sportTabletd {
-    text-align: center;
-}
 
 /* Center the entire content on the page */
 .sportContainer {
@@ -235,4 +232,34 @@ sportTableth, sportTabletd {
     justify-content: center;
     align-items: center;
     height: 100vh; /* Adjust the height as needed */
+}
+
+.sportContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+}
+
+.sportCard {
+    width: 80%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: auto; /* Adjust the height as needed */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.sportTable {
+    width: 100%;
+    height: auto;
+}
+
+.sportTableth,
+.sportTabletd {
+    text-align: center;
+    padding: 8px;
 }

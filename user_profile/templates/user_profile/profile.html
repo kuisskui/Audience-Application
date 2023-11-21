@@ -19,23 +19,64 @@
 </head>
 <body>
 <div class="content">
-{% block content %}
-      <div class="container mt-4 d-flex justify-content-center align-items-center">
-          <h1 class="sportHeader">{{ userprofile.user.username }} Profile</h1>
-          <div class="sportHeader">
-            <p><strong>Gender:</strong> {{ userprofile.gender }}</p>
-            <p><strong>Age:</strong> {{ userprofile.age }}</p>
-            <p><strong>Country:</strong> {{ userprofile.country }}</p>
+   {% block content %}
+    <h1 class="sportHeader">User Profile</h1>
 
-            {% if sport_ids %}
-              <p><strong>Sport IDs:</strong> {{ sport_ids|join:", " }}</p>
-            {% else %}
-              <p><strong>No sport IDs available.</strong></p>
-            {% endif %}
-            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'update_profile' %}'">Update Profile</button>
-          </div>
-      </div>
-    {% endblock %}
+    <div class="userProfile">
+        <h2>{{ userprofile.user.username }}</h2>
+        <p>Gender: {{ userprofile.gender }}</p>
+        <p>Age: {{ userprofile.age }}</p>
+        <p>Country: {{ userprofile.country }}</p>
+
+        <h3>Sport Subscriptions:</h3>
+        <ul>
+            {% for sport_id in sport_ids %}
+                {% for sport_list in sports.sport_list %}
+                    {% if sport_id == sport_list.sport_id|stringformat:"s" %}
+                        <li>
+                            {{sport_list.sport_name }}
+                            <button onclick="unsubscribeSport({{ sport_id }})">Unsubscribe</button>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="messageIcon">
+        <!-- Icon or link for messaging -->
+    </div>
+
+    <script>
+        function unsubscribeSport(sportId) {
+            // You can use AJAX to send a request to your unsubscribe view
+            // For simplicity, let's assume you're using fetch
+            const url = "{% url 'audience:unsubscribe' sport_id=0 %}".replace('0', sportId);
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Handle success (maybe update the UI, remove the sport from the list, etc.)
+                    console.log(`Unsubscribed from Sport ID ${sportId} successfully`);
+                    // Reload the page or update the UI as needed
+                    location.reload();
+                } else {
+                    // Handle error (maybe show an alert to the user)
+                    console.error(`Error unsubscribing from Sport ID ${sportId}`);
+                }
+            })
+            .catch(error => {
+                console.error(`Error unsubscribing from Sport ID ${sportId}:`, error);
+            });
+        }
+    </script>
+{% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
