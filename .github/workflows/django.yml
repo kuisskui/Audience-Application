@@ -29,6 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set up environment
+        run: |
+          echo "AUTHORIZATION=${{ secrets.AUTHORIZATION }}" >> $GITHUB_ENV
+          echo "POST_URL=${{ secrets.POST_URL }}" >> $GITHUB_ENV
+
       - name: Run Tests
         run: |
           python manage.py collectstatic

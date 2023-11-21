@@ -1,0 +1,80 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Paris2024-Variable;
+    background-color: #f8f9fa;
+}
+
+.sportHeader {
+    text-align: center;
+    color: #343a40;
+    padding: 20px;
+}
+
+.sportContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.sportCard {
+    background-color: #FFF;
+    width: 100%; /* Take up the full width of the container */
+    max-width: 400px; /* Set a max-width to limit the card size */
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.sportCard:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.countryInfo {
+    margin-top: 15px;
+}
+
+.sportTable {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.sportTableth,
+.sportTabletd {
+    padding: 10px;
+    text-align: left;
+}
+
+.sportTableth {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.sportTabletd {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sportCard {
+        max-width: 100%; /* Adjust max-width for smaller screens */
+    }
+}

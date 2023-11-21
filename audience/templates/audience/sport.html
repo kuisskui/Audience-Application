@@ -15,43 +15,46 @@
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    {% block script %}<link rel="stylesheet" href="{% static 'audience/sport.css' %}">{% endblock %}
     <title>{{ data.sport_name }} Detail</title>
 </head>
 
 <body>
     {% block content %}
-         <h1 class="sportHeader">{{ data.sport_name }} Detail</h1>
-        <br><br><br><br><br><br><br><br>
+        <h1 class="sportHeader">{{ data.sport_name }} Detail</h1>
         <div class="sportContainer mt-5">
-            {% for sport_type in data.sport_types %}
-                <div class="sportCard mt-4">
+            {% for country in data.individual_countries %}
+                <div class="sportCard">
                     <div class="card-body">
-                        <h2>{{ sport_type.type_name }}</h2>
-                        <p>Status: {{ sport_type.status }}</p>
-                        <p>Participating Country Count: {{ sport_type.participating_country_count }}</p>
-                        <p>Competition Date: {{ sport_type.competition_date }}</p>
+                        <h2>{{ country.country_name }}</h2>
+                        <div class="countryInfo">
+                            <p><strong>Country Code:</strong> {{ country.country_code }}</p>
+                            <p><strong>Gold:</strong> {{ country.gold }}</p>
+                            <p><strong>Silver:</strong> {{ country.silver }}</p>
+                            <p><strong>Bronze:</strong> {{ country.bronze }}</p>
 
-                        <h3>Participants:</h3>
-                        <table class="sportTable table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="sportTableth">Country</th>
-                                    <th class="sportTableth">Gold</th>
-                                    <th class="sportTableth">Silver</th>
-                                    <th class="sportTableth">Bronze</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for participant in sport_type.participants %}
+                            <h3>Sub Sports:</h3>
+                            <table class="sportTable table-striped">
+                                <thead>
                                     <tr>
-                                        <td class="sportTabletd">{{ participant.country }}</td>
-                                        <td class="sportTabletd">{{ participant.medal.gold }}</td>
-                                        <td class="sportTabletd">{{ participant.medal.silver }}</td>
-                                        <td class="sportTabletd">{{ participant.medal.bronze }}</td>
+                                        <th class="sportTableth">Sub Sport</th>
+                                        <th class="sportTableth">Gold</th>
+                                        <th class="sportTableth">Silver</th>
+                                        <th class="sportTableth">Bronze</th>
                                     </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {% for sub_sport in country.sub_sports %}
+                                        <tr>
+                                            <td class="sportTabletd">{{ sub_sport.sub_name }}</td>
+                                            <td class="sportTabletd">{{ sub_sport.gold }}</td>
+                                            <td class="sportTabletd">{{ sub_sport.silver }}</td>
+                                            <td class="sportTabletd">{{ sub_sport.bronze }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

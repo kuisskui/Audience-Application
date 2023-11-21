@@ -39,18 +39,20 @@ def scoreboard(request):
 
 def sports(request):
     api_key = '02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3'
-    all_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all'
     sport_url = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport'
-    headers = {'Accept': 'application/json',
-               'Authorization': api_key}
+    headers = {'Accept': 'application/json', 'Authorization': api_key}
 
     try:
         data = requests.get(sport_url, headers=headers).json()
 
-        context = {"page": "sports", "detail": "show all sports without any detail or information.",
-                   "data": data}
-        return render(request, "audience/sports.html", context)
+        # Pass user_profile to the template
+        user_profile = None
+        if request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=request.user)
 
+        context = {"page": "sports", "detail": "show all sports without any detail or information.",
+                   "data": data, "user_profile": user_profile}
+        return render(request, "audience/sports.html", context)
 
     except requests.RequestException as e:
         # Log the exception for debugging
@@ -59,222 +61,11 @@ def sports(request):
         # Return an error response or handle the exception as needed
         return HttpResponse("Error fetching data from API", status=500)
 
-
 def sport(request, sport_id):
-    api_key = '02e2cdc6ac5d17a2bb67824c91f51ac55ce46465133f92233e3daa552120bcb3'
-    detail_url = f'https://referite-6538ffaf77b0.herokuapp.com/api/record/detail/{sport_id}'  # Replace with your actual API URL
-    headers = {'Accept': 'application/json', 'Authorization': api_key}
+    detail_url = f'https://sota-backend.fly.dev/medal/s/{sport_id}'
 
     try:
-        data = requests.get(detail_url, headers=headers).json()
-        if sport_id == 1:
-            data = {
-            "sport_id": 1,
-            "sport_name": "Archery",
-            "sport_types": [
-                {
-                    "type_id": 1,
-                    "type_name": "Individual Men's",
-                    "status": "RECORDED",
-                    "participating_country_count": 40,
-                    "competition_date": "2024-08-04T00:00:00",
-                    "participants": [
-                        {
-                            "country": "United States",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "China",
-                            "medal": {
-                                "gold": 1,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Bangladesh",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Belgium",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Taiwan, Province of China",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Egypt",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Mexico",
-                            "medal": {
-                                "gold": 1,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Mongolia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Poland",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Tunisia",
-                            "medal": {
-                                "gold": 2,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Brazil",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Hungary",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Kazakhstan",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Japan",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "India",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Canada",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Viet Nam",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Malaysia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Indonesia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Netherlands",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Virgin Islands, U.S.",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Slovenia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Ukraine",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Moldova, Republic of",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
+        data = requests.get(detail_url).json()
         context = {"page": "sport_detail", "detail": f"Show detail for sport ID {sport_id}", "data": data}
         return render(request, "audience/sport.html", context)
 

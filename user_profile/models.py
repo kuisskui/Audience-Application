@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     age = models.CharField(max_length=50)
     country = models.CharField(max_length=50, null=True)
     sport_ids = models.TextField(blank=True, null=True)
-    
+
     def __str__(self):
         return f'{self.user.username} Profile'
 
@@ -24,15 +24,16 @@ class UserProfile(models.Model):
 def update_user_profile(sender, instance, created, **kwargs):
     """Perform when a profile instance is updated or created"""
     post_url = os.getenv("POST_URL")
-    payload = {
-        "id": instance.pk,
-        "country": instance.country,
-        "sport_ids": [] if instance.sport_ids is None else list(map(int, instance.sport_ids.split(','))),
-        "gender": instance.gender,
+    payload = {'audience': [{
+        "id": str(instance.pk),
+        "country_code": instance.country,
+        "sport_id": [] if instance.sport_ids is None else list(map(int, instance.sport_ids.split(','))),
+        "gender": instance.gender.upper()[0],
         "age": int(instance.age)
+        }]
     }
     headers = {
         "Authorization": os.getenv("AUTHORIZATION"),
         "Content-Type": "application/json"
     }
-    # requests.post(post_url, json=payload, headers=headers)
+    requests.post(post_url, json=payload, headers=headers)

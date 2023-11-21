@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Paris Olympic">
     <link rel="stylesheet" href="{% static 'audience/base.css' %}">
+    {% block scrip %}{% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
@@ -17,9 +18,14 @@
     <nav class="nav close">
         <div class="paths">
 
-            <div>
+            <div class="icon-box">
                 {% if user.is_authenticated %}
-                    <a class="icon-text" href="{% url 'user_profile:profile' %}">{{user}}</a>
+                    <a class="icon-text" href="{% url 'user_profile:profile' %}">
+                        <div class="sep-icon">
+                            <i class="ri-user-line icon"></i>
+                            <p>{{user}}</p>
+                        </div>
+                    </a>
                 {% endif %}
             </div>
 
