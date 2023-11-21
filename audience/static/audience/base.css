@@ -36,19 +36,19 @@ body {
   position: fixed;
 }
 
-.invisible-box {
+/* .invisible-box {
   float:left;
   width: 288px;
   height: 100vh;
   display: flex;
-}
+} */
 
-.invisible-box.close {
+/* .invisible-box.close {
   float:left;
   width: 60px;
   height: 100vh;
   display: flex;
-}
+} */
 
 .nav.close {
   float: left;

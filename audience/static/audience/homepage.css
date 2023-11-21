@@ -28,6 +28,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* position: fixed; */
+  
 }
 
 * {box-sizing:border-box}
