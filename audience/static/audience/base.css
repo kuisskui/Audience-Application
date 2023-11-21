@@ -140,7 +140,6 @@ body {
   background-color: #f0ebe3;
   color: #a43939;;
 }
-<<<<<<< HEAD
 
 .content-1 {
 width: 100%;
@@ -272,74 +271,4 @@ font-size: 24px
 .sportTabletd {
     text-align: center;
     padding: 8px;
-}
-  
-  .searchBar {
-      width: 1039px;
-      height: 58px;
-      flex-shrink: 0;
-      border-radius: 100px;
-      background: #FFF;
-      box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.25);
-      margin: 20px auto;
-      display: block;
-  }
-  
-  .sportList {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      max-width: 1065px;
-  }
-  
-  
-  
-  .sportList li {
-      width: 318px;
-      height: 366px;
-      flex-shrink: 0;
-      border-radius: 80px;
-      opacity: 0.8;
-      background: #FFFEFE;
-      box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.30), 0px 4px 6px 0px rgba(0, 0, 0, 0.25) inset;
-      margin-bottom: 20px;
-      text-align: center; /* Add this line to center-align text */
-      padding-top: 30px;
-  }
-  
-  .sportList li a {
-      text-decoration: none; /* Remove underline from links */
-      color: inherit; /* Preserve the color from the parent */
-  }
-  
-  .sportHeader {
-      text-align: center;
-  }
-  
-  /* sport_detail.css */
-  
-  .sportCards {
-      width: 80%;
-      margin: auto;
-      text-align: center;
-  }
-  
-  .sportTable {
-      margin-top: 20px;
-      width: 100%; /* Make the table take full width */
-  }
-  
-  sportTableth, sportTabletd {
-      text-align: center;
-  }
-  
-  /* Center the entire content on the page */
-  .sportContainer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Adjust the height as needed */
-  }
+} 

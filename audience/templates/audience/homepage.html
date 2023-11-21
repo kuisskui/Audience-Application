@@ -89,20 +89,30 @@
 
         {% load custom_filters %}
             {% if user %}
+            {% if sport_ids %}
         <table>
-            <tr>
-                <td>
-                    Sport
-                </td>
-                {% for day in data.schedule_list %}
-                <td>
-                    {{ day.datetime | sport_datetime }}
-                </td>
-                {% endfor %}
+        <thead>
+            <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
+            {% for day in data.schedule_list %}
+        {% with day.datetime|sport_datetime as my_datetime %}
+        {% with my_datetime|split_string as my_list %}
+        {% with var1=my_list.0 var2=my_list.1 %}
+        <th><ul style="list-style: none;"><li style="font-size: 22px;font-weight: bold;color: rgba(128, 102, 24, 0.9)">{{var1}}</li>
+        <li style="font-size: 15px;color: rgba(128, 102, 24, 0.9)">{{var2}}</li>
+        <li style="font-size: 14px;color: rgba(0, 0, 0, 0.5);">D{{ forloop.counter|add:"-3"}}</li>
+        </ul>
+        </th>
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+            {% endfor %}
+        </thead>
+
+            <tbody>
             {% for sport in all_sports.sport_list %}
             {% if sport.sport_id in sport_ids %}
             <tr>
-                <th>{{sport.sport_name}}</th>
+                <th style="text-align:left;padding-left:25px;">{{sport.sport_name}}</th>
 
                 {% for day in data.schedule_list %}
                 {% for i in day.sport %}
@@ -119,15 +129,21 @@
 
                 {% elif i.sport_status == 'TROPHY' %}
                 <td><i class="ri-medal-2-line"></i></td>
+                {% else %}
+                <td></td>
                 {% endif %}
                 {% endif %}
-
                 {% endfor %}
                 {% endfor %}
             </tr>
             {% endif %}
             {% endfor %}
+            </tbody>
         </table>
+        {% else %}
+        <p>Go sub here!!!</p>
+        {% endif %}
+
         {% else %}
         Log in to access Function
         {% endif %} 
