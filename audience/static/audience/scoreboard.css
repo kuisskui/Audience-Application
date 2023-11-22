@@ -17,7 +17,7 @@ body {
 .nav {
   float:left;
   width: 16vw;
-  height: 45.1vw;
+  height: 100%;
   /* background: linear-gradient(#CEBA7394, #D4BF77E5, #D6C178, #C7B36FC7); */
   border-bottom-right-radius: 20px;
   border-top-left-radius: 0px;
@@ -50,7 +50,7 @@ body {
 .nav.close {
   float: left;
   width: 4.3vw;
-  height: 45.1vw;
+  height: 100%;
   padding-left: 0.2vw;
   z-index: 1;
 }
