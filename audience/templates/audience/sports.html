@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     {% block script %}<link rel="stylesheet" href="{% static 'audience/sports.css' %}">{% endblock %}
     <style>
+        /* Add any additional styles here */
     </style>
     <title>Sport Program</title>
 </head>
@@ -31,34 +32,31 @@
         <ul class="sportList" id="sportList">
             {% for sport in data.sport_list %}
                 {% if not forloop.first %}
-                    <li id="{{ sport.sport_id }}">
-                        <a href="{% url 'audience:sport' sport.sport_id %}">
-                            <span>
-                                {{ sport.sport_name }}
-                                {% if user.is_authenticated %}
-                                    {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}
-                                        <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 1)">
-                                            <!-- Star icon for subscribed -->
-                                            <i class="ri-star-fill"></i>
-                                        </button>
-                                    {% else %}
-                                        <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 0)">
-                                            <!-- Star icon for not subscribed -->
-                                            <i class="ri-star-line"></i>
-                                        </button>
-                                    {% endif %}
-                                {% endif %}
-                            </span>
-                            <span class="icon-container">
-                                <!-- Use only the first icon from the list -->
-                                <i class="ri-2x" style="margin-left: 5px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-                                        <path d="{{ sport.sport_icon.0 }}" fill="currentColor" />
-                                    </svg>
-                                </i>
-                            </span>
-                        </a>
-                    </li>
+                 <li id="{{ sport.sport_id }}">
+                    <a href="{% url 'audience:sport' sport.sport_id %}">
+                        <span>
+                            {{ sport.sport_name }}
+                        </span>
+                        <span class="icon-container">
+                            <i class="ri-2x" style="margin-left: 5px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+                                    <path d="{{ sport.sport_icon.0 }}" fill="currentColor" />
+                                </svg>
+                            </i>
+                        </span>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <!-- Only render the button if the user is authenticated -->
+                    <button class="subscribe-button sport-{{ sport.sport_id }} {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}subscribed{% endif %}" onclick="toggleSubscription(event, {{ sport.sport_id }})">
+                        {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}
+                            Subscribed
+                        {% else %}
+                            Subscribe
+                        {% endif %}
+                    </button>
+
+                    {% endif %}
+                </li>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -66,35 +64,60 @@
         <div id="messageIcon">
             <!-- Icon or link for messaging -->
         </div>
+            <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchBar = document.getElementById('searchBar');
+        const sportList = document.getElementById('sportList');
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const searchBar = document.getElementById('searchBar');
-                const sportList = document.getElementById('sportList');
+        searchBar.addEventListener('input', function () {
+            const searchValue = searchBar.value.toLowerCase();
 
-                searchBar.addEventListener('input', function () {
-                    const searchValue = searchBar.value.toLowerCase();
+            // Loop through each list item and show/hide based on the search value
+            document.querySelectorAll('.sportList li').forEach(function (sportItem) {
+                const sportName = sportItem.querySelector('span').textContent.toLowerCase();
 
-                    // Loop through each list item and show/hide based on the search value
-                    document.querySelectorAll('.sportList li').forEach(function (sportItem) {
-                        const sportName = sportItem.querySelector('span').textContent.toLowerCase();
-
-                        if (sportName.includes(searchValue)) {
-                            sportItem.style.display = 'block';
-                        } else {
-                            sportItem.style.display = 'none';
-                        }
-                    });
-                });
+                if (sportName.includes(searchValue)) {
+                    sportItem.style.display = 'block';
+                } else {
+                    sportItem.style.display = 'none';
+                }
             });
+        });
+    });
 
-            function toggleSubscription(event, sportId, isSubscribed) {
-                // ... existing toggleSubscription function ...
+    function toggleSubscription(event, sportId) {
+        event.preventDefault(); // Prevent the button from submitting the form
+
+        const button = document.querySelector('.sport-' + sportId);
+
+        const url = "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                // Handle success
+                console.log('Subscription toggled successfully');
+                // Reload the page or update the UI as needed
+                location.reload();
+            } else {
+                // Handle error
+                console.error('Error toggling subscription');
             }
-        </script>
+        })
+        .catch(error => {
+            console.error('Error toggling subscription:', error);
+        });
+    }
+</script>
+
         {% endblock %}
     </div>
 </body>
-
 
 </html>
