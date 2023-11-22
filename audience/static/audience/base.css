@@ -6,6 +6,7 @@
 *, html, body {
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
 .nav {
   float:left;
-  width: 288px;
+  width: 18%;
   height: 100%;
   /* background: linear-gradient(#CEBA7394, #D4BF77E5, #D6C178, #C7B36FC7); */
   border-bottom-right-radius: 20px;
@@ -33,12 +34,16 @@ body {
   background: linear-gradient(180deg, rgba(206, 186, 115, 0.58) 6.56%, rgba(212, 191, 119, 0.90) 21.15%, #D6C178 69.06%, rgba(199, 179, 111, 0.78) 81.04%);
   box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
   display: flex;
-  position: fixed;
+  position: absolute;
+  padding-left: 20px;
+  padding-top: 2%;
+  padding-bottom: 1%;
+  z-index: 1;
 }
 
 .invisible-box {
   float:left;
-  width: 288px;
+  width: 60px;
   height: 100vh;
   display: flex;
 }
@@ -52,8 +57,16 @@ body {
 
 .nav.close {
   float: left;
-  width: 60px;
+  width: 85px;
   height: 100%;
+  padding-left: 10px;
+  z-index: 1;
+}
+
+@media (max-width: 1500px) {
+  .nav {
+    width: 280px;
+  }
 }
 
 .nav.close .sep-icon p {
@@ -99,6 +112,7 @@ body {
 
 .sep-icon p {
   font-size: 24px;
+  font-weight: 500;
 }
 
 .usr-prof a {
@@ -117,28 +131,29 @@ body {
   align-items: center; 
   position: absolute;
   top:50%;
-  right: -12px;
+  right: -17px;
   transform: translateY(-50%);
-  height: 25px;
-  width: 25px;
+  height: 35px;
+  width: 35px;
   background-color: rgba(128, 102, 24, 0.9);
-  font-size: 22px;
+  font-size: 30px;
   color: #f0ebe3;
   /* border-top-right-radius: 20px 40px;
   border-bottom-right-radius: 20px 40px; */
   border-radius: 50%;
+  padding-bottom: 10%;
 }
 
 .nav .log {
-  
   margin-bottom: 20px;
   margin-top: auto;
-
+  justify-content: center;
 }
 
 .nav .arrow:hover {
   background-color: #f0ebe3;
-  color: #a43939;;
+  color: #a43939;
+  cursor: pointer;
 }
 
 .content-1 {
@@ -196,8 +211,6 @@ font-size: 24px
     margin: 0 auto;
     max-width: 1065px;
 }
-
-
 
 .sportList li {
     width: 318px;
