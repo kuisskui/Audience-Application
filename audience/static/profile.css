@@ -20,6 +20,11 @@ body {
     padding: 20px;
 }
 
+.profile {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
 .userProfile {
     max-width: 600px;
     margin: 20px auto;
@@ -28,6 +33,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
+
 
 .userProfile h2 {
     color: #343a40;
@@ -68,11 +74,4 @@ button:hover {
 #messageIcon {
     text-align: center;
     margin-top: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .userProfile {
-        max-width: 100%;
-    }
 }

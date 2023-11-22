@@ -14,16 +14,16 @@
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    {% block script %}<link rel="stylesheet" href="{% static 'audience/profile.css' %}">{% endblock %}
+    {% block script %}<link rel="stylesheet" href="{% static 'profile.css' %}">{% endblock %}
     <title>Profile</title>
 </head>
 <body>
 <div class="content">
    {% block content %}
     <div class="container">
-        <h1 class="header">User Profile</h1>
-
-        <div class="userProfile">
+        <div class="profile">
+            <h1 class="header">User Profile</h1>
+            <div class="userProfile">
             <h2>{{ userprofile.user.username }}</h2>
             <p>Gender: {{ userprofile.gender }}</p>
             <p>Age: {{ userprofile.age }}</p>
@@ -42,6 +42,7 @@
                     {% endfor %}
                 {% endfor %}
             </ul>
+        </div>
         </div>
 
         <div id="messageIcon">
