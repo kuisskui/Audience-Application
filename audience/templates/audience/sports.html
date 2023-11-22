@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     {% block script %}<link rel="stylesheet" href="{% static 'audience/sports.css' %}">{% endblock %}
     <style>
+        /* Add any additional styles here */
     </style>
     <title>Sport Program</title>
 </head>
@@ -28,54 +29,68 @@
         <h1 class="sportHeader">All Sports</h1> <!-- Centered heading -->
         <input type="text" class="searchBar" id="searchBar" placeholder="Search...">
 
- <ul class="sportList" id="sportList">
-    {% for sport in data.sport_list %}
-        {% if not forloop.first %}
-            <li>
-                <a href="{% url 'audience:sport' sport.sport_id %}">
-                    <span>
-                        {{ sport.sport_name }}
-                        {% if user.is_authenticated %}
-                            {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}
-                                <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 1)">
-                                    <!-- Star icon for subscribed -->
-                                    <i class="ri-star-fill"></i>
-                                </button>
-                            {% else %}
-                                <button onclick="toggleSubscription(event, {{ sport.sport_id }}, 0)">
-                                    <!-- Star icon for not subscribed -->
-                                    <i class="ri-star-line"></i>
-                                </button>
-                            {% endif %}
+        <ul class="sportList" id="sportList">
+            {% for sport in data.sport_list %}
+                {% if not forloop.first %}
+                 <li id="{{ sport.sport_id }}">
+                    <a href="{% url 'audience:sport' sport.sport_id %}">
+                        <span>
+                            {{ sport.sport_name }}
+                        </span>
+                        <span class="icon-container">
+                            <i class="ri-2x" style="margin-left: 5px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+                                    <path d="{{ sport.sport_icon.0 }}" fill="currentColor" />
+                                </svg>
+                            </i>
+                        </span>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <!-- Only render the button if the user is authenticated -->
+                    <button class="subscribe-button sport-{{ sport.sport_id }} {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}subscribed{% endif %}" onclick="toggleSubscription(event, {{ sport.sport_id }})">
+                        {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}
+                            Subscribed
+                        {% else %}
+                            Subscribe
                         {% endif %}
-                    </span>
-                    <span class="icon-container">
-                        <!-- Use only the first icon from the list -->
-                        <i class="ri-2x" style="margin-left: 5px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-                                <path d="{{ sport.sport_icon.0 }}" fill="currentColor" />
-                            </svg>
-                        </i>
-                    </span>
-                </a>
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+                    </button>
 
-
-
+                    {% endif %}
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
 
         <div id="messageIcon">
             <!-- Icon or link for messaging -->
         </div>
-<script>
-    function toggleSubscription(event, sportId, isSubscribed) {
-        event.preventDefault(); // Prevent the anchor from redirecting
+            <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchBar = document.getElementById('searchBar');
+        const sportList = document.getElementById('sportList');
 
-        // You can use AJAX to send a request to your subscribe/unsubscribe view
-        // For simplicity, let's assume you're using fetch
-        const url = isSubscribed ? "{% url 'audience:unsubscribe' sport_id=0 %}".replace('0', sportId) : "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);
+        searchBar.addEventListener('input', function () {
+            const searchValue = searchBar.value.toLowerCase();
+
+            // Loop through each list item and show/hide based on the search value
+            document.querySelectorAll('.sportList li').forEach(function (sportItem) {
+                const sportName = sportItem.querySelector('span').textContent.toLowerCase();
+
+                if (sportName.includes(searchValue)) {
+                    sportItem.style.display = 'block';
+                } else {
+                    sportItem.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    function toggleSubscription(event, sportId) {
+        event.preventDefault(); // Prevent the button from submitting the form
+
+        const button = document.querySelector('.sport-' + sportId);
+
+        const url = "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);
 
         fetch(url, {
             method: 'POST',
@@ -86,12 +101,12 @@
         })
         .then(response => {
             if (response.ok) {
-                // Handle success (maybe update the button text or style)
-                console.log(isSubscribed ? 'Unsubscribed successfully' : 'Subscribed successfully');
+                // Handle success
+                console.log('Subscription toggled successfully');
                 // Reload the page or update the UI as needed
                 location.reload();
             } else {
-                // Handle error (maybe show an alert to the user)
+                // Handle error
                 console.error('Error toggling subscription');
             }
         })
@@ -100,6 +115,7 @@
         });
     }
 </script>
+
         {% endblock %}
     </div>
 </body>

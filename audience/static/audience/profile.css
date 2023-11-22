@@ -76,11 +76,3 @@ button:hover {
         max-width: 100%;
     }
 }
-
-/* Add the following styles to customize the user profile section */
-
-/* If you want to make the user profile move with the navigation, you may need to adjust positioning */
-/* For example, you can add margin-left to account for the width of the navigation when it's closed */
-.nav.close + .user-profile-container {
-    margin-left: 60px; /* Adjust this as needed */
-}

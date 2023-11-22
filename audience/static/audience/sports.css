@@ -237,10 +237,12 @@ font-size: 24px
 }
 
 .sportContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed */
+    margin-bottom: 50px;
 }
 
 .sportCard {
@@ -300,12 +302,20 @@ font-size: 24px
       margin-bottom: 20px;
       text-align: center; /* Add this line to center-align text */
       padding-top: 30px;
+       position: relative; /* Set position to relative for absolute positioning of the button */
   }
 
   .sportList li a {
       text-decoration: none; /* Remove underline from links */
       color: inherit; /* Preserve the color from the parent */
   }
+
+  .sportList li img {
+    display: block;
+    margin: auto;
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
 
   .sportHeader {
       text-align: center;
@@ -335,3 +345,33 @@ font-size: 24px
       align-items: center;
       height: 100vh; /* Adjust the height as needed */
   }
+
+.subscribe-button {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #000; /* Set the background color for the subscribe button */
+    color: #fff; /* Set the text color for the subscribe button */
+}
+
+.subscribe-button.subscribed {
+    background-color: gray;
+    color: white;
+    /* Add any other styles for the subscribed state */
+}
+
+.subscribe-button:hover {
+    background-color: #333; /* Background color on hover */
+    color: #ddd; /* Text color on hover */
+}
+
+.subscribe-button.subscribed:hover {
+    background-color: gray;
+    color: white;
+    /* Add any other styles for the subscribed state */
+}
