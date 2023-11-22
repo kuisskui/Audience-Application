@@ -17,39 +17,36 @@
     {% block content %}
     <div class="right">
         <p class="score-board-title">Scoreboard<p></p>
-
         <div class="outer-box2">
-        <div class="score-board">
-            
-                
-                <br>
-                <div class="medals">
-                    <table>
-                        <tr>
-                            <th>Nation</th>
-                            <th>Rank</th>
-                            <th><i class="ri-medal-line gc"></i></th>
-                            <th><i class="ri-medal-line sc"></i></th>
-                            <th><i class="ri-medal-line bc"></i></th>
-                            <th>Total</th>
-                        </tr>
-
-                        {% for country, medals in data.items %}
-                            {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
+            <div class="score-board">
+                    <br>
+                    <div class="medals">
+                        <table>
                             <tr>
-                                <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ medals.gold}}</td>
-                                <td>{{ medals.silver }}</td>
-                                <td>{{ medals.bronze }}</td>
-                                <td>{{ total }}</td>
+                                <th>Nation</th>
+                                <th>Rank</th>
+                                <th><i class="ri-medal-line gc"></i></th>
+                                <th><i class="ri-medal-line sc"></i></th>
+                                <th><i class="ri-medal-line bc"></i></th>
+                                <th>Total</th>
                             </tr>
-                            {% endwith %}                  
-                        {% endfor %}
-                    </table>
-                    
-                </div>
-        </div>
+
+                            {% for country, medals in data.items %}
+                                {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
+                                <tr>
+                                    <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ medals.gold}}</td>
+                                    <td>{{ medals.silver }}</td>
+                                    <td>{{ medals.bronze }}</td>
+                                    <td>{{ total }}</td>
+                                </tr>
+                                {% endwith %}                  
+                            {% endfor %}
+                        </table>
+                        
+                    </div>
+            </div>
         </div>
     </div>
     {% endblock %}
