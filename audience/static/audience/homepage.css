@@ -18,18 +18,20 @@
   padding-top: 50px;
   display: grid;
   justify-content: center;
-  
+  z-index: 0;
+  border-radius: 15vw;
 }
 
 .pictures-box img {
   width: 65vw;
   height: 40vh;
-  border-radius: 80px;
+  border-radius: 15vw;
   box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -1;
+  z-index: 0;
+  position: relative;
 }
 
 * {box-sizing:border-box}
@@ -40,11 +42,13 @@
   position: relative;
   margin: auto;
   justify-content: center;
+  z-index: 0;
 }
 
 /* Hide the images by default */
 .mySlides {
   display: none;
+  z-index: 0;
 }
 
 /* Next & previous buttons */
@@ -97,8 +101,8 @@
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 8px;
-  width: 8px;
+  height: 1vh;
+  width: 1vh;
   margin: 0 2px;
   background-color: #cdcdcd;
   border-radius: 50%;

@@ -34,7 +34,7 @@ body {
 
 .sportCard {
     background-color: #FFF;
-    width: 100%; /* Take up the full width of the container */
+    width: 80%; /* Take up the full width of the container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
