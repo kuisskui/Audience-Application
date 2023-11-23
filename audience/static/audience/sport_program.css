@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Paris2024-Variable;
+  src: url('/static/fonts/Paris2024-Variable.ttf') format('truetype');
+}
+
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
+
 .content-1 {
 width: 100%;
 padding-left: 60px;
