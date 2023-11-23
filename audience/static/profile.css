@@ -1,13 +1,4 @@
-/* Reset some default styles */
-body,
-h1,
-h2,
-p,
-ul,
-li {
-    margin: 0;
-    padding: 0;
-}
+
 
 body {
     font-family: Paris2024-Variable;
@@ -16,13 +7,13 @@ body {
 
 .header {
     text-align: center;
-    color: #343a40;
+    color: #000000;
     padding: 20px;
 }
 
 .profile {
     max-width: 600px;
-    margin: 20px auto;
+    margin:  auto;
 }
 
 .userProfile {
@@ -36,17 +27,17 @@ body {
 
 
 .userProfile h2 {
-    color: #343a40;
+    color: #000000;
 }
 
 .userProfile p {
     margin: 10px 0;
-    color: #6c757d;
+    color: #000000;
 }
 
 .userProfile h3 {
     margin-top: 20px;
-    color: #343a40;
+    color: #000000;
 }
 
 ul {
@@ -61,7 +52,7 @@ button {
     background-color: #000000;
     color: #ffffff;
     border: none;
-    padding: 8px 15px;
+    padding: 4px 10px; /* Adjusted padding values for a smaller button */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
