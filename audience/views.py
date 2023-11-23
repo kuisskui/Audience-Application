@@ -118,6 +118,7 @@ def sport_program(request):
     try:
         data = requests.get(all_url, headers=headers).json()
         all_sports = requests.get(sport_url, headers=headers).json()
+        print(data)
 
         context = {"data": data, "all_sports": all_sports}
         return render(request, "audience/sport_program.html", context)

@@ -17,11 +17,11 @@
 </head>
 <body>
 {% block content %}
-<div class="content-1">
+<div class="contentTable">
     {% load custom_filters %}
     <table>
         <thead>
-            <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
+            <th style="width: 300px;height: 50px;font-size: 20px;">Sports</th>
         {% for day in data.schedule_list %}
             {% with day.datetime|sport_datetime as my_datetime %}
                 {% with my_datetime|split_string as my_list %}
@@ -48,13 +48,13 @@
                 <td></td>
 
                 {% elif i.sport_status == 'CEREMONIES' %}
-                <td><i class="ri-award-line"></i></td>
+                <td><i class="ri-star-line"></i></td>
 
                 {% elif i.sport_status == 'COMPETITIVE' %}
-                <td><i class="ri-medal-line"></i></td>
+                <td><i class="ri-circle-line"></i></td>
 
                 {% elif i.sport_status == 'TROPHY' %}
-                <td><i class="ri-medal-2-line"></i></td>
+                <td><i class="ri-medal-line"></i></td>
 
                 {% else %}
                 <td></td>
@@ -66,6 +66,8 @@
             {% endfor %}
         </tbody>
     </table>
+    <br><br><br><br><br><br>
+
 </div>
 {% endblock %}
 </body>
