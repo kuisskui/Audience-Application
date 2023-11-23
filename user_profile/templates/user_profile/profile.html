@@ -55,20 +55,7 @@
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
             })
-            .then(response => {
-                if (response.ok) {
-                    // Handle success (maybe update the UI, remove the sport from the list, etc.)
-                    console.log(`Unsubscribed from Sport ID ${sportId} successfully`);
-                    // Reload the page or update the UI as needed
-                    location.reload();
-                } else {
-                    // Handle error (maybe show an alert to the user)
-                    console.error(`Error unsubscribing from Sport ID ${sportId}`);
-                }
-            })
-            .catch(error => {
-                console.error(`Error unsubscribing from Sport ID ${sportId}:`, error);
-            });
+            location.reload();
         }
     </script>
 

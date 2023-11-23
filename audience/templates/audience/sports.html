@@ -60,7 +60,7 @@
                     </a>
 
                     {% if user.is_authenticated %}
-                    <button class="subscribe-button sport-{{ sport.sport_id }} {% if sport.sport_id|stringformat:"s" in user_profile.sport_ids %}subscribed{% endif %}"
+                    <button class="subscribe-button {% if sport.sport_id in sport_list %}subscribed{% endif %}"
                         onclick="toggleSubscription(event, {{ sport.sport_id }})">
                         {% if sport.sport_id in sport_list %}
                         Subscribed
@@ -94,10 +94,9 @@
         });
     });
 
-    async function toggleSubscription(event, sportId) {
+       async function toggleSubscription(event, sportId) {
         event.preventDefault();
 
-        const button = document.querySelector('.sport-' + sportId);
         const url = "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);
 
         try {
@@ -108,13 +107,7 @@
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                updateSubscriptionStatus(button, sportId, data.subscribed);
-            } else {
-                console.error('Error toggling subscription');
-            }
+            location.reload();
         } catch (error) {
             console.error('Error toggling subscription:', error);
         }

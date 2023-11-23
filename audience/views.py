@@ -25,6 +25,7 @@ def homepage(request):
         }
         url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
         data = requests.get(url, headers=header).json()
+        data["schedule_list"].sort(key=get_datetime)
         url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport"
         all_sports = requests.get(url, headers=header).json()
         context = {"sport_ids": sport_ids, "all_sports": all_sports, "data": data}
