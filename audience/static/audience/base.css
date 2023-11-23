@@ -3,10 +3,12 @@
   src: url('/static/fonts/Paris2024-Variable.ttf') format('truetype');
 }
 
+/*
 *, html, body {
     margin: 0;
     padding: 0;
-}
+} */
+
 
 body {
     font-family:Paris2024-Variable;
@@ -18,12 +20,14 @@ body {
     border-top-left-radius: 0px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 0px; */
+    width: 100%;
+    height: 100%;
   }
 
 
 .nav {
   float:left;
-  width: 288px;
+  width: 18vw;
   height: 100%;
   /* background: linear-gradient(#CEBA7394, #D4BF77E5, #D6C178, #C7B36FC7); */
   border-bottom-right-radius: 20px;
@@ -38,7 +42,7 @@ body {
 
 .invisible-box {
   float:left;
-  width: 288px;
+  width: 60px;
   height: 100vh;
   display: flex;
 }
@@ -52,7 +56,7 @@ body {
 
 .nav.close {
   float: left;
-  width: 60px;
+  width: 4.5vw;
   height: 100%;
 }
 
@@ -71,7 +75,7 @@ body {
 } */
 .paths {
   width: 100%;
-  padding-left: 15px;
+  padding-left: 1.2vw;
   display: flex;
   flex-direction: column;
   /* background-color: #717171; */
@@ -85,6 +89,7 @@ body {
 
 .sep-icon:hover {
   color: #a43939;
+  cursor: pointer;
 }
 
 .icon-box {
@@ -114,7 +119,7 @@ body {
 }
 
 .nav .arrow {
-  align-items: center; 
+  align-items: center;
   position: absolute;
   top:50%;
   right: -12px;
@@ -130,7 +135,7 @@ body {
 }
 
 .nav .log {
-  
+
   margin-bottom: 20px;
   margin-top: auto;
 
@@ -139,6 +144,7 @@ body {
 .nav .arrow:hover {
   background-color: #f0ebe3;
   color: #a43939;;
+  cursor: pointer;
 }
 
 .searchBar {
