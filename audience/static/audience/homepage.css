@@ -176,7 +176,8 @@ align-items: center; /* Center vertically */
 }
 
 .detail p {
-margin-right: 30px
+margin-right: 30px;
+font-size: 26px;
 }
 
 .select {
