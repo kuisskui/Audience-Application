@@ -50,8 +50,13 @@ def sports(request):
         if request.user.is_authenticated:
             user_profile = UserProfile.objects.get(user=request.user)
 
+        if user_profile.sport_ids != None:
+            sport_list = [int(number) for number in user_profile.sport_ids.split(',')]
+        else:
+            sport_list = user_profile.sport_ids
+
         context = {"page": "sports", "detail": "show all sports without any detail or information.",
-                   "data": data, "user_profile": user_profile}
+                   "data": data, "user_profile": user_profile, "sport_list": sport_list}
         return render(request, "audience/sports.html", context)
 
     except requests.RequestException as e:
