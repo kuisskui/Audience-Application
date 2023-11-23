@@ -1,3 +1,8 @@
+
+.contentTable {
+width: 94%;
+padding-left:110px;
+
 @font-face {
   font-family: Paris2024-Variable;
   src: url('/static/fonts/Paris2024-Variable.ttf') format('truetype');
@@ -14,30 +19,50 @@ padding-left: 60px;
 }
 
 
-.content-1 , table {
+.contentTable table {
 border-collapse: collapse;
+    width: 100%;
+    z-index:-5;
 }
-.content-1 table , th , td {
-  width: 8vw;
+.contentTable table , th , td {
   padding-bottom: 2px;
   padding-top: 2px;
-  border-bottom: 0.5px solid #958d6d;
-  border-collapse: collapse;
   text-align:center;
   background-color: #fff;
   color: rgba(128, 102, 24, 0.9);
 }
-.content-1 table , thead {
+
+.contentTable table , tr{
+border-bottom: 0.5px solid #958d6d;
+  border-collapse: collapse;
+}
+.contentTable table , thead {
 border-bottom: 2px solid #958d6d;
 position: sticky;
 top: 0;
 }
 
 
-.content-1 table tbody ,td {
+.contentTable table tbody ,td {
 font-size: 24px
 }
 
-.content-1 th:nth-child(even),td:nth-child(even) {
+.contentTable th:nth-child(even),td:nth-child(even) {
   background-color: #f0ebe3;
+}
+
+.detail {
+width:100%;
+height: 60px;
+background-color: #fff;
+position:sticky;
+bottom: 0;
+display:flex;
+justify-content: center; /* Center horizontally */
+align-items: center; /* Center vertically */
+    z-index:-5;
+}
+
+.detail p {
+margin-right: 30px
 }
