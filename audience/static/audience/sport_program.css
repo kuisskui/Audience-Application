@@ -1,5 +1,5 @@
 .contentTable {
-width: 90%;
+width: 94%;
 padding-left:110px;
 }
 
@@ -39,8 +39,15 @@ font-size: 24px
 .detail {
 width:100%;
 height: 60px;
-margin-top:300px;
 background-color: #fff;
 position:sticky;
 bottom: 0;
+display:flex;
+justify-content: center; /* Center horizontally */
+align-items: center; /* Center vertically */
+    z-index:-5;
+}
+
+.detail p {
+margin-right: 30px
 }

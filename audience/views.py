@@ -123,7 +123,6 @@ def sport_program(request):
     try:
         data = requests.get(all_url, headers=headers).json()
         all_sports = requests.get(sport_url, headers=headers).json()
-        print(data)
 
         data["schedule_list"].sort(key=get_datetime)
 

@@ -19,7 +19,9 @@
 {% block content %}
 <div class="contentTable">
     {% load custom_filters %}
-    <table>
+
+    <div>
+        <table>
         <thead>
             <th style="width: 300px;height: 50px;font-size: 20px;">Sports</th>
         {% for day in data.schedule_list %}
@@ -66,7 +68,16 @@
             {% endfor %}
         </tbody>
     </table>
-    <br><br><br><br><br><br>
+    </div>
+
+
+    <div class="detail">
+        <p><i class="ri-star-line"></i> Ceremonies</p>
+        <br><br>
+        <p><i class="ri-circle-line"></i> Competitive</p>
+        <br><br>
+        <p><i class="ri-star-line"></i> Trophy</p>
+    </div>
 
 </div>
 {% endblock %}
