@@ -94,9 +94,10 @@
         {% load custom_filters %}
             {% if user %}
             {% if sport_ids %}
+        <div>
         <table>
         <thead>
-            <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
+            <th style="width: 300px;height: 50px;font-size: 20px;">Sports</th>
             {% for day in data.schedule_list %}
         {% with day.datetime|sport_datetime as my_datetime %}
         {% with my_datetime|split_string as my_list %}
@@ -126,13 +127,13 @@
                 <td></td>
 
                 {% elif i.sport_status == 'CEREMONIES' %}
-                <td><i class="ri-award-line"></i></td>
+                <td><i class="ri-star-line"></i></td>
 
                 {% elif i.sport_status == 'COMPETITIVE' %}
-                <td><i class="ri-medal-line"></i></td>
+                <td><i class="ri-circle-line"></i></td>
 
                 {% elif i.sport_status == 'TROPHY' %}
-                <td><i class="ri-medal-2-line"></i></td>
+                <td><i class="ri-medal-line"></i></td>
                 {% else %}
                 <td></td>
                 {% endif %}
@@ -144,15 +145,24 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
+            <div class="detail">
+        <p><i class="ri-star-line"></i> Ceremonies</p>
+        <br><br>
+        <p><i class="ri-circle-line"></i> Competitive</p>
+        <br><br>
+        <p><i class="ri-star-line"></i> Trophy</p>
+    </div>
         {% else %}
         <p>Go sub here!!!</p>
         {% endif %}
 
         {% else %}
         Log in to access Function
-        {% endif %} 
+        {% endif %}
+        {% endblock %}
+        </center>
     </div>
-    {% endblock %}
-    </center>
+
 </body>
 </html>
