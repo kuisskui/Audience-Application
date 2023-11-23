@@ -1,4 +1,8 @@
 
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Paris2024-Variable;
