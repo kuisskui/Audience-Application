@@ -7,11 +7,15 @@ import logging
 from django.http import HttpResponse
 
 
+def get_datetime(data):
+    return data.get('datetime')
+
+
 # Create your views here.
 def homepage(request):
     if not request.user.is_anonymous:
         try:
-            user_profile = UserProfile.objects.get(user=request.user) 
+            user_profile = UserProfile.objects.get(user=request.user)
             sport_ids = list(map(int, user_profile.sport_ids.split(",")))
         except Exception:
             sport_ids = []
@@ -69,212 +73,212 @@ def sport(request, sport_id):
         data = requests.get(detail_url, headers=headers).json()
         if sport_id == 1:
             data = {
-            "sport_id": 1,
-            "sport_name": "Archery",
-            "sport_types": [
-                {
-                    "type_id": 1,
-                    "type_name": "Individual Men's",
-                    "status": "RECORDED",
-                    "participating_country_count": 40,
-                    "competition_date": "2024-08-04T00:00:00",
-                    "participants": [
-                        {
-                            "country": "United States",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
+                "sport_id": 1,
+                "sport_name": "Archery",
+                "sport_types": [
+                    {
+                        "type_id": 1,
+                        "type_name": "Individual Men's",
+                        "status": "RECORDED",
+                        "participating_country_count": 40,
+                        "competition_date": "2024-08-04T00:00:00",
+                        "participants": [
+                            {
+                                "country": "United States",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "China",
+                                "medal": {
+                                    "gold": 1,
+                                    "silver": 0,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Bangladesh",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Belgium",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Taiwan, Province of China",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Egypt",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Mexico",
+                                "medal": {
+                                    "gold": 1,
+                                    "silver": 0,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Mongolia",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Poland",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Tunisia",
+                                "medal": {
+                                    "gold": 2,
+                                    "silver": 0,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Brazil",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Hungary",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Kazakhstan",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Japan",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "India",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Canada",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Viet Nam",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Malaysia",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Indonesia",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Netherlands",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Virgin Islands, U.S.",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
+                            },
+                            {
+                                "country": "Slovenia",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Ukraine",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 0,
+                                    "bronze": 1
+                                }
+                            },
+                            {
+                                "country": "Moldova, Republic of",
+                                "medal": {
+                                    "gold": 0,
+                                    "silver": 1,
+                                    "bronze": 0
+                                }
                             }
-                        },
-                        {
-                            "country": "China",
-                            "medal": {
-                                "gold": 1,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Bangladesh",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Belgium",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Taiwan, Province of China",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Egypt",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Mexico",
-                            "medal": {
-                                "gold": 1,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Mongolia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Poland",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Tunisia",
-                            "medal": {
-                                "gold": 2,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Brazil",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Hungary",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Kazakhstan",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Japan",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "India",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Canada",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Viet Nam",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Malaysia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Indonesia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Netherlands",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Virgin Islands, U.S.",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        },
-                        {
-                            "country": "Slovenia",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Ukraine",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 0,
-                                "bronze": 1
-                            }
-                        },
-                        {
-                            "country": "Moldova, Republic of",
-                            "medal": {
-                                "gold": 0,
-                                "silver": 1,
-                                "bronze": 0
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
+                        ]
+                    }
+                ]
+            }
         context = {"page": "sport_detail", "detail": f"Show detail for sport ID {sport_id}", "data": data}
         return render(request, "audience/sport.html", context)
 
@@ -327,6 +331,8 @@ def sport_program(request):
     try:
         data = requests.get(all_url, headers=headers).json()
         all_sports = requests.get(sport_url, headers=headers).json()
+
+        data["schedule_list"].sort(key=get_datetime)
 
         context = {"data": data, "all_sports": all_sports}
         return render(request, "audience/sport_program.html", context)
