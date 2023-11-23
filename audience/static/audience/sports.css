@@ -361,12 +361,7 @@ font-size: 24px
 }
 
 .subscribe-button.subscribed {
-    background-color: #333;
+    background-color: #616161;
     color: white;
     /* Add any other styles for the subscribed state */
-}
-
-.subscribe-button:hover {
-    background-color: #333; /* Background color on hover */
-    color: #ddd; /* Text color on hover */
 }
