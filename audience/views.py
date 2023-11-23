@@ -54,11 +54,12 @@ def sports(request):
         user_profile = None
         if request.user.is_authenticated:
             user_profile = UserProfile.objects.get(user=request.user)
-
-        if user_profile.sport_ids != None:
-            sport_list = [int(number) for number in user_profile.sport_ids.split(',')]
+            if user_profile.sport_ids != None:
+                sport_list = [int(number) for number in user_profile.sport_ids.split(',')]
+            else:
+                sport_list = user_profile.sport_ids
         else:
-            sport_list = user_profile.sport_ids
+            sport_list = None
 
         context = {"page": "sports", "detail": "show all sports without any detail or information.",
                    "data": data, "user_profile": user_profile, "sport_list": sport_list}
