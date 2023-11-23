@@ -126,15 +126,17 @@
 }
 
 .contentTable {
-width: 94%;
-padding-left:110px;
+  width: 94%;
+  padding-left:110px;
+  border-radius: 20px;
 }
 
 .contentTable , table {
-border-collapse: collapse;
-    width: 150vh;
-    border: 2px solid #958d6d;
-    z-index:-5;
+  border-collapse: collapse;
+  width: 150vh;
+  border-radius: 20px;
+  border: 1px solid #958d6d;
+  z-index:-5;
 }
 .contentTable table , th , td {
   padding-bottom: 2px;

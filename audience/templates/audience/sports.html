@@ -94,7 +94,7 @@
         });
     });
 
-       async function toggleSubscription(event, sportId) {
+    async function toggleSubscription(event, sportId) {
         event.preventDefault();
 
         const url = "{% url 'audience:subscribe' sport_id=0 %}".replace('0', sportId);

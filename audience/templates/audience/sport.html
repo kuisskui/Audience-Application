@@ -1,4 +1,4 @@
-{#{% extends 'audience/base.html' %}#}
+{% extends 'audience/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,116 +14,11 @@
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'audience/sport.css' %}">
+    {% block script %}<link rel="stylesheet" href="{% static 'audience/sport.css' %}">{% endblock %}
     <title>{{ data.sport_name }} Detail</title>
 </head>
 <body>
-<div>
-<div class="invisible-box"></div>
-    <nav class="nav">
-        <div class="paths">
-
-            <div class="icon-box">
-                {% if user.is_authenticated %}
-                    <a class="icon-text" href="{% url 'user_profile:profile' %}">
-                        <div class="sep-icon">
-                            <i class="ri-user-line icon"></i>
-                            <p>{{user}}</p>
-                        </div>
-                    </a>
-                {% endif %}
-            </div>
-
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:homepage' %}">
-                    <div class="sep-icon">
-                        <i class="ri-home-line icon"></i>
-                        <p>Home</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:sports' %}">
-                    <div class="sep-icon">
-                        <!-- <i class="ri-apps-2-fill icon"></i> -->
-                        <i class="ri-apps-2-line icon"></i>
-                        <p>Sports</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:sport_program' %}">
-                    <div class="sep-icon">
-                        <i class="ri-calendar-todo-line icon"></i>
-                        <p>SportProgram</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="icon-box">
-                <a class ="icon-text" href="{% url 'audience:scoreboard' %}">
-                    <div class="sep-icon">
-                        <i class="ri-table-2 icon"></i>
-                        <p>Scoreboard</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="log">
-                {% if user.is_authenticated %}
-                <div class = "logout">
-                    <a class="icon-text" href = "{% url 'account_logout' %}">
-                        <div class="sep-icon">
-                            <i class="ri-logout-box-line icon"></i>
-                            <p>Logout</p>
-                        </div>
-                    </a>
-
-                    <!-- <div class="user_profile">
-                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
-                            <div class="sep-icon">
-                               {{user}}
-                            </div>
-                        </a>
-                    </div> -->
-                </div>
-
-                {% else %}
-                    <a class="icon-text" href="{% url 'account_login' %}">
-                        <div class="sep-icon">
-                            <i class="ri-logout-box-r-line icon"></i>
-                            <p>Login</p>
-                        </div>
-
-                    </a>
-                {% endif %}
-            </div>
-
-
-        </div>
-        <div class="arrow">
-            <i class="ri-arrow-left-s-line toggle"></i>
-            <!-- <i class="ri-arrow-right-s-line"></i> -->
-        </div>
-    </nav>
-
-    <script>
-        const body = document.querySelector("body"),
-        nav = body.querySelector(".nav"),
-        invisible = body.querySelector(".invisible-box"),
-        toggle = body.querySelector(".toggle");
-
-        toggle.addEventListener("click" , () =>{
-            nav.classList.toggle("close");
-            invisible.classList.toggle("close");
-        });
-    </script>
-
-        {% block content %}{% endblock %}
-
-</div>
+    {% block content %}
         {% if data %}
             <h1 class="sportHeader">{{ data.sport_name }} Detail</h1>
             <div class="sportContainer mt-5">
@@ -166,6 +61,6 @@
         {% else %}
               <h1 class="sportHeader">No detail available</h1>
         {% endif %}
+    {% endblock %}
 </body>
-
 </html>

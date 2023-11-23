@@ -229,6 +229,11 @@ font-size: 24px
     cursor: pointer;
     background-color: #000; /* Set the background color for the subscribe button */
     color: #fff; /* Set the text color for the subscribe button */
+    transition: all 0.4s;
+}
+
+.subscribe-button:hover {
+  opacity: 0.5;
 }
 
 .subscribe-button.subscribed {
