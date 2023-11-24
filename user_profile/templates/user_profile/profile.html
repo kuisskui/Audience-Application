@@ -23,15 +23,13 @@
             <h3>Sport Subscriptions:</h3>
             <br>
             <ul>
-                {% for sport_id in sport_ids %}
-                    {% for sport_list in sports.sport_list %}
-                        {% if sport_id == sport_list.sport_id|stringformat:"s" %}
-                            <li>
-                                <button onclick="unsubscribeSport({{ sport_id }})">Unsubscribe</button>
-                                {{sport_list.sport_name }}
-                            </li>
-                        {% endif %}
-                    {% endfor %}
+                {% for sport_id in sports.sport_list|dictsort:"sport_name" %}
+                    {% if sport_id.sport_id|stringformat:"s" in sport_ids %}
+                        <li>
+                            <button onclick="unsubscribeSport({{ sport_id.sport_id|stringformat:"s" }})">Unsubscribe</button>
+                            {{ sport_id.sport_name }}
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>
