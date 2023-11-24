@@ -2,6 +2,7 @@
 
 # Audience-Application
 Explore the web application designed to enhance the experience for audiences attending the 2024 Paris Olympic Games.
+![Uploading Screenshot 2566-11-24 at 20.13.25.png…]()
 
 Visit our website : http://www.nongallnew.online/ <br>
 **For the best experience, we recommend using Google Chrome.**
