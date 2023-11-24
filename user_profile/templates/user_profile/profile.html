@@ -7,7 +7,7 @@
 
 <head>
     {% block script %}<link rel="stylesheet" href="{% static 'profile.css' %}">{% endblock %}
-    {% block title %}Profile{% endblock %}
+    {% block title %}{{ userprofile.user.username }}'s Profile{% endblock %}
 </head>
 <body>
 {% block content %}
