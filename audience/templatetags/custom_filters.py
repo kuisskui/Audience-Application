@@ -21,5 +21,5 @@ def split_string(value):
 def get_country_name(country_code):
     for code, name in COUNTRY_ID_CHOICE:
         if code == country_code:
-            return name
+            return code if len(name) > 10 else name
     return country_code  # Return the code if the name is not found
