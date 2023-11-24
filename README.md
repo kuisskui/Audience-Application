@@ -3,7 +3,7 @@
 # Audience-Application
 Explore the web application designed to enhance the experience for audiences attending the 2024 Paris Olympic Games.
 
-![Uploading Screenshot 2566-11-24 at 20.13.25.png…]()
+<img width="1440" alt="Screenshot 2566-11-24 at 20 13 25" src="https://github.com/kuisskui/Audience-Application/assets/92800086/ec99e034-7d9d-46db-8b25-407f7ad2c40a">
 
 Visit our website : http://www.nongallnew.online/ <br>
 **For the best experience, we recommend using Google Chrome.**
