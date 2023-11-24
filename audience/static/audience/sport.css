@@ -10,9 +10,13 @@ li {
     padding: 0;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Paris2024-Variable;
-    background-color: #f8f9fa;
+    background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
 }
 
 .sportHeader {
@@ -30,13 +34,12 @@ body {
 
 .sportCard {
     background-color: #FFF;
-    width: 100%; /* Take up the full width of the container */
-    max-width: 400px; /* Set a max-width to limit the card size */
-    margin: 20px;
+    width: 80%; /* Take up the full width of the container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s;
+    margin: 20px 0; /* Add margin for spacing between cards */
 }
 
 .sportCard:hover {
@@ -70,6 +73,13 @@ body {
 
 .sportTabletd {
     border-bottom: 1px solid #dee2e6;
+}
+
+.no-detail-message {
+    text-align: center;
+    font-size: 24px;
+    color: #343a40;
+    margin-top: 50px; /* Adjust margin for spacing */
 }
 
 /* Responsive Design */

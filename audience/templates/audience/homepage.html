@@ -9,12 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
-    <title>Audience</title>
+    {% block title %}Audience{% endblock %}
     {% block script %}<link rel="stylesheet" href="{% static 'audience/homepage.css' %}">{% endblock %}
 </head>
 
 <body>
-
     {% block content %}
     <div class="right">
         <div class="outer-box1">
@@ -22,15 +21,15 @@
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-                    <a href="https://www.paris2024.org/en/" target="_blank">
+                    <a href="https://olympics.com/en/olympic-games/paris-2024" target="_blank">
                         <div class="pictures-box">
-                            <img src="{% static 'audience/image/boring_ass_view.jpg' %}">
+                            <img src="{% static 'audience/image/Badge-1.png' %}">
                         </div>
                     </a>  
             </div>
           
             <div class="mySlides fade">
-                    <a href="https://olympics.com/en/olympic-games/paris-2024" target="_blank">
+                    <a href="https://www.paris2024.org/en/" target="_blank">
                         <div class="pictures-box">
                             <img src="{% static 'audience/image/view_2.jpg' %}">
                         </div>
@@ -49,50 +48,56 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <br>
           
         <!-- The dots/circles -->
-        <div style="text-align:center">
+        <div class="select" style="text-align:center">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
-            <script>
-                let slideIndex = 1;
-                showSlides(slideIndex);
-                
-                function plusSlides(n) {
+        <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+        
+            function plusSlides(n) {
                 showSlides(slideIndex += n);
-                }
-                
-                function currentSlide(n) {
+            }
+        
+            function currentSlide(n) {
                 showSlides(slideIndex = n);
-                }
-                
-                function showSlides(n) {
+            }
+        
+            function showSlides(n) {
                 let i;
                 let slides = document.getElementsByClassName("mySlides");
                 let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}    
-                if (n < 1) {slideIndex = slides.length}
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
                 for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";  
+                    slides[i].style.display = "none";
                 }
                 for (i = 0; i < dots.length; i++) {
                     dots[i].className = dots[i].className.replace(" active", "");
                 }
-                slides[slideIndex-1].style.display = "block";  
-                dots[slideIndex-1].className += " active";
-                }
-            </script>
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+        
+            // Add this setInterval function to automatically change slides every 3 seconds
+            setInterval(function () {
+                plusSlides(1);
+            }, 5000); // 5000 milliseconds = 5 seconds
+        </script>
         </div>
-
+    <br>
+    <center>
         {% load custom_filters %}
             {% if user %}
             {% if sport_ids %}
+        <div>
         <table>
         <thead>
-            <th style="width: 500px;height: 50px;font-size: 20px;">Sports</th>
+            <th style="width: 300px;height: 50px;font-size: 20px;">Sports</th>
             {% for day in data.schedule_list %}
         {% with day.datetime|sport_datetime as my_datetime %}
         {% with my_datetime|split_string as my_list %}
@@ -122,13 +127,17 @@
                 <td></td>
 
                 {% elif i.sport_status == 'CEREMONIES' %}
-                <td><i class="ri-award-line"></i></td>
+                <td><i class="ri-star-line" style="color:rgb(244,182,44,1);"></i></td>
 
                 {% elif i.sport_status == 'COMPETITIVE' %}
-                <td><i class="ri-medal-line"></i></td>
+                <td><i class="ri-circle-line"></i></td>
 
                 {% elif i.sport_status == 'TROPHY' %}
-                <td><i class="ri-medal-2-line"></i></td>
+                <td><i class="ri-medal-line"></i></td>
+
+                {% elif i.sport_status == 'RECORDED' %}
+                <td><i class="ri-medal-line"  style="color:rgb(170,170,170,1);"></i></td>
+
                 {% else %}
                 <td></td>
                 {% endif %}
@@ -140,15 +149,23 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
+        <div class="detail">
+        <p><i class="ri-star-line" style="color:rgb(244,182,44,1);"></i> Ceremonies</p>
+        <p><i class="ri-circle-line" style="color: rgba(128, 102, 24, 0.9)"></i> Competitive</p>
+        <p><i class="ri-medal-line" style="color: rgba(128, 102, 24, 0.9)"></i> Trophy</p>
+            <p><i class="ri-medal-line"  style="color:rgb(170,170,170,1);"></i>Recorded</p>
+    </div>
         {% else %}
-        <p>Go sub here!!!</p>
+        <p>Please Subscribe to see the schedule.</p>
         {% endif %}
 
         {% else %}
         Log in to access Function
-        {% endif %} 
+        {% endif %}
+        {% endblock %}
+        </center>
     </div>
-    {% endblock %}
 
 </body>
 </html>

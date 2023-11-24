@@ -64,7 +64,9 @@
                         </select>
                         <br><br class="brHeight">
                         {% for message in messages %}
-                        <p class="error-message">{{ message }}</p>
+                            {% if message.tags == 'error' %}
+                                <p class="error-message">{{ message }}</p>
+                            {% endif %}
                         {% endfor %}
                         <br class="brHeight">
                         <button class="btn btn-primary" type="submit">Register</button>

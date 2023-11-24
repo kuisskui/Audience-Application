@@ -1,47 +1,40 @@
 {% extends 'audience/base.html' %}
-{% load static %}
+{% load static custom_filters_profile %}
 
 <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Paris Olympic">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
-    <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    {% block script %}<link rel="stylesheet" href="{% static 'audience/profile.css' %}">{% endblock %}
-    <title>Profile</title>
+    {% block script %}<link rel="stylesheet" href="{% static 'profile.css' %}">{% endblock %}
+    {% block title %}{{ userprofile.user.username }}'s Profile{% endblock %}
 </head>
 <body>
-<div class="content">
-   {% block content %}
+{% block content %}
     <div class="container">
-        <h1 class="header">User Profile</h1>
-
-        <div class="userProfile">
+        <div class="profile">
+            <h1 class="header">User Profile</h1>
+            <div class="userProfile">
             <h2>{{ userprofile.user.username }}</h2>
-            <p>Gender: {{ userprofile.gender }}</p>
+            <p>Gender: {{ userprofile.gender|capitalize_filter }}</p>
             <p>Age: {{ userprofile.age }}</p>
-            <p>Country: {{ userprofile.country }}</p>
+            <p>Country: {{ userprofile.country }}, {{ userprofile.country|get_country_name }}</p>
 
             <h3>Sport Subscriptions:</h3>
+            <br>
             <ul>
                 {% for sport_id in sport_ids %}
                     {% for sport_list in sports.sport_list %}
                         {% if sport_id == sport_list.sport_id|stringformat:"s" %}
                             <li>
-                                {{sport_list.sport_name }}
                                 <button onclick="unsubscribeSport({{ sport_id }})">Unsubscribe</button>
+                                {{sport_list.sport_name }}
                             </li>
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
             </ul>
+        </div>
         </div>
 
         <div id="messageIcon">
@@ -62,27 +55,14 @@
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
             })
-            .then(response => {
-                if (response.ok) {
-                    // Handle success (maybe update the UI, remove the sport from the list, etc.)
-                    console.log(`Unsubscribed from Sport ID ${sportId} successfully`);
-                    // Reload the page or update the UI as needed
-                    location.reload();
-                } else {
-                    // Handle error (maybe show an alert to the user)
-                    console.error(`Error unsubscribing from Sport ID ${sportId}`);
-                }
-            })
-            .catch(error => {
-                console.error(`Error unsubscribing from Sport ID ${sportId}:`, error);
-            });
+            location.reload();
         }
     </script>
-{% endblock %}
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</div>
+{% endblock %}
 </body>
 </html>

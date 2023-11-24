@@ -10,24 +10,23 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
-    <title>Audience</title>
+    <title>{% block title %}Audience{% endblock %}</title>
     {% block script %}{% endblock %}
 </head>
 <body>
 <div class="invisible-box"></div>
-    <nav class="nav">
+    <nav class="nav close">
         <div class="paths">
-
-            <div class="icon-box">
-                {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
+                <div class="icon-box">
                     <a class="icon-text" href="{% url 'user_profile:profile' %}">
                         <div class="sep-icon">
                             <i class="ri-user-line icon"></i>
                             <p>{{user}}</p>
                         </div>
                     </a>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
 
             <div class="icon-box">
                 <a class ="icon-text" href="{% url 'audience:homepage' %}">
@@ -75,14 +74,6 @@
                             <p>Logout</p>
                         </div>
                     </a>
-
-                    <!-- <div class="user_profile">
-                        <a class="icon-text" href="{% url 'user_profile:profile' %}">
-                            <div class="sep-icon">
-                               {{user}}
-                            </div>
-                        </a>
-                    </div> -->
                 </div>
 
                 {% else %}
@@ -100,7 +91,6 @@
         </div>
         <div class="arrow">
             <i class="ri-arrow-left-s-line toggle"></i>
-            <!-- <i class="ri-arrow-right-s-line"></i> -->
         </div>
     </nav>
 
@@ -115,8 +105,6 @@
             invisible.classList.toggle("close");
         });
     </script>
-
-        {% block content %}{% endblock %}
-
+    {% block content %}{% endblock %}
 </body>
 </html>

@@ -8,132 +8,6 @@
     padding: 0;
 }
 
-body {
-    font-family:Paris2024-Variable;
-    background: linear-gradient(161deg, rgba(255, 253, 253, 0.00) -4.34%, rgba(212, 191, 119, 0.90) 74.87%), #FFF;
-}
-
-
-.nav {
-  float:left;
-  width: 288px;
-  height: 100%;
-  /* background: linear-gradient(#CEBA7394, #D4BF77E5, #D6C178, #C7B36FC7); */
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 0px;
-  background: linear-gradient(180deg, rgba(206, 186, 115, 0.58) 6.56%, rgba(212, 191, 119, 0.90) 21.15%, #D6C178 69.06%, rgba(199, 179, 111, 0.78) 81.04%);
-  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.25);
-  display: flex;
-  position: fixed;
-}
-
-.invisible-box {
-  float:left;
-  width: 288px;
-  height: 100vh;
-  display: flex;
-}
-
-.invisible-box.close {
-  float:left;
-  width: 60px;
-  height: 100vh;
-  display: flex;
-}
-
-.nav.close {
-  float: left;
-  width: 60px;
-  height: 100%;
-}
-
-.nav.close .sep-icon p {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.nav.close .arrow {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-/* .sp {
-  display:flex ;
-  margin: 0%;
-} */
-.paths {
-  width: 100%;
-  padding-left: 15px;
-  display: flex;
-  flex-direction: column;
-  /* background-color: #717171; */
-}
-.icon-text {
-  font-size: 30px;
-  color: #6E5F44;
-  text-decoration: none;
-  margin-bottom: 50px;
-}
-
-.sep-icon:hover {
-  color: #a43939;
-}
-
-.icon-box {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  justify-content: center;
-}
-
-.sep-icon {
-  display: flex;
-}
-
-.sep-icon p {
-  font-size: 24px;
-}
-
-.usr-prof a {
-  font-size: 1px;
-}
-
-.icon {
-  min-width: 60px;
-}
-
-.paths .icon:visited {
-  text-decoration: none;
-}
-
-.nav .arrow {
-  align-items: center;
-  position: absolute;
-  top:50%;
-  right: -12px;
-  transform: translateY(-50%);
-  height: 25px;
-  width: 25px;
-  background-color: rgba(128, 102, 24, 0.9);
-  font-size: 22px;
-  color: #f0ebe3;
-  /* border-top-right-radius: 20px 40px;
-  border-bottom-right-radius: 20px 40px; */
-  border-radius: 50%;
-}
-
-.nav .log {
-
-  margin-bottom: 20px;
-  margin-top: auto;
-
-}
-
-.nav .arrow:hover {
-  background-color: #f0ebe3;
-  color: #a43939;;
-}
-
 .content-1 {
 width: 100%;
 padding-left: 60px;
@@ -173,7 +47,8 @@ font-size: 24px
     width: 1039px;
     height: 58px;
     flex-shrink: 0;
-    border-radius: 100px;
+    text-indent: 20px;
+    border-radius: 50px;
     background: #FFF;
     box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.25);
     margin: 20px auto;
@@ -189,8 +64,6 @@ font-size: 24px
     margin: 0 auto;
     max-width: 1065px;
 }
-
-
 
 .sportList li {
     width: 318px;
@@ -212,6 +85,7 @@ font-size: 24px
 
 .sportHeader {
     text-align: center;
+    font-size: 50px;
 }
 
 /* sport_detail.css */
@@ -220,6 +94,7 @@ font-size: 24px
     width: 80%;
     margin: auto;
     text-align: center;
+    z-index: -1;
 }
 
 .sportTable {
@@ -237,10 +112,12 @@ font-size: 24px
 }
 
 .sportContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed */
+    margin-bottom: 50px;
 }
 
 .sportCard {
@@ -249,6 +126,8 @@ font-size: 24px
     border: 1px solid #ccc;
     border-radius: 8px;
     height: auto; /* Adjust the height as needed */
+    z-index: -1;
+    transition: all 0.4s;
 }
 
 .card-body {
@@ -266,18 +145,7 @@ font-size: 24px
     padding: 8px;
 }
 
-  .searchBar {
-      width: 1039px;
-      height: 58px;
-      flex-shrink: 0;
-      border-radius: 100px;
-      background: #FFF;
-      box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.25);
-      margin: 20px auto;
-      display: block;
-  }
-
-  .sportList {
+.sportList {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -285,53 +153,91 @@ font-size: 24px
       padding: 0;
       margin: 0 auto;
       max-width: 1065px;
+      z-index: -1;
   }
 
-
-
-  .sportList li {
-      width: 318px;
-      height: 366px;
+.sportList li {
+      width: 250px;
+      height: 275px;
       flex-shrink: 0;
-      border-radius: 80px;
+      border-radius: 40px;
       opacity: 0.8;
       background: #FFFEFE;
-      box-shadow: 6px 4px 68px 11px rgba(0, 0, 0, 0.30), 0px 4px 6px 0px rgba(0, 0, 0, 0.25) inset;
+      box-shadow: 0px 0px 68px 2px rgba(0, 0, 0, 0.30), 0px 4px 6px 0px rgba(0, 0, 0, 0.25) inset;
       margin-bottom: 20px;
       text-align: center; /* Add this line to center-align text */
-      padding-top: 30px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      position: relative; /* Set position to relative for absolute positioning of the button */
+      z-index: 0;
+      transition: all 0.4s;
   }
 
-  .sportList li a {
+.sportList li:hover {
+    transform: scale(1.04);
+  }
+
+.sportList li a {
       text-decoration: none; /* Remove underline from links */
       color: inherit; /* Preserve the color from the parent */
   }
 
-  .sportHeader {
+.sportList li img {
+    display: block;
+    width: 35px; /* Adjust the width as needed */
+    height: 35px; /* Adjust the height as needed */
+}
+
+.sportHeader {
       text-align: center;
   }
 
   /* sport_detail.css */
 
-  .sportCards {
+.sportCards {
       width: 80%;
       margin: auto;
       text-align: center;
   }
 
-  .sportTable {
+.sportTable {
       margin-top: 20px;
       width: 100%; /* Make the table take full width */
   }
 
-  sportTableth, sportTabletd {
+.sportTableth, sportTabletd {
       text-align: center;
   }
 
   /* Center the entire content on the page */
-  .sportContainer {
+.sportContainer {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh; /* Adjust the height as needed */
+      z-index: -1;
   }
+
+.subscribe-button {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #000; /* Set the background color for the subscribe button */
+    color: #fff; /* Set the text color for the subscribe button */
+    transition: all 0.4s;
+}
+
+.subscribe-button:hover {
+  opacity: 0.5;
+}
+
+.subscribe-button.subscribed {
+    background-color: #616161;
+    color: white;
+    /* Add any other styles for the subscribed state */
+}

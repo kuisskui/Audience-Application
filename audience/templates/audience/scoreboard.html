@@ -1,4 +1,4 @@
-{% extends 'audience/base.html' %}
+{% extends "audience/base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,47 +9,47 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'audience/image/Web-logo.png' %}">
     <link href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css" rel="stylesheet"/>
-    <title>Audience</title>
+    {% block title %}Scoreboard{% endblock %}
     {% block script %}<link rel="stylesheet" href="{% static 'audience/scoreboard.css' %}">{% endblock %}
 </head>
-<body>
 
+<body>
     {% block content %}
     <div class="right">
-        <p class="score-board-title">Scoreboard<p></p>
+        <br><br>
         <div class="outer-box2">
+            <p class="score-board-title">Scoreboard</p>
             <div class="score-board">
-                    <br>
-                    <div class="medals">
-                        <table>
-                            <tr>
-                                <th>Nation</th>
-                                <th>Rank</th>
-                                <th><i class="ri-medal-line gc"></i></th>
-                                <th><i class="ri-medal-line sc"></i></th>
-                                <th><i class="ri-medal-line bc"></i></th>
-                                <th>Total</th>
-                            </tr>
+                <br>
+                <div class="medals">
+                    <table>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Nation</th>
+                            <th><i class="ri-medal-line gc"></i></th>
+                            <th><i class="ri-medal-line sc"></i></th>
+                            <th><i class="ri-medal-line bc"></i></th>
+                            <th>Total</th>
+                        </tr>
 
-                            {% for country, medals in data.items %}
-                                {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
-                                <tr>
-                                    <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
-                                    <td>{{ forloop.counter }}</td>
-                                    <td>{{ medals.gold}}</td>
-                                    <td>{{ medals.silver }}</td>
-                                    <td>{{ medals.bronze }}</td>
-                                    <td>{{ total }}</td>
-                                </tr>
-                                {% endwith %}                  
-                            {% endfor %}
-                        </table>
-                        
-                    </div>
+                        {% for country, medals in data.items %}
+                            {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
+                                <td>{{ medals.gold}}</td>
+                                <td>{{ medals.silver }}</td>
+                                <td>{{ medals.bronze }}</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                            {% endwith %}                  
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <br><br>
     {% endblock %}
-
 </body>
 </html>

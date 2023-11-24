@@ -1,10 +1,5 @@
-/* Reset some default styles */
-body,
-h1,
-h2,
-p,
-ul,
-li {
+
+*, html, body {
     margin: 0;
     padding: 0;
 }
@@ -16,8 +11,13 @@ body {
 
 .header {
     text-align: center;
-    color: #343a40;
+    color: #000000;
     padding: 20px;
+}
+
+.profile {
+    max-width: 600px;
+    margin:  auto;
 }
 
 .userProfile {
@@ -29,18 +29,19 @@ body {
     border-radius: 10px;
 }
 
+
 .userProfile h2 {
-    color: #343a40;
+    color: #000000;
 }
 
 .userProfile p {
     margin: 10px 0;
-    color: #6c757d;
+    color: #000000;
 }
 
 .userProfile h3 {
     margin-top: 20px;
-    color: #343a40;
+    color: #000000;
 }
 
 ul {
@@ -55,7 +56,7 @@ button {
     background-color: #000000;
     color: #ffffff;
     border: none;
-    padding: 8px 15px;
+    padding: 4px 10px; /* Adjusted padding values for a smaller button */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -68,19 +69,4 @@ button:hover {
 #messageIcon {
     text-align: center;
     margin-top: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .userProfile {
-        max-width: 100%;
-    }
-}
-
-/* Add the following styles to customize the user profile section */
-
-/* If you want to make the user profile move with the navigation, you may need to adjust positioning */
-/* For example, you can add margin-left to account for the width of the navigation when it's closed */
-.nav.close + .user-profile-container {
-    margin-left: 60px; /* Adjust this as needed */
 }

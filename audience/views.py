@@ -7,11 +7,15 @@ import logging
 from django.http import HttpResponse
 
 
+def get_datetime(data):
+    return data.get('datetime')
+
+
 # Create your views here.
 def homepage(request):
     if not request.user.is_anonymous:
         try:
-            user_profile = UserProfile.objects.get(user=request.user) 
+            user_profile = UserProfile.objects.get(user=request.user)
             sport_ids = list(map(int, user_profile.sport_ids.split(",")))
         except Exception:
             sport_ids = []
@@ -21,6 +25,7 @@ def homepage(request):
         }
         url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all"
         data = requests.get(url, headers=header).json()
+        data["schedule_list"].sort(key=get_datetime)
         url = "https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport"
         all_sports = requests.get(url, headers=header).json()
         context = {"sport_ids": sport_ids, "all_sports": all_sports, "data": data}
@@ -49,9 +54,15 @@ def sports(request):
         user_profile = None
         if request.user.is_authenticated:
             user_profile = UserProfile.objects.get(user=request.user)
+            if user_profile.sport_ids != None:
+                sport_list = [int(number) for number in user_profile.sport_ids.split(',')]
+            else:
+                sport_list = user_profile.sport_ids
+        else:
+            sport_list = None
 
         context = {"page": "sports", "detail": "show all sports without any detail or information.",
-                   "data": data, "user_profile": user_profile}
+                   "data": data, "user_profile": user_profile, "sport_list": sport_list}
         return render(request, "audience/sports.html", context)
 
     except requests.RequestException as e:
@@ -60,6 +71,7 @@ def sports(request):
 
         # Return an error response or handle the exception as needed
         return HttpResponse("Error fetching data from API", status=500)
+
 
 def sport(request, sport_id):
     detail_url = f'https://sota-backend.fly.dev/medal/s/{sport_id}'
@@ -118,6 +130,8 @@ def sport_program(request):
     try:
         data = requests.get(all_url, headers=headers).json()
         all_sports = requests.get(sport_url, headers=headers).json()
+
+        data["schedule_list"].sort(key=get_datetime)
 
         context = {"data": data, "all_sports": all_sports}
         return render(request, "audience/sport_program.html", context)
