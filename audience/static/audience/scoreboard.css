@@ -71,3 +71,8 @@
   align-items: center;
   font-size: 20px;
 }
+
+.country-cell {
+  display: flex;
+  align-items: center;
+}

@@ -1,5 +1,5 @@
 {% extends "audience/base.html" %}
-{% load static %}
+{% load static custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,15 +31,21 @@
                             <th><i class="ri-medal-line bc"></i></th>
                             <th>Total</th>
                         </tr>
+                        <style>
+                            .country-cell {
+                                display: flex;
+                                align-items: center;
+                            }
+                        </style>
 
                         {% for country, medals in data.items %}
                             {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td>    
+                                <td class="country-cell">    
                                     <i class="fi fi-{{ country|default:'x'|lower }}"></i>
                                     &nbsp;&nbsp;&nbsp;
-                                    {{country}}
+                                    {{country|get_country_name}}
                                 </td>
                                 <td>{{ medals.gold}}</td>
                                 <td>{{ medals.silver }}</td>

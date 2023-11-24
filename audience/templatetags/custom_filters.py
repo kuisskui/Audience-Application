@@ -1,4 +1,5 @@
 from django import template
+from mysite.constants import COUNTRY_ID_CHOICE
 
 register = template.Library()
 all_month = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC")
@@ -15,3 +16,10 @@ def sport_datetime(value):
 @register.filter
 def split_string(value):
     return value.split(" ")
+
+@register.filter(name='get_country_name')
+def get_country_name(country_code):
+    for code, name in COUNTRY_ID_CHOICE:
+        if code == country_code:
+            return name
+    return country_code  # Return the code if the name is not found
