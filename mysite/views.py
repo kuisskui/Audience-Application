@@ -5,9 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from user_profile.models import UserProfile
 from user_profile.forms import UserProfileForm
+from django.views.decorators.csrf import csrf_protect
 from .forms import NewUserForm
 
 
+@csrf_protect
 def register(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -24,9 +26,10 @@ def register(request):
 
             messages.success(request, "Registration successful.")
             return redirect("audience:homepage")
-
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    form = NewUserForm()
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+    else:
+        form = NewUserForm()
     return render(request, "account/register.html", {"register_form": form})
 
 
@@ -73,4 +76,3 @@ def update_profile(request):
     else:
         form = UserProfileForm()  # Populate the form with user data
     return render(request, "account/update_profile.html", {"register_form": form})
-
