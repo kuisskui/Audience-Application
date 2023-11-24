@@ -18,7 +18,7 @@
             <h2>{{ userprofile.user.username }}</h2>
             <p>Gender: {{ userprofile.gender }}</p>
             <p>Age: {{ userprofile.age }}</p>
-            <p>Country: {{ userprofile.country|get_country_name }}</p>
+            <p>Country: {{ userprofile.country }}, {{ userprofile.country|get_country_name }}</p>
 
             <h3>Sport Subscriptions:</h3>
             <br>
