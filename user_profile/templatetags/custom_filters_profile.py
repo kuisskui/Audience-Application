@@ -9,3 +9,12 @@ def get_country_name(country_code):
         if code == country_code:
             return name
     return country_code  # Return the code if the name is not found
+
+@register.filter(name='capitalize_filter')
+def capitalize_filter(value):
+    """
+    Capitalize the first letter of a string.
+    """
+    if not value:
+        return value
+    return value.capitalize()

@@ -1,5 +1,5 @@
 {% extends 'audience/base.html' %}
-{% load static custom_filters %}
+{% load static custom_filters_profile %}
 
 <!DOCTYPE html>
 
@@ -16,7 +16,7 @@
             <h1 class="header">User Profile</h1>
             <div class="userProfile">
             <h2>{{ userprofile.user.username }}</h2>
-            <p>Gender: {{ userprofile.gender }}</p>
+            <p>Gender: {{ userprofile.gender|capitalize_filter }}</p>
             <p>Age: {{ userprofile.age }}</p>
             <p>Country: {{ userprofile.country }}, {{ userprofile.country|get_country_name }}</p>
 
