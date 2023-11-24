@@ -36,7 +36,11 @@
                             {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td><i class="fi fi-{{ country|default:'x'|lower }}"></i></td>
+                                <td>    
+                                    <i class="fi fi-{{ country|default:'x'|lower }}"></i>
+                                    &nbsp;&nbsp;&nbsp;
+                                    {{country}}
+                                </td>
                                 <td>{{ medals.gold}}</td>
                                 <td>{{ medals.silver }}</td>
                                 <td>{{ medals.bronze }}</td>
