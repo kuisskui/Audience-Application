@@ -31,12 +31,6 @@
                             <th><i class="ri-medal-line bc"></i></th>
                             <th>Total</th>
                         </tr>
-                        <style>
-                            .country-cell {
-                                display: flex;
-                                align-items: center;
-                            }
-                        </style>
 
                         {% for country, medals in data.items %}
                             {% with total=medals.gold|add:medals.silver|add:medals.bronze %}
