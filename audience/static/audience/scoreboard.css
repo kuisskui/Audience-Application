@@ -73,6 +73,6 @@
 }
 
 .country-cell {
-  display: flex;
-  align-items: center;
+  align-items: left;
+  text-align: left;
 }
