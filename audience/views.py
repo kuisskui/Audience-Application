@@ -37,7 +37,8 @@ def homepage(request):
 def scoreboard(request):
     str_data = requests.get("https://sota-backend.fly.dev/medals/")
     data = str_data.json()
-    sorted_data = sorted(data.items(), key=lambda x: (sum(x[1].values()), x[1]['bronze'], x[1]['silver'], x[1]['gold'], x[0]))
+    # sorted_data = sorted(data.items(), key=lambda x: (sum(x[1].values()), x[1]['bronze'], x[1]['silver'], x[1]['gold'], x[0]))
+    sorted_data = sorted(data.items(), key=lambda x: (-(x[1]['gold'] + x[1]['silver'] + x[1]['bronze']), -x[1]['gold'], -x[1]['silver'], -x[1]['bronze'], x[0]))
     context = {"page": "scoreboard", "detail": "show total medals for every countries", "data": dict(sorted_data)}
     return render(request, "audience/scoreboard.html", context)
 
