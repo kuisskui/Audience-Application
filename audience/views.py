@@ -65,6 +65,9 @@ def sports(request):
         context = {"page": "sports", "detail": "show all sports without any detail or information.",
                    "data": data, "user_profile": user_profile, "sport_list": sport_list}
         return render(request, "audience/sports.html", context)
+    
+    except UserProfile.DoesNotExist:
+        return redirect('update_profile') 
 
     except requests.RequestException as e:
         # Log the exception for debugging
